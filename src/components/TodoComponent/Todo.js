@@ -97,28 +97,3 @@ export default Todo;
 
 
 
-
-
-
-
-
-{/* <div className="form-todo">
-            <form>
-                <label htmlFor="name">
-                    {todoText.label}
-                </label>
-                <input
-                    type="text"
-                    onChange={this.handleChange}
-                    value={todoText.value}
-                    name={todoText.name}
-                    id={todoText.name}
-                />
-                <button
-                    disabled={ListItemsLength == 10}
-                    onClick={(event) => this.handleToDoItemAdd(event)}
-                >
-                Add
-                </button>
-            </form>
-        </div> */}
