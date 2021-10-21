@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./form.scss";
+import Field from './Field.js';
 
 class FromRegistration extends Component {
   state = {
@@ -54,10 +55,11 @@ class FromRegistration extends Component {
     isError: null,
   };
 
-  handleChange(event) {
+  handleChange =(event) => {
     event.preventDefault();
 
     const { name, value } = event.target;
+    console.log(this.state)
     const currentField = this.state.fields[name];
     const allValues = Object.entries(this.state.fields).reduce(
       (newObj, [fieldName, fieldState]) => {
@@ -178,89 +180,43 @@ class FromRegistration extends Component {
   }
 
   render() {
-    const {
-      fields: { name, email, password, confirmPassword },
-    } = this.state;
-
     return (
       <div className="form-registration">
         <form onSubmit={(event) => this.handleSubmit(event)}>
           <h1 className="form-title">Form</h1>
-          {/* user name block */}
-          <div className="input-conteiner">
-            <div className="label-conteiner">
-              <label htmlFor="name">
-                <span className="span-label">{name.label}</span>
-              </label>
-            </div>
-            <input
-              type={name.type}
-              name={name.name}
-              value={name.value}
-              id={name.name}
-              onChange={(event) => this.handleChange(event)}
-            />
-            <div className="conteiner-error">
-              {name.error && <span className="span-error">{name.error}</span>}
-            </div>
-          </div>
-          {/* email block */}
-          <div className="input-conteiner">
-            <div className="label-conteiner">
-              <label htmlFor="email">
-                <span className="span-label">{email.label}</span>
-              </label>
-            </div>
-            <input
-              type={email.type}
-              name={email.name}
-              value={email.value}
-              id={email.name}
-              onChange={(event) => this.handleChange(event)}
-            />
-            <div className="conteiner-error">
-              {email.error && <span className="span-error">{email.error}</span>}
-            </div>
-          </div>
-          {/* passwords block */}
-          <div className="input-conteiner">
-            <div className="label-conteiner">
-              <label htmlFor="password">
-                <span className="span-label">{password.label}</span>
-              </label>
-            </div>
-            <input
-              type={password.type}
-              name={password.name}
-              value={password.value}
-              id={password.name}
-              onChange={(event) => this.handlePassword(event)}
-            />
-            <div className="conteiner-error">
-              {password.error && (
-                <span className="span-error">{password.error}</span>
-              )}
-            </div>
-          </div>
-          <div className="input-conteiner">
-            <div className="label-conteiner">
-              <label htmlFor="password-confirm">
-                <span className="span-label">{confirmPassword.label}</span>
-              </label>
-            </div>
-            <input
-              type={confirmPassword.type}
-              name={confirmPassword.name}
-              value={confirmPassword.value}
-              id={confirmPassword.name}
-              onChange={(event) => this.handleChange(event)}
-            />
-            <div className="conteiner-error">
-              {confirmPassword.error && (
-                <span className="span-error">{confirmPassword.error}</span>
-              )}
-            </div>
-          </div>
+          {
+              Object.entries(this.state.fields).map(([fieldName, fieldState], index) => {
+                  const {label, name, type, value, error} = fieldState
+
+                  if(fieldName === "password"){
+                    return (
+                        <Field 
+                            key={index}
+                            label={label}
+                            type={type}
+                            name={name}
+                            value={value}
+                            id={name}
+                            error={error}
+                            onChange={this.handlePassword}
+                        />
+                      );
+                  } else {
+                      return (
+                        <Field 
+                            key={index}
+                            label={label}
+                            type={type}
+                            name={name}
+                            value={value}
+                            id={name}
+                            error={error}
+                            onChange={this.handleChange}
+                        />
+                      )
+                  }
+              })
+          }
           {/* buttons block */}
           <div className="button-conteiner">
             <button name="reset" onClick={(event) => this.handleReset(event)}>

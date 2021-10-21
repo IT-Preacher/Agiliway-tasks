@@ -34,7 +34,8 @@
         border: 3px solid grey;
 
         &:focus {
-            border: 3px solid lightblue;
+            border: 3px solid rgb(4, 104, 138) !important;
+            outline: none;
         }
         
     }
