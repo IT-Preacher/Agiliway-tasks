@@ -1,0 +1,64 @@
+.form-registration {
+    width: 400px;
+    height: 550px;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-title {
+        margin: 10px 0;
+        text-transform: uppercase;
+    }
+
+    .input-conteiner {
+        margin-bottom: 10px;
+    }
+
+    .label-conteiner {
+        position: relative;
+        bottom: -8px;
+        margin-left: 5%;
+        text-align: left;
+    }
+
+    input {
+        width: 90%;
+        padding: 10px;
+        border: 3px solid grey;
+
+        &:focus {
+            border: 3px solid lightblue;
+        }
+        
+    }
+    
+    .span-label {
+        z-index: 1;
+        background-color: grey;
+    }
+
+    .conteiner-error{
+        height: 22px;
+
+        .span-error {
+            color: red;
+        }
+    }
+
+    .button-conteiner {
+        padding: 15px 20px;
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            padding: 8px 10px;
+        }
+    }
+}
