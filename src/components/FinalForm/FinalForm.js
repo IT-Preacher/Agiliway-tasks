@@ -3,7 +3,7 @@ import { Form, Field } from "react-final-form";
 import CustomField from "./CustomField";
 import "./finalForm.scss";
 
-// let validators = {
+// const validators = {
 //     name: (value = "", allValues) => {
 //         return value.length > 2 ? 
 //             undefined 
@@ -46,7 +46,7 @@ import "./finalForm.scss";
 const composeValidators = (validators) => (value, allValues) => { 
     let error = undefined; 
     for (let i = 0; i < validators.length; i++) { 
-      error = validators; 
+      error = validators[i](value, allValues); 
       if (error) { 
         return error; 
       } 
@@ -73,7 +73,7 @@ const validators = {
   name: composeValidators([commonValidators.required,commonValidators.sixSymbols]), 
   email: composeValidators([commonValidators.required,commonValidators.sixSymbols]), 
   password: composeValidators([commonValidators.required,commonValidators.sixSymbols]), 
-  confirm:  composeValidators([commonValidators.required,commonValidators.sixSymbols,commonValidators.comparePasswords]), 
+  confirmPassword:  composeValidators([commonValidators.required,commonValidators.sixSymbols,commonValidators.comparePasswords]), 
 }; 
 
 class FinalForm extends Component {

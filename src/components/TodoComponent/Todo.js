@@ -54,7 +54,7 @@ class Todo extends Component {
     let ListItemsLength = this.state.todoItems.length;
 
     return (
-      <div>
+      <div className="todo">
         <h1>Todo App</h1>
         <Form 
           type="text"
