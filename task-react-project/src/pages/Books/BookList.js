@@ -16,29 +16,13 @@ function BookList({bookList, loading, error}) {
                     />)
                 })
             }
-            <Pagination
+            {/* <Pagination
                 defaultCurrent={1} 
                 total={bookList.length} 
                 pageSize={10}
-            ></Pagination>
+            ></Pagination> */}
         </div>
     )
 }
 
 export default BookList;
-
-// function BookList({bookList, loading, error}) {
-//     return (
-//         <div className="book-list-conteiner">
-//             <h1>Book List</h1>
-//             {
-//                 bookList.map((bookItem, i) => {
-//                     return(<BookItem 
-//                         key={bookItem.id}
-//                         bookItem={bookItem}
-//                     />)
-//                 })
-//             }
-//         </div>
-//     )
-// }

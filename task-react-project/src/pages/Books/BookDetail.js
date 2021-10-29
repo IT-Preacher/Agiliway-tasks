@@ -1,40 +1,42 @@
-import React from 'react';
+import React, { useState , useEffect } from "react";
+import {useParams} from "react-router-dom"
 import { Link } from 'react-router-dom';
 import { getBook } from '../../services/api/books.js';
 
 
-class BookDetail extends React.Component {
-    state={
-        bookItem:[],
-        hrefParamId: this.props.match.params.id,
-        loading: true,
-        error: false,
-    }
+function BookDetail() { 
+    const [bookItem, setBookItem] = useState([]);
+    const [loading, setStatus] = useState(true);
+    const [error, catchError] = useState(false);
+    const { id } = useParams();
+    const {title, description} = bookItem
 
-    componentDidMount() {
-        getBook(this.state.hrefParamId).then((response) => {
-            this.setState({ loading: false, bookItem: response.data });
-          });
-    }
+    useEffect(() => {
 
-    render() {
-        console.log(this.state.bookItem)
-        const {title, description} = this.state.bookItem
+        getBook(id)
+            .then((response) => {
+                setBookItem(response.data);
+                setStatus(false)
+            })
+            .catch(() => {
+                
+            });
 
-        return (
-            <div className="book-detail-page">
-                <div className="detail-conteiner">
-                    <div className="item-book-detail">
-                        <h2>{title}</h2>
-                        <div>
-                            <p>{description}</p>
-                        </div>
+    }, []);
+
+    return (
+        <div className="book-detail-page">
+            <div className="detail-conteiner">
+                <div className="item-book-detail">
+                    <h2>{title}</h2>
+                    <div>
+                        <p>{description}</p>
                     </div>
-                    <button className="button-back"><Link to="/books">Back</Link></button>
                 </div>
+                <button className="button-back"><Link to="/books">Back</Link></button>
             </div>
-        )
-    }
+        </div>
+    );
 }
 
 export default BookDetail;
