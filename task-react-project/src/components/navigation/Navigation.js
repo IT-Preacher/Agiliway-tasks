@@ -15,10 +15,10 @@ class Navigation extends Component {
         <header>
           <div className="navigation-conteiner">
             <nav>
-              <NavLink to={"/"} activeClassName="selected">
+              <NavLink to={"/"} activeClassName="selected" exact>
                 Home
               </NavLink>
-              <NavLink to={"/books"} activeClassName="selected">
+              <NavLink to={"/books"} activeClassName="selected" exact>
                 Books
               </NavLink>
             </nav>

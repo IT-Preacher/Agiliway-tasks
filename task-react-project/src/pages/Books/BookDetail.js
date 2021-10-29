@@ -25,9 +25,9 @@ class BookDetail extends React.Component {
             <div className="book-detail-page">
                 <div className="detail-conteiner">
                     <div className="item-book-detail">
-                        <h2>{this.state.bookItem.title}</h2>
+                        <h2>{title}</h2>
                         <div>
-                            <p>{this.state.bookItem.description}</p>
+                            <p>{description}</p>
                         </div>
                     </div>
                     <button className="button-back"><Link to="/books">Back</Link></button>
