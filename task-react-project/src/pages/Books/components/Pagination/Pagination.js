@@ -1,86 +1,50 @@
 import React from 'react';
+import './Pagination.scss';
 
-class Pagination extends React.Component {
-    state = {
-        pages: Math.round(props.listBooks.length / dataLimit),
-        currenPage: 1,
-    }
+function Pagination({ postsPerPage, totalPosts, paginate }) {
+    const pageNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    goToNextPage() {
-        this.setState({currenPage: currenPage +1});
-    }
+    // for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++){
+    //     pageNumbers.push[i];
+    // }
 
-    goToPreviousPage() {
-        this.setState({currenPage: currenPage -1});
-    }
-
-    changePage(event) {
-        const pageNumber = Number(event.target.textContent);
-        this.setState({currenPage: pageNumber});
-    }
-
-    getPaginatedData = () => {
-        // not yet implemented
-    };
-   
-    getPaginationGroup = () => {
-        // not yet implemented
-    };
-
-    render() {
-
-    }
+    return (
+        <nav class="nav-pagination">
+            <ul className="pagination">
+                {pageNumbers.map(number => {
+                    return (
+                        <li key={`pagination-nav-${number}`}>
+                            <a onClick={() => paginate(number)}href="#" className="page-link">
+                                {number}
+                            </a>
+                        </li>
+                    );
+                })}
+            </ul>
+        </nav>
+    );
 }
 
 export default Pagination;
 
-// this.state = {
-//     offset: 0,
-//     currentPageElements: [],
-//     elementsPerPage: 12,  //change as per your need
-//     pagesCount: 1,
-//     allElements: [],
-//     totalElementsCount: 0
+// const pageNumbers = [];
+
+// for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++){
+//     pageNumbers.push[i];
 // }
 
-// componentDidMount() {
-//     this.getAllElements();
-// }
-
-// async getAllElements() {
-//         const allElements = await Axios.get("https://jsonplaceholder.typicode.com/posts");
-//         console.log(allElements);
-//         this.setState({
-//             allElements: allElements.data,
-//             totalElementsCount: allElements.data.length
-//         }, () => {
-//             this.setPaginationStates();
-//         });
-//     }
-
-//     setPaginationStates = () => {
-//         const { totalElementsCount, elementsPerPage } = this.state;
-//         this.setState({
-//             pagesCount: Math.ceil(totalElementsCount / elementsPerPage)
-//         }, () => {
-//             this.setElementsForCurrentPage();
-//         });
-//     }
-
-//     setElementsForCurrentPage = () => {
-//         const { allElements, offset, elementsPerPage } = this.state;
-//         const currentPageElements = allElements.slice(offset, offset + elementsPerPage);
-//         this.setState({
-//             currentPageElements
-//         });
-//     }
-//     const { totalElementsCount, pagesCount, elementsPerPage } = this.state;
-//     <Pagination
-//         defaultCurrent={1}
-//         onChange={this.handlePageClick}
-//         size="small"
-//         total={totalElementsCount}
-//         showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
-//         pageSize={elementsPerPage}
-//         showSizeChanger={false}
-//     />
+// return (
+//     <nav>
+//         <ul className="pagination">
+//             {pageNumbers.map(number => {
+//                 return (
+//                     <li key={`pagination-nav-${number}`}>
+//                         <a onClick={() => paginate(number)}href="#" className="page-link">
+//                             {number}
+//                         </a>
+//                     </li>
+//                 );
+//             })}
+//         </ul>
+//     </nav>
+// );
