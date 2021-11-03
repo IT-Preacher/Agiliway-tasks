@@ -1,0 +1,48 @@
+.App {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  .redux-modal-conteiner {
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .class-modal-conteiner {
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button{
+    padding: 10px 15px;
+    color: white;
+    text-transform: uppercase;
+    background-color: lightseagreen;
+  }
+
+  .button-close {
+    padding: 10px 15px;
+    color: white;
+    text-transform: uppercase;
+    background-color: rgb(207, 69, 35);
+  }
+  .background-modal {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgba($color: grey, $alpha: 0.2);
+  }
+}
