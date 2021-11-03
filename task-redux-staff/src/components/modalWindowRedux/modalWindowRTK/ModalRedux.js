@@ -1,9 +1,14 @@
 import React from "react";
 import "./ModalRedux.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { showModal, hideModal } from "./modalReducer";
 import { showModalAction, SHOW_MODAL, hideModalAction } from "../../store/store.js";
 import { connect } from "react-redux";
 
 function ModalRedux(props) {
+  const isActive = useSelector((state) => state.modalStatus.value);
+  const dispatch = useDispatch();
+
   return (
     <div>
       <button className="button" onClick={props.openModal}>
@@ -26,21 +31,4 @@ function ModalRedux(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isOpen: state.isModalOpen,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    openModal: () => {
-      dispatch(showModalAction(true));
-    },
-    closeModal: () => {
-      dispatch(hideModalAction(false));
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ModalRedux);
+export default ModalRedux;
