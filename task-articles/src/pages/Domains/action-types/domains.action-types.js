@@ -1,0 +1,3 @@
+export const GET_ARTICLES = "GET_ARTICLES";
+export const PUT_ARTICLE = "PUT_ARTICLE";
+export const PATCH_ARTICLE = "PATCH_ARTICLE";

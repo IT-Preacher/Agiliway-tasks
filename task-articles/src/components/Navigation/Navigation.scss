@@ -1,0 +1,33 @@
+.header-conteiner {
+  width: 1200px;
+  background-image: url("./front_page_baner.jpg");
+}
+
+.logo-img {
+  height: 90px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url("./front_page_baner.png");
+
+  nav {
+    a {
+      font-family: sans-serif;
+      font-weight: 100;
+      color: #3a3a3a;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-left: 15px;
+      font-size: 18px;
+      box-sizing: border-box;
+    }
+
+    .selected {
+      border: 2px solid black;
+      border-radius: 82px;
+    }
+  }
+}
