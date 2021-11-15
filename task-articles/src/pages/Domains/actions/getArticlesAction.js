@@ -1,6 +1,18 @@
-import { GET_ARTICLES } from '../action-types';
+import {
+  ARTICLES_FETCH_SUCCESS,
+  ARTICLES_FETCH_START,
+  ARTICLES_FETCH_ERROR,
+} from "../action-types/articles.action-types";
 
-export const getArticlesAction = (payload) => ({
-    type: GET_ARTICLES,
-    payload
+export const getArticlesSuccessAction = (payload) => ({
+  type: ARTICLES_FETCH_SUCCESS,
+  payload,
+});
+
+export const getArticlesStartAction = (payload) => ({
+  type: ARTICLES_FETCH_START,
+});
+
+export const getArticlesErrorAction = (payload) => ({
+  type: ARTICLES_FETCH_ERROR,
 });

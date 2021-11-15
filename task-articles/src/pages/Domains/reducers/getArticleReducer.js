@@ -1,28 +1,29 @@
 import {
-  ARTICLES_FETCH_SUCCESS,
-  ARTICLES_FETCH_START,
-  ARTICLES_FETCH_ERROR,
+  ARTICLE_FETCH_SUCCESS,
+  ARTICLE_FETCH_START,
+  ARTICLE_FETCH_ERROR,
 } from "../action-types/articles.action-types.js";
 
 const initialState = {
-  articlesList: [],
+  articleItem: {},
   loading: true,
   error: null,
 };
 
-export const getArticlesReducer = (state = initialState, action) => {
+export const getArticleReducer = (state = initialState, action) => {
+  console.log("Payload ", action.payload);
   switch (action.type) {
-    case ARTICLES_FETCH_SUCCESS: {
+    case ARTICLE_FETCH_SUCCESS: {
       return {
         ...state,
         loading: false,
-        articlesList: action.payload,
+        articleItem: action.payload,
       };
     }
-    case ARTICLES_FETCH_START: {
+    case ARTICLE_FETCH_START: {
       return { ...state, loading: true };
     }
-    case ARTICLES_FETCH_ERROR: {
+    case ARTICLE_FETCH_ERROR: {
       return { ...state, error: "error" };
     }
     default:

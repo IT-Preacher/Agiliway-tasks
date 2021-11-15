@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Articles from "./pages/Articles";
 import Home from "./pages/Home";
 import Statistic from "./pages/Statistic";
+import ArticleDetail from "./pages/Articles/ArticleDetail.js";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
             </Route>
             <Route path="/articles" exact>
               <Articles />
+            </Route>
+            <Route path="/articles/:id" exact component={ArticleDetail}>
             </Route>
             <Route path="/statistic" exact>
               <Statistic />

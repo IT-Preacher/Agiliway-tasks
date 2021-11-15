@@ -16,17 +16,16 @@ function Navigation() {
         <div className="logo-conteiner">
           <NavLink to={"/"}>
             <img src={logo} alt="Logo img" className="logo-img" />
-            <span>Articles</span>
           </NavLink>
         </div>
         <nav className="navigation-conteiner">
-          <NavLink to={"/"} activeClassName="selected">
+          <NavLink to={"/"} activeClassName="selected" exact>
             Home
           </NavLink>
-          <NavLink to={"/articles"} activeClassName="selected">
+          <NavLink to={"/articles"} activeClassName="selected" exact>
             Articles
           </NavLink>
-          <NavLink to={"/statistic"} activeClassName="selected">
+          <NavLink to={"/statistic"} activeClassName="selected" exact>
             Statistic
           </NavLink>
         </nav>
