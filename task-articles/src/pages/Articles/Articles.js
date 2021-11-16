@@ -3,32 +3,34 @@ import "./Articles.scss";
 import { connect } from "react-redux";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 import ArticleItem from "./ArticleItem.js";
-import { Modal, Button } from "antd";
 import ArticleAddModal from "../Domains/ArticleAddModal";
+import ArticleEditModal from "../Domains/ArticleEditModal";
+import ArticleDeleteModal from "../Domains/ArticleDeleteModal";
+import {
+  editArticleCloseAction,
+  editArticleOpenAction,
+} from "../Domains/actions/editArticleAction";
+import {
+  deleteArticleCloseAction,
+  deleteArticleOpenAction,
+} from "../Domains/actions/deleteArticleAction";
 
 class Articles extends Component {
-  state = {
-    visibleEditModal: false,
-  };
-
   componentDidMount() {
     this.props.getData();
   }
 
-  showEditModal = () => {
-    this.setState({ ...this.state, visibleEditModal: true });
-  };
-
-  handleEditModalOk = () => {
-    this.setState({ ...this.state, visibleEditModal: false });
-  };
-
-  handleEditModalCancel = () => {
-    this.setState({ ...this.state, visibleEditModal: false });
-  };
-
   render() {
-    const { articlesList, loading } = this.props;
+    const {
+      articlesList,
+      loading,
+      closeEditModal,
+      openEditModal,
+      visibleEditModal,
+      visibleDeleteModal,
+      closeDeleteModal,
+      openDeleteModal,
+    } = this.props;
 
     return (
       <div className="articles-page">
@@ -43,13 +45,28 @@ class Articles extends Component {
               <ArticleItem
                 key={article.uuid}
                 article={article}
-                showEditModal={this.showEditModal}
-                handleEditModalOk={this.handleEditModalOk}
-                handleEditModalCancel={this.handleEditModalCancel}
+                visibleEditModal={visibleEditModal}
+                handleOpenEditModal={openEditModal}
+                handleCloseEditModal={closeEditModal}
+                visibleDeleteModal={visibleDeleteModal}
+                handleOpenDeleteModal={openDeleteModal}
+                handleCloseDeleteModal={closeDeleteModal}
               />
             ))
           )}
         </div>
+        {visibleEditModal ? (
+          <ArticleEditModal
+            visible={visibleEditModal}
+            handleCancel={closeEditModal}
+          />
+        ) : null}
+        {visibleDeleteModal ? (
+          <ArticleDeleteModal
+            visible={visibleDeleteModal}
+            handleCancel={closeDeleteModal}
+          />
+        ) : null}
       </div>
     );
   }
@@ -59,12 +76,32 @@ const mapStateToProps = (state) => ({
   articlesList: state.articles.articlesList,
   loading: state.articles.loading,
   error: state.articles.error,
+
+  loadingEditModal: state.editArticleModal.isLoading,
+  errorEditModal: state.editArticleModal.isError,
+  visibleEditModal: state.editArticleModal.modalVisible,
+
+  loadingDeleteModal: state.deleteArticleModal.isLoading,
+  errorDeleteModal: state.deleteArticleModal.isError,
+  visibleDeleteModal: state.deleteArticleModal.modalVisible,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getData: () => {
       dispatch(getArticlesThunk());
+    },
+    closeEditModal: () => {
+      dispatch(editArticleCloseAction());
+    },
+    openEditModal: () => {
+      dispatch(editArticleOpenAction());
+    },
+    closeDeleteModal: () => {
+      dispatch(deleteArticleCloseAction());
+    },
+    openDeleteModal: () => {
+      dispatch(deleteArticleOpenAction());
     },
   };
 };

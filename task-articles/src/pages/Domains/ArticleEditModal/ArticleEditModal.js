@@ -4,25 +4,20 @@ import ModalEditForm from "./ModalEditForm";
 
 class ArticleEditModal extends React.Component {
   render() {
+    const { visible, handleCancel } = this.props;
     return (
-      <>
-        <Button type="primary" onClick={showModal}>
-          Open Modal
-        </Button>
         <Modal
           title="Edit article"
-          visible={isModalVisible}
-          onOk={handleOk}
+          visible={visible}
           onCancel={handleCancel}
           footer={[
             <button key="submit" form="form" type="primary">
-              Submit
+              Edit
             </button>,
           ]}
         >
           <ModalEditForm />
         </Modal>
-      </>
     );
   }
 }

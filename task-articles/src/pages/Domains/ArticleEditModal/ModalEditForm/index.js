@@ -1,1 +1,1 @@
-export { default } from "./ModalEditForm.js";
+export { default } from "./ModalEditForm";

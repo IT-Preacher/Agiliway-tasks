@@ -9,7 +9,7 @@ const ArticleItem = (props) => {
 
   return (
     <div className="article-card">
-      <DropdownMenu uuid={uuid} />
+      <DropdownMenu {...props} uuid={uuid} />
 
       <div className="aticle-card-info">
         <div className="article-card-info-header">

@@ -1,24 +1,30 @@
 import { ARTICLE_EDIT_CLOSE,
  ARTICLE_EDIT_SUCCESS,
  ARTICLE_EDIT_START,
- ARTICLE_EDIT_ERROR } from '../action-types/articles.action-types';
+ ARTICLE_EDIT_ERROR,
+ ARTICLE_EDIT_OPEN } from '../action-types/articles.action-types';
 
-export const edithArticlStartAction = (payload) => ({
+export const editArticleStartAction = (payload) => ({
     type: ARTICLE_EDIT_START,
     payload
 });
 
-export const edithArticlSuccesstAction = (payload) => ({
+export const editArticleSuccessAction = (payload) => ({
     type: ARTICLE_EDIT_SUCCESS,
     payload
 });
 
-export const edithArticlCloseAction = (payload) => ({
+export const editArticleOpenAction = (payload) => ({
+    type: ARTICLE_EDIT_OPEN,
+    payload
+});
+
+export const editArticleCloseAction = (payload) => ({
     type: ARTICLE_EDIT_CLOSE,
     payload
 });
 
-export const edithArticlErrorAction = (payload) => ({
+export const editArticleErrorAction = (payload) => ({
     type: ARTICLE_EDIT_ERROR,
     payload
 });

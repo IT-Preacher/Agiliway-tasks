@@ -19,18 +19,23 @@ class DropdownMenu extends React.Component {
   };
 
   render() {
-    const { uuid } = this.props;
+    const { uuid, handleOpenEditModal, handleOpenDeleteModal } = this.props;
+    console.log("Dropdown ", this.props);
 
     const menu = (
       <Menu onClick={this.handleMenuClick}>
         <Menu.Item key="1" icon={<ReadOutlined />}>
           <Link to={`/articles/${uuid}`}>Read more</Link>
         </Menu.Item>
-        <Menu.Item key="2" icon={<EditOutlined />} onClick={(event) => console.log(event)}>
-          <span onClick={() => console.log("click")}>Edit</span>
+        <Menu.Item
+          key="2"
+          icon={<EditOutlined />}
+          onClick={(event) => console.log("Item ", event)}
+        >
+          <span onClick={handleOpenEditModal}>Edit</span>
         </Menu.Item>
         <Menu.Item key="3" icon={<DeleteOutlined />}>
-          Delete
+          <span onClick={handleOpenDeleteModal}>Delete</span>
         </Menu.Item>
       </Menu>
     );

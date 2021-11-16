@@ -19,7 +19,7 @@ export class ArticleAddModal extends React.Component {
           title="Create article"
           onCancel={this.props.closeModal}
           footer={[
-            <button key="submit" form="form" type="primary">
+            <button key="submit" form="add-article-form" type="primary">
               Submit
             </button>,
           ]}
