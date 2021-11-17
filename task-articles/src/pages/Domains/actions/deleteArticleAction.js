@@ -4,6 +4,7 @@ import {
   ARTICLE_DELETE_SUCCESS,
   ARTICLE_DELETE_CLOSE,
   ARTICLE_DELETE_ERROR,
+  ARTICLE_DELETE_ELEMENT,
 } from "../action-types/articles.action-types.js";
 
 export const deleteArticleStartAction = (payload) => ({
@@ -29,4 +30,9 @@ export const deleteArticleCloseAction = (payload) => ({
 export const deleteArticleErrorAction = (payload) => ({
   type: ARTICLE_DELETE_ERROR,
   payload,
+});
+
+export const getArticleForDeleteAction = (article) => ({
+  type: ARTICLE_DELETE_ELEMENT,
+  payload: article
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu, Dropdown, Button, message, Space, Tooltip } from "antd";
+import { Menu, Dropdown } from "antd";
 import { EditOutlined, DeleteOutlined, ReadOutlined } from "@ant-design/icons";
 
 class DropdownMenu extends React.Component {
@@ -19,8 +19,13 @@ class DropdownMenu extends React.Component {
   };
 
   render() {
-    const { uuid, handleOpenEditModal, handleOpenDeleteModal } = this.props;
-    console.log("Dropdown ", this.props);
+    const {
+      uuid,
+      handleOpenEditModal,
+      handleOpenDeleteModal,
+      getArticleData,
+      getArticleForDelete,
+    } = this.props;
 
     const menu = (
       <Menu onClick={this.handleMenuClick}>
@@ -30,12 +35,22 @@ class DropdownMenu extends React.Component {
         <Menu.Item
           key="2"
           icon={<EditOutlined />}
-          onClick={(event) => console.log("Item ", event)}
+          onClick={() => {
+            handleOpenEditModal();
+            getArticleData(uuid);
+          }}
         >
-          <span onClick={handleOpenEditModal}>Edit</span>
+          <span>Edit</span>
         </Menu.Item>
-        <Menu.Item key="3" icon={<DeleteOutlined />}>
-          <span onClick={handleOpenDeleteModal}>Delete</span>
+        <Menu.Item
+          key="3"
+          icon={<DeleteOutlined />}
+          onClick={() => {
+            handleOpenDeleteModal();
+            getArticleForDelete(uuid);
+          }}
+        >
+          <span>Delete</span>
         </Menu.Item>
       </Menu>
     );

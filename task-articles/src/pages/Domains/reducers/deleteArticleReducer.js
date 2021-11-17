@@ -4,12 +4,14 @@ import {
   ARTICLE_DELETE_SUCCESS,
   ARTICLE_DELETE_CLOSE,
   ARTICLE_DELETE_ERROR,
+  ARTICLE_DELETE_ELEMENT,
 } from "../action-types/articles.action-types";
 
 const initialState = {
   isLoading: true,
   isError: false,
   modalVisible: false,
+  deleteItem: {},
 };
 
 export const deleteArticleReducer = (state = initialState, action) => {
@@ -24,6 +26,8 @@ export const deleteArticleReducer = (state = initialState, action) => {
       return { ...state, modalVisible: true };
     case ARTICLE_DELETE_CLOSE:
       return { ...state, modalVisible: false };
+    case ARTICLE_DELETE_ELEMENT:
+      return { ...state, deleteItem: action.payload };
     default:
       return state;
   }

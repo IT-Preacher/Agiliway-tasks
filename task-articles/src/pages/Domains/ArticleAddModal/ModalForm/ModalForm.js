@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import { InputField } from "./InputField";
 import { TextAreaField } from "./TextAreaField";
 
-//D:\Agiliway\to-do-app\task-articles\src\pages\Domains\thunks\addArticleThunk.js
-
 class ModalForm extends React.Component {
 
   handleSubmit = (event) => {

@@ -7,6 +7,8 @@ const ArticleItem = (props) => {
     article: { uuid, name, author, description, createDate },
   } = props;
 
+  console.log("des" , description)
+
   return (
     <div className="article-card">
       <DropdownMenu {...props} uuid={uuid} />
@@ -17,14 +19,15 @@ const ArticleItem = (props) => {
         </div>
         <div className="article-card-info-main">
           <p>
-            {description.length > 10 ? (
+            {/* {description.length > 10 ? (
               <>
                 <span>{description.slice(0, 10)}</span>
                 <Link to={`/articles/${uuid}`}> ...read more</Link>
               </>
             ) : (
               <span>{description}</span>
-            )}
+            )} */}
+            <span>{description}</span>
           </p>
           <div className="article-card-info-footer">
             <span>{author}</span>

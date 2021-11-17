@@ -11,7 +11,6 @@ const initialState = {
 };
 
 export const getArticleReducer = (state = initialState, action) => {
-  console.log("Payload ", action.payload);
   switch (action.type) {
     case ARTICLE_FETCH_SUCCESS: {
       return {

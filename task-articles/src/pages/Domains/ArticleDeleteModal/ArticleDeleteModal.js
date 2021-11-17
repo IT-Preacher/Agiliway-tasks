@@ -6,23 +6,42 @@ import { Field, Form } from "react-final-form";
 
 class ArticleDeleteModal extends React.Component {
   hendleSubmitDelete = () => {
-    console.log("delete modal ");
+    const { uuid } = this.props.elementToDeleteData;
+    this.props.deleteArticle(uuid);
   };
 
   render() {
-    const { visible, handleCancel } = this.props;
+    const { visible, handleCancel, deleteArticle, elementToDeleteData } =
+      this.props;
+    const { name } = elementToDeleteData;
     return (
       <Modal
         title="Delete article"
         visible={visible}
+        // onOk={this.handleSubmitdelete}
         onCancel={handleCancel}
         footer={[
-          <button key="submit" form="form" type="primary">
+          <button onClick={this.hendleSubmitDelete} type="primary">
             Delete
           </button>,
         ]}
       >
-        {/* <Form
+        <h1>Delete article {name}?</h1>
+      </Modal>
+    );
+  }
+}
+
+export default ArticleDeleteModal;
+
+// footer={[
+//   <button key="submit" form="form" type="primary">
+//     Delete
+//   </button>,
+// ]}
+
+{
+  /* <Form
           id="delete-article-form"
           onSubmit={this.hendleSubmitDelete}
           render={({ hendleSubmitDelete }) => {
@@ -30,11 +49,5 @@ class ArticleDeleteModal extends React.Component {
               <h1>Delete Article</h1>
             </form>;
           }}
-        /> */}
-        <h1>Item</h1>
-      </Modal>
-    );
-  }
+        /> */
 }
-
-export default ArticleDeleteModal;

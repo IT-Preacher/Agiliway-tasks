@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Articles.scss";
+import { Spin } from "antd";
 import { connect } from "react-redux";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 import ArticleItem from "./ArticleItem.js";
@@ -14,6 +15,8 @@ import {
   deleteArticleCloseAction,
   deleteArticleOpenAction,
 } from "../Domains/actions/deleteArticleAction";
+import { getDataArticleThunk, editArticleThunk } from "../Domains/thunks/editArticleThunk";
+import { getArticleForDeleteThunk, deleteArticleThunk } from "../Domains/thunks/deleteArticleThunk";
 
 class Articles extends Component {
   componentDidMount() {
@@ -26,11 +29,20 @@ class Articles extends Component {
       loading,
       closeEditModal,
       openEditModal,
+      editArticleData,
       visibleEditModal,
+      articleValues,
       visibleDeleteModal,
       closeDeleteModal,
       openDeleteModal,
+      getArticleData,
+      elementToDeleteData,
+      getArticleForDelete,
+      deleteArticle,
     } = this.props;
+
+    console.log("getArticleData page article ", getArticleData);
+    console.log("getArticleForDelete page article ", getArticleForDelete);
 
     return (
       <div className="articles-page">
@@ -39,7 +51,7 @@ class Articles extends Component {
         </div>
         <div className="article-content-conteiner">
           {loading ? (
-            <div>Loading...</div>
+            <Spin style={{fontSize: 36}}/>
           ) : (
             articlesList.map((article, index) => (
               <ArticleItem
@@ -51,18 +63,24 @@ class Articles extends Component {
                 visibleDeleteModal={visibleDeleteModal}
                 handleOpenDeleteModal={openDeleteModal}
                 handleCloseDeleteModal={closeDeleteModal}
+                getArticleData={getArticleData}
+                getArticleForDelete={getArticleForDelete}
               />
             ))
           )}
         </div>
         {visibleEditModal ? (
           <ArticleEditModal
+            editArticleData={editArticleData}
+            values={articleValues}
             visible={visibleEditModal}
             handleCancel={closeEditModal}
           />
         ) : null}
         {visibleDeleteModal ? (
           <ArticleDeleteModal
+            deleteArticle={deleteArticle}
+            elementToDeleteData={elementToDeleteData}
             visible={visibleDeleteModal}
             handleCancel={closeDeleteModal}
           />
@@ -80,10 +98,12 @@ const mapStateToProps = (state) => ({
   loadingEditModal: state.editArticleModal.isLoading,
   errorEditModal: state.editArticleModal.isError,
   visibleEditModal: state.editArticleModal.modalVisible,
+  articleValues: state.editArticleModal.articleItem,
 
   loadingDeleteModal: state.deleteArticleModal.isLoading,
   errorDeleteModal: state.deleteArticleModal.isError,
   visibleDeleteModal: state.deleteArticleModal.modalVisible,
+  elementToDeleteData: state.deleteArticleModal.deleteItem
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -103,6 +123,18 @@ const mapDispatchToProps = (dispatch) => {
     openDeleteModal: () => {
       dispatch(deleteArticleOpenAction());
     },
+    getArticleData: (id) => {
+      dispatch(getDataArticleThunk(id))
+    },
+    editArticleData: (id, article) => {
+      dispatch(editArticleThunk(id, article));
+    },
+    getArticleForDelete: (id) => {
+      dispatch(getArticleForDeleteThunk(id));
+    },
+    deleteArticle: (id) => {
+      dispatch(deleteArticleThunk(id));
+    }
   };
 };
 

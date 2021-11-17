@@ -1,25 +1,36 @@
 import {
-  edithArticlStartAction,
-  edithArticlSuccesstAction,
-  edithArticlErrorAction,
+  editArticleStartAction,
+  editArticleSuccessAction,
+  editArticleErrorAction,
+  articleGetElementAction,
 } from "../actions/editArticleAction";
-import { editArticleRequest } from "../../../services/domain.js";
-import { getArticlesThunk } from "./getArticlesThunk.js";
+import {
+  editArticleRequest,
+  getArticleRequest,
+} from "../../../services/domain.js";
+import getArticlesThunk from "./getArticlesThunk.js";
 
-const editArticleThunk = (id, article) => {
+export const getDataArticleThunk = (id) => {
   return (dispatch) => {
-    dispatch(edithArticlStartAction());
-    editArticleRequest(id, article)
+    getArticleRequest(id)
       .then((response) => {
-        console.log(response);
-        dispatch(edithArticlSuccesstAction());
-        dispatch(getArticlesThunk());
-      })
-      .catch((error) => {
-        console.error(error);
-        dispatch(edithArticlErrorAction(error));
+        dispatch(articleGetElementAction(response.data))
       });
   };
 };
 
-export default editArticleThunk;
+export const editArticleThunk = (id, article) => {
+  return (dispatch) => {
+    dispatch(editArticleStartAction());
+    editArticleRequest(id, article)
+      .then((response) => {
+        console.log(response);
+        dispatch(editArticleSuccessAction());
+        dispatch(getArticlesThunk());
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(editArticleErrorAction(error));
+      });
+  };
+};

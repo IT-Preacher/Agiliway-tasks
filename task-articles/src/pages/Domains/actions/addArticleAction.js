@@ -6,29 +6,30 @@ import {
   ADD_ARTICLE_CLOSE,
 } from "../action-types/articles.action-types";
 
-export const addArticleStart = () => {
+export const addArticleStart = (payload) => {
   return {
     type: ADD_ARTICLE_START,
   };
 };
 
-export const addArticleSuccess = () => {
+export const addArticleSuccess = (payload) => {
   return {
     type: ADD_ARTICLE_SUCCESS,
+    payload
   };
 };
 
-export const addArticleError = () => {
+export const addArticleError = (payload) => {
   return {
     type: ADD_ARTICLE_ERROR,
   };
 };
-export const addArticleOpen = () => {
+export const addArticleOpen = (payload) => {
   return {
     type: ADD_ARTICLE_OPEN,
   };
 };
-export const addArticleClose = () => {
+export const addArticleClose = (payload) => {
   return {
     type: ADD_ARTICLE_CLOSE,
   };
