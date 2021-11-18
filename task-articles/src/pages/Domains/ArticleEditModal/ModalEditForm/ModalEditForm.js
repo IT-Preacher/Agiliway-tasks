@@ -18,12 +18,6 @@ class ModalEditForm extends React.Component {
 
   render() {
     const { values } = this.props;
-    // const initialValues = {
-    //   uuid: values.uuid,
-    //   name: values.name,
-    //   description: values.description,
-    //   author: values.author
-    // }
 
     return (
       <Form

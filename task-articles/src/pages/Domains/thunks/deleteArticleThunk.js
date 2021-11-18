@@ -1,34 +1,22 @@
 import {
-  deleteArticleStartAction,
-  deleteArticleSuccessAction,
-  deleteArticleErrorAction,
-  getArticleForDeleteAction,
-} from "../actions/deleteArticleAction";
+  modalFunctionStartAction,
+  modalFunctionSuccessAction,
+} from "../actions/modalAction"
 import getArticlesThunk from "./getArticlesThunk";
-import { deleteArticleRequest, getArticleRequest } from '../../../services/domain';
-
-export const getArticleForDeleteThunk = (id) => {
-  console.log(getArticleRequest);
-  return (dispatch) => {
-    getArticleRequest(id).then((response) => {
-      dispatch(getArticleForDeleteAction(response.data));
-    })
-  }
-}
+import { deleteArticleRequest } from '../../../services/domain';
 
 export const deleteArticleThunk = (id) => {
   return (dispatch) => {
-    dispatch(deleteArticleStartAction());
+    dispatch(modalFunctionStartAction());
     deleteArticleRequest(id)
       .then((response) => {
         console.log(response);
-        dispatch(deleteArticleStartAction());
-        dispatch(deleteArticleSuccessAction());
+        dispatch(modalFunctionStartAction());
+        dispatch(modalFunctionSuccessAction());
         dispatch(getArticlesThunk());
       })
       .catch((error) => {
         console.error(error);
-        dispatch(deleteArticleErrorAction(error));
       });
   };
 };

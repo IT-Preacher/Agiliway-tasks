@@ -7,16 +7,22 @@ import ArticleItem from "./ArticleItem.js";
 import ArticleAddModal from "../Domains/ArticleAddModal";
 import ArticleEditModal from "../Domains/ArticleEditModal";
 import ArticleDeleteModal from "../Domains/ArticleDeleteModal";
+
 import {
-  editArticleCloseAction,
-  editArticleOpenAction,
-} from "../Domains/actions/editArticleAction";
+  addModalOpenAction,
+  editModalOpenAction,
+  deleteModalOpenAction,
+  modalFunctionCloseAction,
+} from "../Domains/actions/modalAction";
+
+import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./consts";
+
 import {
-  deleteArticleCloseAction,
-  deleteArticleOpenAction,
-} from "../Domains/actions/deleteArticleAction";
-import { getDataArticleThunk, editArticleThunk } from "../Domains/thunks/editArticleThunk";
-import { getArticleForDeleteThunk, deleteArticleThunk } from "../Domains/thunks/deleteArticleThunk";
+  getDataArticleThunk,
+  editArticleThunk,
+} from "../Domains/thunks/editArticleThunk";
+import { deleteArticleThunk } from "../Domains/thunks/deleteArticleThunk";
+import { addArticleThunk } from "../Domains/thunks/addArticleThunk";
 
 class Articles extends Component {
   componentDidMount() {
@@ -27,63 +33,75 @@ class Articles extends Component {
     const {
       articlesList,
       loading,
-      closeEditModal,
-      openEditModal,
-      editArticleData,
-      visibleEditModal,
-      articleValues,
-      visibleDeleteModal,
-      closeDeleteModal,
-      openDeleteModal,
-      getArticleData,
-      elementToDeleteData,
-      getArticleForDelete,
+      deleteModalOpen,
+      editModalOpen,
+      addModalOpen,
+      modalClose,
+      modalData,
+      modalLoading,
+      modalType,
       deleteArticle,
-      loadingDeleteModal
+      getArticleData,
+      editArticleData,
+      addArticle,
     } = this.props;
 
     return (
       <div className="articles-page">
-        <div>
-          <ArticleAddModal />
+        <div className="button-create-conteiner">
+          <button
+            onClick={() => {
+              console.log("modal open");
+              addModalOpen();
+            }}
+            type="primary"
+          >
+            Create Article
+          </button>
         </div>
         <div className="article-content-conteiner">
           {loading ? (
-            <Spin style={{fontSize: 36}}/>
+            <Spin style={{ fontSize: 36 }} />
           ) : (
             articlesList.map((article, index) => (
               <ArticleItem
                 key={article.uuid}
                 article={article}
-                visibleEditModal={visibleEditModal}
-                handleOpenEditModal={openEditModal}
-                handleCloseEditModal={closeEditModal}
-                visibleDeleteModal={visibleDeleteModal}
-                handleOpenDeleteModal={openDeleteModal}
-                handleCloseDeleteModal={closeDeleteModal}
+                handleOpenEditModal={editModalOpen}
+                handleOpenDeleteModal={deleteModalOpen}
+                handleCloseModal={modalClose}
                 getArticleData={getArticleData}
-                getArticleForDelete={getArticleForDelete}
               />
             ))
           )}
         </div>
-        {visibleEditModal ? (
+        {modalType == ADD_MODAL_OPEN && (
+          <ArticleAddModal
+            loading={modalLoading}
+            visible={true}
+            handleCloseModal={modalClose}
+            addArticle={addArticle}
+            loading={modalLoading}
+          />
+        )}
+        {modalType == EDIT_MODAL_OPEN && (
           <ArticleEditModal
+            loading={modalLoading}
+            visible={true}
+            values={modalData}
+            handleCloseModal={modalClose}
             editArticleData={editArticleData}
-            values={articleValues}
-            visible={visibleEditModal}
-            handleCancel={closeEditModal}
           />
-        ) : null}
-        {visibleDeleteModal ? (
+        )}
+        {modalType == DELETE_MODAL_OPEN && (
           <ArticleDeleteModal
-            loading={loadingDeleteModal}
+            loading={modalLoading}
+            values={modalData}
+            visible={true}
             deleteArticle={deleteArticle}
-            elementToDeleteData={elementToDeleteData}
-            visible={visibleDeleteModal}
-            handleCancel={closeDeleteModal}
+            handleCloseModal={modalClose}
           />
-        ) : null}
+        )}
       </div>
     );
   }
@@ -94,47 +112,22 @@ const mapStateToProps = (state) => ({
   loading: state.articles.loading,
   error: state.articles.error,
 
-  loadingEditModal: state.editArticleModal.isLoading,
-  errorEditModal: state.editArticleModal.isError,
-  visibleEditModal: state.editArticleModal.modalVisible,
-  articleValues: state.editArticleModal.articleItem,
-
-  loadingDeleteModal: state.deleteArticleModal.isLoading,
-  errorDeleteModal: state.deleteArticleModal.isError,
-  visibleDeleteModal: state.deleteArticleModal.modalVisible,
-  elementToDeleteData: state.deleteArticleModal.deleteItem
+  modalLoading: state.modal.isLoading,
+  modalData: state.modal.data,
+  modalType: state.modal.type,
+  itemId: state.modal.id,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getData: () => {
-      dispatch(getArticlesThunk());
-    },
-    closeEditModal: () => {
-      dispatch(editArticleCloseAction());
-    },
-    openEditModal: () => {
-      dispatch(editArticleOpenAction());
-    },
-    closeDeleteModal: () => {
-      dispatch(deleteArticleCloseAction());
-    },
-    openDeleteModal: () => {
-      dispatch(deleteArticleOpenAction());
-    },
-    getArticleData: (id) => {
-      dispatch(getDataArticleThunk(id))
-    },
-    editArticleData: (id, article) => {
-      dispatch(editArticleThunk(id, article));
-    },
-    getArticleForDelete: (id) => {
-      dispatch(getArticleForDeleteThunk(id));
-    },
-    deleteArticle: (id) => {
-      dispatch(deleteArticleThunk(id));
-    }
-  };
+const mapDispatchToProps = {
+  getData: getArticlesThunk,
+  addModalOpen: addModalOpenAction,
+  editModalOpen: editModalOpenAction,
+  deleteModalOpen: deleteModalOpenAction,
+  modalClose: modalFunctionCloseAction,
+  getArticleData: getDataArticleThunk,
+  editArticleData: editArticleThunk,
+  deleteArticle: deleteArticleThunk,
+  addArticle: addArticleThunk,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);

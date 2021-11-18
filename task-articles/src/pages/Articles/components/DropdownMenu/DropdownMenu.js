@@ -21,10 +21,10 @@ class DropdownMenu extends React.Component {
   render() {
     const {
       uuid,
+      article,
       handleOpenEditModal,
       handleOpenDeleteModal,
       getArticleData,
-      getArticleForDelete,
     } = this.props;
 
     const menu = (
@@ -36,7 +36,7 @@ class DropdownMenu extends React.Component {
           key="2"
           icon={<EditOutlined />}
           onClick={() => {
-            handleOpenEditModal();
+            handleOpenEditModal(uuid);
             getArticleData(uuid);
           }}
         >
@@ -46,8 +46,7 @@ class DropdownMenu extends React.Component {
           key="3"
           icon={<DeleteOutlined />}
           onClick={() => {
-            handleOpenDeleteModal();
-            getArticleForDelete(uuid);
+            handleOpenDeleteModal(article);
           }}
         >
           <span>Delete</span>

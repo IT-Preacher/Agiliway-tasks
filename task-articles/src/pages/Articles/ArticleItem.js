@@ -7,7 +7,7 @@ const ArticleItem = (props) => {
     article: { uuid, name, author, description, createDate },
   } = props;
 
-  console.log("des" , description)
+  console.log("des" , uuid)
 
   return (
     <div className="article-card">

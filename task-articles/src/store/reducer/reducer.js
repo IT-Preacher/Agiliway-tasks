@@ -2,17 +2,13 @@ import { combineReducers } from "redux";
 import {
   getArticlesReducer,
   getArticleReducer,
-  addArticleReducer,
-  editArticleReducer,
-  deleteArticleReducer,
+  modalReducer,
 } from "../../pages/Domains/reducers";
 
 const rootReducer = combineReducers({
   articles: getArticlesReducer,
   article: getArticleReducer,
-  addArticleModal: addArticleReducer,
-  editArticleModal: editArticleReducer,
-  deleteArticleModal: deleteArticleReducer,
+  modal: modalReducer,
 });
 
 export default rootReducer;

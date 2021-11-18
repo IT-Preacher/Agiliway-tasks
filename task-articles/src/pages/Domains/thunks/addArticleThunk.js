@@ -1,25 +1,27 @@
-import {
-  addArticleStart,
-  addArticleSuccess,
-  addArticleError,
-} from "../actions/addArticleAction";
+// import {
+//   addArticleStart,
+//   addArticleSuccess,
+//   addArticleError,
+// } from "../actions/addArticleAction";
+import { 
+  modalFunctionStartAction,
+  modalFunctionSuccessAction,
+} from "../actions/modalAction"
 import { addArticleRequest } from "../../../services/domain.js";
 import getArticlesThunk from "./getArticlesThunk";
 
-const addArticleThunk = (article) => {
+export const addArticleThunk = (article) => {
   return (dispatch) => {
-    dispatch(addArticleStart());
+    dispatch(modalFunctionStartAction());
     addArticleRequest(article)
       .then((response) => {
         console.log(response);
-        dispatch(addArticleSuccess());
+        dispatch(modalFunctionSuccessAction());
         dispatch(getArticlesThunk());
       })
       .catch((error) => {
         console.error(error);
-        dispatch(addArticleError(error));
+        //dispatch(addArticleError(error));
       });
   };
 };
-
-export default addArticleThunk;

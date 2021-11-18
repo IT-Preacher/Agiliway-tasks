@@ -1,14 +1,10 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import addArticleThunk from "../../thunks/addArticleThunk.js";
-import { connect } from "react-redux";
 import { InputField } from "./InputField";
 import { TextAreaField } from "./TextAreaField";
 
 class ModalForm extends React.Component {
-
   handleSubmit = (event) => {
-    console.log(event);
     this.props.addArticle(event);
   };
 
@@ -33,18 +29,4 @@ class ModalForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoading: state.addArticleModal.isLoading,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addArticle: (values) => {
-      dispatch(addArticleThunk(values));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ModalForm);
+export default ModalForm;

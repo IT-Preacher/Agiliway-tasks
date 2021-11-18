@@ -1,9 +1,14 @@
+// import {
+//   editArticleStartAction,
+//   editArticleSuccessAction,
+//   editArticleErrorAction,
+//   articleGetElementAction,
+// } from "../actions/editArticleAction";
 import {
-  editArticleStartAction,
-  editArticleSuccessAction,
-  editArticleErrorAction,
-  articleGetElementAction,
-} from "../actions/editArticleAction";
+  modalFunctionStartAction,
+  modalFunctionSuccessAction,
+  editModalGetDataAction,
+} from "../actions/modalAction"
 import {
   editArticleRequest,
   getArticleRequest,
@@ -14,23 +19,22 @@ export const getDataArticleThunk = (id) => {
   return (dispatch) => {
     getArticleRequest(id)
       .then((response) => {
-        dispatch(articleGetElementAction(response.data))
+        dispatch(editModalGetDataAction(response.data))
       });
   };
 };
 
 export const editArticleThunk = (id, article) => {
   return (dispatch) => {
-    dispatch(editArticleStartAction());
+    dispatch(modalFunctionStartAction());
     editArticleRequest(id, article)
       .then((response) => {
         console.log(response);
-        dispatch(editArticleSuccessAction());
+        dispatch(modalFunctionSuccessAction());
         dispatch(getArticlesThunk());
       })
       .catch((error) => {
         console.error(error);
-        dispatch(editArticleErrorAction(error));
       });
   };
 };
