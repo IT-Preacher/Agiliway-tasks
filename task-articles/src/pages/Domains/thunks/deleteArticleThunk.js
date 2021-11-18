@@ -22,6 +22,7 @@ export const deleteArticleThunk = (id) => {
     deleteArticleRequest(id)
       .then((response) => {
         console.log(response);
+        dispatch(deleteArticleStartAction());
         dispatch(deleteArticleSuccessAction());
         dispatch(getArticlesThunk());
       })
@@ -31,3 +32,4 @@ export const deleteArticleThunk = (id) => {
       });
   };
 };
+
