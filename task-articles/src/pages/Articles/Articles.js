@@ -39,10 +39,8 @@ class Articles extends Component {
       elementToDeleteData,
       getArticleForDelete,
       deleteArticle,
+      loadingDeleteModal
     } = this.props;
-
-    console.log("getArticleData page article ", getArticleData);
-    console.log("getArticleForDelete page article ", getArticleForDelete);
 
     return (
       <div className="articles-page">
@@ -79,6 +77,7 @@ class Articles extends Component {
         ) : null}
         {visibleDeleteModal ? (
           <ArticleDeleteModal
+            loading={loadingDeleteModal}
             deleteArticle={deleteArticle}
             elementToDeleteData={elementToDeleteData}
             visible={visibleDeleteModal}

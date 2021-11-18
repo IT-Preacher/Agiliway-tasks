@@ -5,7 +5,7 @@ import frontBaner from "./front_page_baner.png";
 import logo from "./logo.svg";
 
 const HeaderConteiner = styled.div`
-  width: 1200px;
+  maxWidth: 1200px;
   padding: 15px 15px;
 `;
 
@@ -22,7 +22,7 @@ function Navigation() {
           <NavLink to={"/"} activeClassName="selected" exact>
             Home
           </NavLink>
-          <NavLink to={"/articles"} activeClassName="selected" exact>
+          <NavLink to={"/articles"} activeClassName="selected">
             Articles
           </NavLink>
           <NavLink to={"/statistic"} activeClassName="selected" exact>

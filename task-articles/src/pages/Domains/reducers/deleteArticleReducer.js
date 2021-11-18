@@ -27,7 +27,7 @@ export const deleteArticleReducer = (state = initialState, action) => {
     case ARTICLE_DELETE_CLOSE:
       return { ...state, modalVisible: false };
     case ARTICLE_DELETE_ELEMENT:
-      return { ...state, deleteItem: action.payload };
+      return { ...state,isLoading: false, deleteItem: action.payload };
     default:
       return state;
   }
