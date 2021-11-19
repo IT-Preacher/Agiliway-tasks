@@ -1,12 +1,8 @@
-// import {
-//   addArticleStart,
-//   addArticleSuccess,
-//   addArticleError,
-// } from "../actions/addArticleAction";
 import { 
   modalFunctionStartAction,
   modalFunctionSuccessAction,
-} from "../actions/modalAction"
+} from "../actions/modalAction";
+import { message } from "antd";
 import { addArticleRequest } from "../../../services/domain.js";
 import getArticlesThunk from "./getArticlesThunk";
 
@@ -16,10 +12,12 @@ export const addArticleThunk = (article) => {
     addArticleRequest(article)
       .then((response) => {
         console.log(response);
+        message.success("Article added", 3);
         dispatch(modalFunctionSuccessAction());
         dispatch(getArticlesThunk());
       })
       .catch((error) => {
+        message.error("Error", 3)
         console.error(error);
         //dispatch(addArticleError(error));
       });

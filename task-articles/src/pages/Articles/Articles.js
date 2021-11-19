@@ -81,7 +81,6 @@ class Articles extends Component {
             visible={true}
             handleCloseModal={modalClose}
             addArticle={addArticle}
-            loading={modalLoading}
           />
         )}
         {modalType == EDIT_MODAL_OPEN && (

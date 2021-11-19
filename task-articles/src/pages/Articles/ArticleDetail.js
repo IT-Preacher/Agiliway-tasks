@@ -58,25 +58,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
-
-{
-  /* <div className="article-detail-page">
-  <div className="detail-conteiner">
-    <div className="article-card-header">
-      <h2>{articleItem.name}</h2>
-    </div>
-    <div className="article-card-main">
-      <p>{articleItem.description}</p>
-      <div className="article-card-footer">
-        <span>{articleItem.author}</span>
-      </div>
-    </div>
-    <div className="article-card-footer">
-      <span>{articleItem.createDate}</span>
-    </div>
-    <button className="button-back">
-      <Link to="/articles">Back</Link>
-    </button>
-  </div>
-</div> */
-}

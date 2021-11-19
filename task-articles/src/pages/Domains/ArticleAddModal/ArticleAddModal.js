@@ -1,25 +1,38 @@
 import React from "react";
-import { Modal, Button } from "antd";
-import ModalForm from "./ModalForm";
+import { Modal, Button, Spin } from "antd";
+import ModalForm from "../ModalForm";
 
 export class ArticleAddModal extends React.Component {
+  handleSubmit = (event) => {
+    const { addArticle } = this.props;
+    addArticle(event);
+  };
+
+  handleValid = (value) => (value ? undefined : "Required");
 
   render() {
-    console.log("article add modal ",this.props)
-    const { isLoading, isError, handleCloseModal, addArticle } = this.props;
+    const { loading, isError, handleCloseModal, addArticle } = this.props;
     return (
-        <Modal
-          visible={true}
-          title="Create article"
-          onCancel={handleCloseModal}
-          footer={[<button onClick={()=> console.log("cancel")}>Cancel</button>,
-            <button key="submit" form="add-article-form" type="primary">
-              Submit
-            </button>,
-          ]}
-        >
-          <ModalForm addArticle={addArticle}/>
-        </Modal>
+      <Modal
+        visible={true}
+        title="Create article"
+        onCancel={handleCloseModal}
+        footer={[
+          <Button onClick={handleCloseModal} loading={loading}>
+            Cancel
+          </Button>,
+          <Button key="submit" form="form" type="primary" htmlType="submit">
+            Submit
+          </Button>,
+        ]}
+      >
+        <Spin spinning={loading}>
+          <ModalForm
+            handleSubmit={this.handleSubmit}
+            validator={this.handleValid}
+          />
+        </Spin>
+      </Modal>
     );
   }
 }

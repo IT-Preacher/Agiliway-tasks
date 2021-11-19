@@ -160,13 +160,16 @@
 //   } from "../action-types/magazines.action-types";
 
 import {
-    ADD_MODAL_OPEN,
-    EDIT_MODAL_OPEN, 
-    DELETE_MODAL_OPEN, 
-    MODAL_FUNCTION_START, 
-    MODAL_FUNCTION_SUCCESS, 
-    MODAL_CLOSE,
-    EDIT_MODAL_GET_DATA,
+  ADD_MODAL_OPEN,
+  EDIT_MODAL_OPEN,
+  DELETE_MODAL_OPEN,
+  MODAL_FUNCTION_START,
+  MODAL_FUNCTION_SUCCESS,
+  MODAL_CLOSE,
+  EDIT_MODAL_GET_DATA,
+  EDIT_MODAL_GET_DATA_START_ACTION,
+  EDIT_MODAL_GET_DATA_SUCCESS_ACTION,
+  EDIT_MODAL_GET_DATA_ERROR_ACTION,
 } from "../action-types/articles.action-types";
 
 const initialState = {
@@ -174,6 +177,7 @@ const initialState = {
   data: {},
   type: "",
   id: undefined,
+  error: undefined,
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -202,7 +206,13 @@ export const modalReducer = (state = initialState, action) => {
     case MODAL_CLOSE:
       return { ...state, isLoading: false, data: {}, type: "", id: undefined };
     case EDIT_MODAL_GET_DATA:
-      return { ...state, data: action.payload };
+      return { ...state, data: action.payload, isLoading: false };
+    case EDIT_MODAL_GET_DATA_START_ACTION:
+      return { ...state, isLoading: true };
+    case EDIT_MODAL_GET_DATA_SUCCESS_ACTION:
+      return { ...state, isLoading: false};
+    case EDIT_MODAL_GET_DATA_ERROR_ACTION:
+      return { ...state, error: action.payload };
     default:
       return state;
   }

@@ -1,36 +1,52 @@
 import React from "react";
 import { Modal, Button } from "antd";
-import ModalEditForm from "./ModalEditForm";
+import ModalForm from "../ModalForm";
+import { Spin } from "antd";
 
 class ArticleEditModal extends React.Component {
+  handleSubmit = (event) => {
+    console.log("modal", event);
+    const id = event.uuid;
+    const article = {
+      name: event.name,
+      author: event.author,
+      description: event.description,
+    };
+    this.props.editArticleData(id, article);
+  };
+
   render() {
-    const { visible, handleCloseModal, values, editArticleData } = this.props;
+    const { handleCloseModal, values, loading } = this.props;
+
     return (
       <Modal
         title="Edit article"
-        visible={visible}
+        visible={true}
         onCancel={handleCloseModal}
         footer={[
-          <button
-            key="submit"
+          <Button
             htmlType="submit"
             form="edit-article-form"
             onClick={handleCloseModal}
             type="primary"
+            loading={loading}
           >
             Cancel
-          </button>,
-          <button
+          </Button>,
+          <Button
             key="submit"
             htmlType="submit"
-            form="edit-article-form"
+            form="form"
             type="primary"
+            loading={loading}
           >
             Edit
-          </button>,
+          </Button>,
         ]}
       >
-        <ModalEditForm values={values} editArticleData={editArticleData} />
+        <Spin spinning={loading}>
+          <ModalForm initialValues={values} handleSubmit={this.handleSubmit} />
+        </Spin>
       </Modal>
     );
   }
