@@ -11,7 +11,7 @@ export class ArticleAddModal extends React.Component {
   handleValid = (value) => (value ? undefined : "Required");
 
   render() {
-    const { loading, isError, handleCloseModal, addArticle } = this.props;
+    const { loading, handleCloseModal } = this.props;
     return (
       <Modal
         visible={true}
@@ -21,7 +21,7 @@ export class ArticleAddModal extends React.Component {
           <Button onClick={handleCloseModal} loading={loading}>
             Cancel
           </Button>,
-          <Button key="submit" form="form" type="primary" htmlType="submit">
+          <Button key="submit" form="form" type="primary" htmlType="submit" loading={loading}>
             Submit
           </Button>,
         ]}

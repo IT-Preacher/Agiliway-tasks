@@ -14,7 +14,7 @@ class Home extends Component {
           </p>
         </div>
         <div className="popular-article">
-          <img src={phone_1} alt="image of article" />
+          <img src={phone_1} alt="article" />
           <div className="article-info">
             <div>
               <p>Description of article</p>

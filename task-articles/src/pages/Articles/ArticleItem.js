@@ -18,6 +18,7 @@ const ArticleItem = (props) => {
         <div className="article-card-info-main">
           <p>
             <span>{description.slice(0, 10)}</span>
+            <Link to={`/articles/${uuid}`}> ...Read more</Link>
           </p>
           <div className="article-card-info-footer">
             <span>{author}</span>

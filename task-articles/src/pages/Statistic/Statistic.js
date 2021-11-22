@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Spin } from "antd";
+import { Table } from "antd";
 import { connect } from "react-redux";
 import { moment } from "moment";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";

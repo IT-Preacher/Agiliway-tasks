@@ -1,0 +1,27 @@
+.article-conteiner {
+  min-height: 400px;
+  border-radius: 13px;
+  background-image: url("../../img/phone_2.jpg");
+  background-size: cover;
+  position: relative;
+
+  .detail-conteiner {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 70px 58px;
+    border-radius: 13px;
+    color: #ffffff;
+    background-color: rgba(150, 137, 137, 0.5);
+
+    .article-card-footer {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.white {
+  color: #ffffff;
+}

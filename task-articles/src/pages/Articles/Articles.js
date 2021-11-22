@@ -2,11 +2,25 @@ import React, { Component } from "react";
 import "./Articles.scss";
 import { Spin } from "antd";
 import { connect } from "react-redux";
+import propTypes from "prop-types";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 import ArticleItem from "./ArticleItem.js";
 import ArticleAddModal from "../Domains/ArticleAddModal";
 import ArticleEditModal from "../Domains/ArticleEditModal";
 import ArticleDeleteModal from "../Domains/ArticleDeleteModal";
+
+import {
+  selectArticleData,
+  selectArticleLoading,
+  selectArticleError,
+} from "../Domains/reducers/getArticles-selectors";
+
+import {
+  selectModalType,
+  selectModalLoading,
+  selectModalData,
+  selectModalId,
+} from "../Domains/reducers/modal-select";
 
 import {
   addModalOpenAction,
@@ -75,7 +89,7 @@ class Articles extends Component {
             ))
           )}
         </div>
-        {modalType == ADD_MODAL_OPEN && (
+        {modalType === ADD_MODAL_OPEN && (
           <ArticleAddModal
             loading={modalLoading}
             visible={true}
@@ -83,7 +97,7 @@ class Articles extends Component {
             addArticle={addArticle}
           />
         )}
-        {modalType == EDIT_MODAL_OPEN && (
+        {modalType === EDIT_MODAL_OPEN && (
           <ArticleEditModal
             loading={modalLoading}
             visible={true}
@@ -92,7 +106,7 @@ class Articles extends Component {
             editArticleData={editArticleData}
           />
         )}
-        {modalType == DELETE_MODAL_OPEN && (
+        {modalType === DELETE_MODAL_OPEN && (
           <ArticleDeleteModal
             loading={modalLoading}
             values={modalData}
@@ -107,14 +121,14 @@ class Articles extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  articlesList: state.articles.articlesList,
-  loading: state.articles.loading,
-  error: state.articles.error,
+  articlesList: selectArticleData(state),
+  loading: selectArticleLoading(state),
+  error: selectArticleError(state),
 
-  modalLoading: state.modal.isLoading,
-  modalData: state.modal.data,
-  modalType: state.modal.type,
-  itemId: state.modal.id,
+  modalLoading: selectModalLoading(state),
+  modalData: selectModalData(state),
+  modalType: selectModalType(state),
+  itemId: selectModalId(state),
 });
 
 const mapDispatchToProps = {
@@ -127,6 +141,19 @@ const mapDispatchToProps = {
   editArticleData: editArticleThunk,
   deleteArticle: deleteArticleThunk,
   addArticle: addArticleThunk,
+};
+
+Articles.propTypes = {
+  articlesList: propTypes.array,
+  loading: propTypes.bool,
+  error: propTypes.string,
+
+  modalLoading: propTypes.bool,
+  modalData: propTypes.object,
+  modalType: propTypes.string,
+  itemId: propTypes.string,
+
+  getData: propTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);

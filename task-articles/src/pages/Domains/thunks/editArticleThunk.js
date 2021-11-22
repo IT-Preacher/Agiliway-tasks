@@ -38,6 +38,7 @@ export const editArticleThunk = (id, article) => {
       .catch((error) => {
         message.success("Error article update", 3);
         console.error(error);
+        dispatch(editModalGetDataErrorAction(error))
       });
   };
 };
