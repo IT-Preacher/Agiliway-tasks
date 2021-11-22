@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Spin } from "antd";
 import { connect } from "react-redux";
 import getArticleThunk from "../Domains/thunks/getArticleThunk";
+import "./ArticleDetail.scss";
+import propTypes from "prop-types";
+import {
+  selectArticleItem,
+  selectArticleLoading,
+  selectArticleError,
+} from "../Domains/reducers/getArticle-selectors"
+//import cardImg from "../../img/phone_2.jpg"
 
 class ArticleDetail extends Component {
   componentDidMount() {
@@ -11,17 +20,15 @@ class ArticleDetail extends Component {
 
   render() {
     const { articleItem, loading } = this.props;
-    console.log("Detail ", this.props);
 
     return (
       <div className="article-detail-page">
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <div className="article-detail-page">
+        {loading && <Spin />}
+        {!loading && (
+          <div className="article-conteiner">
             <div className="detail-conteiner">
               <div className="article-card-header">
-                <h2>{articleItem.name}</h2>
+                <h2 className="white">{articleItem.name}</h2>
               </div>
               <div className="article-card-main">
                 <p>{articleItem.description}</p>
@@ -30,12 +37,13 @@ class ArticleDetail extends Component {
                 </div>
               </div>
               <div className="article-card-footer">
-                <span>{articleItem.createDate}</span>
-              </div>
-              <button className="button-back">
+                <span>Publication date: {articleItem.createDate}</span>
+                <button className="button-back">
                 <Link to="/articles">Back</Link>
               </button>
+              </div>
             </div>
+            {/* <img src={cardImg} /> */}
           </div>
         )}
       </div>
@@ -44,9 +52,9 @@ class ArticleDetail extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  articleItem: state.article.articleItem,
-  loading: state.article.loading,
-  error: state.article.error,
+  articleItem: selectArticleItem(state),
+  loading: selectArticleLoading(state),
+  error: selectArticleError(state),
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -57,4 +65,17 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+ArticleDetail.propTypes = {
+  articleItem: propTypes.object,
+  loading: propTypes.bool,
+  error: propTypes.string,
+
+  getDataItem: propTypes.func,
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
+
+
+// articleItem: state.article.articleItem,
+// loading: state.article.loading,
+// error: state.article.error,

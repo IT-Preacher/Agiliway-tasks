@@ -10,7 +10,6 @@ import {
       dispatch(getArticleStartAction());
       getArticleRequest(id)
         .then((response) => {
-          console.log(response.data)
           dispatch(getArticleSuccessAction(response.data));
         })
         .catch((error) => dispatch(getArticleErrorAction(error)));

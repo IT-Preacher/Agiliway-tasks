@@ -1,7 +1,6 @@
 import "./Navigation.scss";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import frontBaner from "./front_page_baner.png";
 import logo from "./logo.svg";
 
 const HeaderConteiner = styled.div`
