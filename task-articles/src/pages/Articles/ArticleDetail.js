@@ -74,8 +74,3 @@ ArticleDetail.propTypes = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
-
-
-// articleItem: state.article.articleItem,
-// loading: state.article.loading,
-// error: state.article.error,
