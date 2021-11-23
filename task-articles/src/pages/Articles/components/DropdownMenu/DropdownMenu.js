@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Menu, Dropdown } from "antd";
+import propTypes from "prop-types";
 import { EditOutlined, DeleteOutlined, ReadOutlined } from "@ant-design/icons";
 
 class DropdownMenu extends React.Component {
@@ -72,5 +73,13 @@ class DropdownMenu extends React.Component {
     );
   }
 }
+
+DropdownMenu.propTypes = {
+  uuid: propTypes.string,
+  article: propTypes.object,
+  handleOpenEditModal: propTypes.func,
+  handleOpenDeleteModal: propTypes.func,
+  getArticleData: propTypes.func,
+};
 
 export default DropdownMenu;

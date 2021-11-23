@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Table } from "antd";
 import { connect } from "react-redux";
+import propTypes from "prop-types";
 //import { moment } from "moment";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 
@@ -63,10 +64,10 @@ class Statistic extends Component {
 
   render() {
     const { articlesList, loading } = this.props;
-    console.log(this.props);
     return (
       <div className="statistic-page">
         <Table
+          rowKey={(articlesList) => articlesList.uuid}
           columns={columns}
           dataSource={articlesList}
           onChange={this.onChange}
@@ -84,6 +85,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getData: getArticlesThunk,
+};
+
+Statistic.propTypes = {
+  articlesList: propTypes.array,
+  loading: propTypes.bool,
+  getData: propTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Statistic);

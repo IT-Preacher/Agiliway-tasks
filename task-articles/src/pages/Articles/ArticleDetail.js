@@ -9,7 +9,7 @@ import {
   selectArticleItem,
   selectArticleLoading,
   selectArticleError,
-} from "../Domains/reducers/getArticle-selectors"
+} from "../Domains/reducers/getArticle-selectors";
 //import cardImg from "../../img/phone_2.jpg"
 
 class ArticleDetail extends Component {
@@ -39,8 +39,8 @@ class ArticleDetail extends Component {
               <div className="article-card-footer">
                 <span>Publication date: {articleItem.createDate}</span>
                 <button className="button-back">
-                <Link to="/articles">Back</Link>
-              </button>
+                  <Link to="/articles">Back</Link>
+                </button>
               </div>
             </div>
             {/* <img src={cardImg} /> */}
@@ -69,8 +69,13 @@ ArticleDetail.propTypes = {
   articleItem: propTypes.object,
   loading: propTypes.bool,
   error: propTypes.string,
+  match: propTypes.shape({
+    params: propTypes.shape({
+      id: propTypes.string,
+    }),
+  }),
 
   getDataItem: propTypes.func,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);

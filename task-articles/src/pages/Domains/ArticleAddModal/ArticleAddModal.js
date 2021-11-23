@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Button, Spin } from "antd";
+import propTypes from "prop-types";
 import ModalForm from "../ModalForm";
 
 export class ArticleAddModal extends React.Component {
@@ -18,7 +19,7 @@ export class ArticleAddModal extends React.Component {
         title="Create article"
         onCancel={handleCloseModal}
         footer={[
-          <Button onClick={handleCloseModal} loading={loading}>
+          <Button key="submit" onClick={handleCloseModal} loading={loading}>
             Cancel
           </Button>,
           <Button key="submit" form="form" type="primary" htmlType="submit" loading={loading}>
@@ -36,5 +37,11 @@ export class ArticleAddModal extends React.Component {
     );
   }
 }
+
+ArticleAddModal.propTypes = {
+  addArticle: propTypes.func,
+  loading: propTypes.bool,
+  handleCloseModal: propTypes.func,
+} ;
 
 export default ArticleAddModal;

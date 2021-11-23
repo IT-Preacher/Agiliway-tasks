@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import propTypes from "prop-types";
 import DropdownMenu from "./components/DropdownMenu";
 import moment from "moment";
 
@@ -17,7 +18,7 @@ const ArticleItem = (props) => {
         </div>
         <div className="article-card-info-main">
           <p>
-            <span>{description.slice(0, 10)}</span>
+            <span>{description.slice(0, 20)}</span>
             <Link to={`/articles/${uuid}`}> ...Read more</Link>
           </p>
           <div className="article-card-info-footer">
@@ -29,6 +30,16 @@ const ArticleItem = (props) => {
       </div>
     </div>
   );
+};
+
+ArticleItem.propTypes = {
+  article: propTypes.shape({
+    uuid: propTypes.string,
+    name: propTypes.string,
+    author: propTypes.string,
+    description: propTypes.string,
+    createDate: propTypes.string,
+  }),
 };
 
 export default ArticleItem;

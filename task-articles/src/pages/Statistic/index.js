@@ -1,1 +1,1 @@
-export { default } from './Statistic.js';
+export { default } from "./Statistic.js";

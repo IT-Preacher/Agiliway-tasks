@@ -2,6 +2,7 @@ import React from "react";
 import { Modal, Button } from "antd";
 import ModalForm from "../ModalForm";
 import { Spin } from "antd";
+import propTypes from "prop-types";
 
 class ArticleEditModal extends React.Component {
   handleSubmit = (event) => {
@@ -26,6 +27,7 @@ class ArticleEditModal extends React.Component {
         footer={[
           <Button
             htmlType="submit"
+            key="submit"
             form="edit-article-form"
             onClick={handleCloseModal}
             type="primary"
@@ -51,5 +53,12 @@ class ArticleEditModal extends React.Component {
     );
   }
 }
+
+ArticleEditModal.propTypes = {
+  handleCloseModal: propTypes.func, 
+  values: propTypes.object, 
+  loading: propTypes.bool, 
+  editArticleData: propTypes.func,
+};
 
 export default ArticleEditModal;

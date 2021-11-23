@@ -11,8 +11,10 @@ import {
   
   export const getArticleStartAction = (payload) => ({
     type: ARTICLE_FETCH_START,
+    payload,
   });
   
   export const getArticleErrorAction = (payload) => ({
     type: ARTICLE_FETCH_ERROR,
+    payload,
   });

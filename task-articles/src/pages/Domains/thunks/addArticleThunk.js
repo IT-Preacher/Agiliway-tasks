@@ -17,7 +17,7 @@ export const addArticleThunk = (article) => {
         dispatch(getArticlesThunk());
       })
       .catch((error) => {
-        message.error("Error", 3)
+        message.error("Error", 3);
         console.error(error);
         //dispatch(addArticleError(error));
       });

@@ -11,8 +11,10 @@ export const getArticlesSuccessAction = (payload) => ({
 
 export const getArticlesStartAction = (payload) => ({
   type: ARTICLES_FETCH_START,
+  payload,
 });
 
 export const getArticlesErrorAction = (payload) => ({
   type: ARTICLES_FETCH_ERROR,
+  payload,
 });

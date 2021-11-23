@@ -2,11 +2,9 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import { InputField } from "./InputField";
 import { TextAreaField } from "./TextAreaField";
+import propTypes from "prop-types";
 
 class ModalForm extends React.Component {
-  // handleSubmit = (event) => {
-  //   this.props.addArticle(event);
-  // };
   Validators = (values) =>{
         const errors = {};
 
@@ -16,17 +14,16 @@ class ModalForm extends React.Component {
           errors.title = "title is to short";
         }
 
-        return errors
+        return errors;
   }
 
   render() {
-    const { handleSubmit, initialValues, validator } = this.props;
+    const { handleSubmit, initialValues } = this.props;
     return (
       <Form
         id="form"
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        // validate={(values) =>this.Validators(values)}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} id="form">
             <label>
@@ -59,5 +56,10 @@ class ModalForm extends React.Component {
     );
   }
 }
+
+ModalForm.propTypes = {
+  handleSubmit: propTypes.func,
+  initialValues: propTypes.object,
+};
 
 export default ModalForm;
