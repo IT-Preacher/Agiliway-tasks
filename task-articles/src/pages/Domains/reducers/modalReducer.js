@@ -170,6 +170,7 @@ import {
   EDIT_MODAL_GET_DATA_START_ACTION,
   EDIT_MODAL_GET_DATA_SUCCESS_ACTION,
   EDIT_MODAL_GET_DATA_ERROR_ACTION,
+  IN_PROGRES_SAGA,
 } from "../action-types/articles.action-types";
 
 const initialState = {
@@ -210,9 +211,11 @@ export const modalReducer = (state = initialState, action) => {
     case EDIT_MODAL_GET_DATA_START_ACTION:
       return { ...state, isLoading: true };
     case EDIT_MODAL_GET_DATA_SUCCESS_ACTION:
-      return { ...state, isLoading: false};
+      return { ...state, isLoading: false };
     case EDIT_MODAL_GET_DATA_ERROR_ACTION:
       return { ...state, error: action.payload };
+    case IN_PROGRES_SAGA:
+      return { ...state, isLoading: true };
     default:
       return state;
   }

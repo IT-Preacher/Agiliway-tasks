@@ -5,8 +5,9 @@ import ModalForm from "../ModalForm";
 
 export class ArticleAddModal extends React.Component {
   handleSubmit = (event) => {
-    const { addArticle } = this.props;
-    addArticle(event);
+    //const { addArticle } = this.props;  
+    //addArticle(event);
+    this.props.addModalStartSagaAction(event);
   };
 
   handleValid = (value) => (value ? undefined : "Required");
@@ -19,10 +20,10 @@ export class ArticleAddModal extends React.Component {
         title="Create article"
         onCancel={handleCloseModal}
         footer={[
-          <Button key="submit" onClick={handleCloseModal} loading={loading}>
+          <Button key="cencel-delete" onClick={handleCloseModal} loading={loading}>
             Cancel
           </Button>,
-          <Button key="submit" form="form" type="primary" htmlType="submit" loading={loading}>
+          <Button key="submit-add" form="form" type="primary" htmlType="submit" loading={loading}>
             Submit
           </Button>,
         ]}
@@ -42,6 +43,7 @@ ArticleAddModal.propTypes = {
   addArticle: propTypes.func,
   loading: propTypes.bool,
   handleCloseModal: propTypes.func,
-} ;
+  addModalStartSagaAction: propTypes.func,
+};
 
 export default ArticleAddModal;

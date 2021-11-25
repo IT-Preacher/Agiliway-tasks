@@ -6,14 +6,16 @@ import propTypes from "prop-types";
 
 class ArticleEditModal extends React.Component {
   handleSubmit = (event) => {
-    console.log("modal", event);
-    const id = event.uuid;
+    //const id = event.uuid;
     const article = {
+      uuid: event.uuid,
       name: event.name,
       author: event.author,
       description: event.description,
     };
-    this.props.editArticleData(id, article);
+    //console.log("modal props ", this.props.editModalStartSagaAction, id, article)
+    this.props.editModalStartSagaAction(article);
+    //this.props.editArticleData(id, article);
   };
 
   render() {
@@ -26,7 +28,7 @@ class ArticleEditModal extends React.Component {
         onCancel={handleCloseModal}
         footer={[
           <Button
-            htmlType="submit"
+            htmlType="cancel-edit"
             key="submit"
             form="edit-article-form"
             onClick={handleCloseModal}
@@ -36,7 +38,7 @@ class ArticleEditModal extends React.Component {
             Cancel
           </Button>,
           <Button
-            key="submit"
+            key="submit-edit"
             htmlType="submit"
             form="form"
             type="primary"
@@ -59,6 +61,7 @@ ArticleEditModal.propTypes = {
   values: propTypes.object, 
   loading: propTypes.bool, 
   editArticleData: propTypes.func,
+  editModalStartSagaAction: propTypes.func,
 };
 
 export default ArticleEditModal;

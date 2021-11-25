@@ -10,12 +10,13 @@ import {
   selectArticleLoading,
   selectArticleError,
 } from "../Domains/reducers/getArticle-selectors";
-//import cardImg from "../../img/phone_2.jpg"
+import { articleFetchStartSaga } from "../Domains/actions/getArticleAction";
 
 class ArticleDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
-    this.props.getDataItem(id);
+    //this.props.getDataItem(id);
+    this.props.getDataItemAction(id);
   }
 
   render() {
@@ -57,12 +58,9 @@ const mapStateToProps = (state) => ({
   error: selectArticleError(state),
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getDataItem: (id) => {
-      dispatch(getArticleThunk(id));
-    },
-  };
+const mapDispatchToProps = {
+  getDataItem: getArticleThunk,
+  getDataItemAction: articleFetchStartSaga,
 };
 
 ArticleDetail.propTypes = {
@@ -76,6 +74,7 @@ ArticleDetail.propTypes = {
   }),
 
   getDataItem: propTypes.func,
+  getDataItemAction: propTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);

@@ -5,8 +5,10 @@ import propTypes from "prop-types";
 
 class ArticleDeleteModal extends React.Component {
   hendleSubmitDelete = () => {
+    const { deleteModalStartSagaAction } = this.props;
     const { uuid } = this.props.values;
-    this.props.deleteArticle(uuid);
+    //this.props.deleteArticle(uuid);
+    deleteModalStartSagaAction(uuid);
   };
 
   render() {
@@ -19,7 +21,7 @@ class ArticleDeleteModal extends React.Component {
         onCancel={handleCloseModal}
         footer={[
           <Button
-            key="submit"
+            key="cancel-delete"
             onClick={handleCloseModal}
             type="primary"
             loading={loading}
@@ -27,7 +29,7 @@ class ArticleDeleteModal extends React.Component {
             Cancel
           </Button>,
           <Button
-            key="submit"
+            key="submit-delete"
             onClick={this.hendleSubmitDelete}
             type="primary"
             loading={loading}
@@ -49,6 +51,7 @@ ArticleDeleteModal.propTypes = {
   loading: propTypes.bool,
   values: propTypes.object,
   deleteArticle: propTypes.func,
+  deleteModalStartSagaAction: propTypes.func,
 };
 
 export default ArticleDeleteModal;
