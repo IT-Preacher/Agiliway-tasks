@@ -1,18 +1,18 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { getArticleRequestSaga } from "../../../services/domain";
+import { ARTICLE_FETCH_START_SAGA } from "../action-types/articles.action-types";
 import {
-  ARTICLE_FETCH_ERROR,
-  ARTICLE_FETCH_START_SAGA,
-  ARTICLE_FETCH_SUCCESS,
-} from "../action-types/articles.action-types";
+  getArticleSuccessAction,
+  getArticleErrorAction,
+} from "../actions/getArticleAction";
 
 function* getArticleSagaWorker(action) {
   try {
     const data = yield call(getArticleRequestSaga, action.payload);
-    console.log(data);
-    yield put({ type: ARTICLE_FETCH_SUCCESS, payload: data });
+    //console.log(data);
+    yield put(getArticleSuccessAction(data));
   } catch (error) {
-    yield put({ type: ARTICLE_FETCH_ERROR });
+    yield put(getArticleErrorAction());
   }
 }
 

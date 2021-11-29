@@ -77,9 +77,9 @@ export const addModalStartSagaAction = (element) => ({
   payload: element,
 });
 
-export const editModalStartSagaAction = (element) => ({
+export const editModalStartSagaAction = (id, element) => ({
   type: EDIT_MODAL_START_SAGA,
-  payload: element,
+  payload: {id, element},
 });
 
 export const inProgresSagaAction = (payload) => ({

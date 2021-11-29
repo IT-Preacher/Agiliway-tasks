@@ -8,7 +8,7 @@ import { getArticlesRequest } from "../../../services/domain";
 const getArticlesThunk = () => {
   return (dispatch) => {
     dispatch(getArticlesStartAction());
-    getArticlesRequest()
+    return getArticlesRequest()
       .then((response) => {
         dispatch(getArticlesSuccessAction(response.data.data));
       })

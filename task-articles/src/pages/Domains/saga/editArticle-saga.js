@@ -12,7 +12,7 @@ function* editArticleSagaWorker(action) {
     yield put({ type: IN_PROGRES_SAGA });
     console.log("action0 ", action.payload);
     console.log("action1 ", action.payload.uuid);
-    yield call(editArticleRequestSaga, action.payload.uuid, action.payload);
+    yield call(editArticleRequestSaga, action.payload.id, action.payload.element);
     yield put({ type: MODAL_FUNCTION_SUCCESS });
     yield put({ type: ARTICLES_FETCH_START_SAGA });
   } catch (error) {

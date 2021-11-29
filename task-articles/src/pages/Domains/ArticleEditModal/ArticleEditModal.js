@@ -6,15 +6,15 @@ import propTypes from "prop-types";
 
 class ArticleEditModal extends React.Component {
   handleSubmit = (event) => {
-    //const id = event.uuid;
+    const id = event.uuid;
     const article = {
-      uuid: event.uuid,
+      //uuid: event.uuid,
       name: event.name,
       author: event.author,
       description: event.description,
     };
     //console.log("modal props ", this.props.editModalStartSagaAction, id, article)
-    this.props.editModalStartSagaAction(article);
+    this.props.editModalStartSagaAction(id, article);
     //this.props.editArticleData(id, article);
   };
 
