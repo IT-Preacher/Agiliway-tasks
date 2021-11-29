@@ -1,57 +1,44 @@
-import { runSaga } from "redux-saga";
-//import { takeLatest, call, put } from "redux-saga/effects";
-//import { cloneableGenerator } from "@redux-saga/testing-utils";
+import { call, put } from "redux-saga/effects";
+import { cloneableGenerator } from "@redux-saga/testing-utils";
+import { deepEqual } from "assert";
+import * as api from "../../../../services/domain";
+import { getArticlesSagaWorker } from "../getArticles-saga";
 import {
   getArticlesSuccessAction,
-  getArticlesStartAction,
+  //getArticlesStartAction,
   getArticlesErrorAction,
-  articlesFetchStartSaga,
-} from "../../actions/getArticlesAction";
-import {
-  watcherGetArticlesSaga,
-  getArticlesSagaWorker,
-} from "../getArticles-saga";
-import * as api from "../../../../services/domain";
+} from "./../../actions/getArticlesAction";
 
-describe('getArticles-saga', () => {
-    it('should call api and dispatch success action', async () => {
-      const fakedArticle = [{ name: 'tests is pain' }];
-      const requestArticles = jest
-        .spyOn(api, 'getArticlesRequestSaga')
-        .mockImplementation(() => Promise.resolve(fakedArticle));
-      const dispatched = [];
-      // const result =
-      await runSaga(
-        {
-          dispatch: (action) => dispatched.push(action),
-        },
-        getArticlesSagaWorker,
-      );
-      expect(requestArticles).toHaveBeenCalledTimes(1);
-      expect(dispatched).toEqual([
-        getArticlesStartAction(),
-        getArticlesSuccessAction(fakedArticle),
-      ]);
-      requestArticles.mockClear();
-    });
-  
-    // it('should call api and dispatch error action', async () => {
-    //   const requestMagazines = jest
-    //     .spyOn(api, 'getMagazines')
-    //     .mockImplementation(() => Promise.reject());
-    //   const dispatched = [];
-    //   // const result =
-    //   await runSaga(
-    //     {
-    //       dispatch: (action) => dispatched.push(action),
-    //     },
-    //     getMagazinesSaga,
-    //   );
-    //   expect(requestMagazines).toHaveBeenCalledTimes(1);
-    //   expect(dispatched).toEqual([
-    //     getMagazinesInProgressAction(),
-    //     getMagazinesErrorAction(),
-    //   ]);
-    //   requestMagazines.mockClear();
-    // });
+describe("Saga test", () => {
+  const generator = cloneableGenerator(getArticlesSagaWorker)();
+  test("Positive Saga call test", () => {
+    const clone = generator.clone();
+
+    deepEqual(
+      clone.next().value,
+      call(api.getArticlesRequestSaga),
+      "should call getArticlesRequest fetch"
+    );
+
+    deepEqual(
+      clone.next().value,
+      put(getArticlesSuccessAction()),
+      "should add Success action"
+    );
+    const result = clone.next().done;
+    deepEqual(result, true, "should be done after end");
   });
+  // test("Negative Saga call test", () => {
+  //   const clone = generator.clone();
+  //   deepEqual(
+  //     clone.next().value,
+  //     put(getArticleSuccessAction()),
+  //     "should add inProgress action first"
+  //   );
+  //   deepEqual(
+  //     clone.throw().value,
+  //     put(getArticlesErrorAction()),
+  //     "should add Error action on error"
+  //   );
+  // });
+});
