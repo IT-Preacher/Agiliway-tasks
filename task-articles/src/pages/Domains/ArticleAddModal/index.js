@@ -1,1 +1,1 @@
-export {default} from './ArticleAddModal.js'
+export {default} from "./ArticleAddModal.js";

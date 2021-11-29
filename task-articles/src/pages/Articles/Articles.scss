@@ -2,7 +2,7 @@
 
   .button-create-conteiner {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     padding: 10px 15px;
   }
 
@@ -27,7 +27,7 @@
 
     .dropdown-menu-article {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
     }
   }
 }

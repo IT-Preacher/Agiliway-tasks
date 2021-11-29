@@ -27,6 +27,9 @@ import {
   editModalOpenAction,
   deleteModalOpenAction,
   modalFunctionCloseAction,
+  deleteModalStartSagaAction,
+  addModalStartSagaAction,
+  editModalStartSagaAction,
 } from "../Domains/actions/modalAction";
 
 import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./consts";
@@ -37,10 +40,12 @@ import {
 } from "../Domains/thunks/editArticleThunk";
 import { deleteArticleThunk } from "../Domains/thunks/deleteArticleThunk";
 import { addArticleThunk } from "../Domains/thunks/addArticleThunk";
+import { articlesFetchStartSaga } from "../Domains/actions/getArticlesAction";
 
 class Articles extends Component {
   componentDidMount() {
-    this.props.getData();
+    //this.props.getData();
+    this.props.getDataSagaStartAction();
   }
 
   render() {
@@ -58,6 +63,9 @@ class Articles extends Component {
       getArticleData,
       editArticleData,
       addArticle,
+      deleteModalStartSagaAction,
+      editModalStartSagaAction,
+      addModalStartSagaAction,
     } = this.props;
 
     return (
@@ -77,7 +85,7 @@ class Articles extends Component {
           {loading ? (
             <Spin style={{ fontSize: 36 }} />
           ) : (
-            articlesList.map((article, index) => (
+            articlesList.map(article => (
               <ArticleItem
                 key={article.uuid}
                 article={article}
@@ -95,6 +103,7 @@ class Articles extends Component {
             visible={true}
             handleCloseModal={modalClose}
             addArticle={addArticle}
+            addModalStartSagaAction={addModalStartSagaAction}
           />
         )}
         {modalType === EDIT_MODAL_OPEN && (
@@ -104,6 +113,7 @@ class Articles extends Component {
             values={modalData}
             handleCloseModal={modalClose}
             editArticleData={editArticleData}
+            editModalStartSagaAction={editModalStartSagaAction}
           />
         )}
         {modalType === DELETE_MODAL_OPEN && (
@@ -113,6 +123,7 @@ class Articles extends Component {
             visible={true}
             deleteArticle={deleteArticle}
             handleCloseModal={modalClose}
+            deleteModalStartSagaAction={deleteModalStartSagaAction}
           />
         )}
       </div>
@@ -133,14 +144,22 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getData: getArticlesThunk,
+
+  getDataSagaStartAction: articlesFetchStartSaga,
+
   addModalOpen: addModalOpenAction,
   editModalOpen: editModalOpenAction,
   deleteModalOpen: deleteModalOpenAction,
   modalClose: modalFunctionCloseAction,
+
   getArticleData: getDataArticleThunk,
   editArticleData: editArticleThunk,
   deleteArticle: deleteArticleThunk,
   addArticle: addArticleThunk,
+
+  deleteModalStartSagaAction: deleteModalStartSagaAction,
+  addModalStartSagaAction: addModalStartSagaAction,
+  editModalStartSagaAction: editModalStartSagaAction,
 };
 
 Articles.propTypes = {
@@ -154,6 +173,19 @@ Articles.propTypes = {
   itemId: propTypes.string,
 
   getData: propTypes.func,
+  addModalOpen: propTypes.func,
+  editModalOpen: propTypes.func,
+  deleteModalOpen: propTypes.func,
+  modalClose: propTypes.func,
+  getArticleData: propTypes.func,
+  editArticleData: propTypes.func,
+  deleteArticle: propTypes.func,
+  addArticle: propTypes.func,
+
+  getDataSagaStartAction: propTypes.func,
+  deleteModalStartSagaAction: propTypes.func,
+  addModalStartSagaAction: propTypes.func,
+  editModalStartSagaAction: propTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);

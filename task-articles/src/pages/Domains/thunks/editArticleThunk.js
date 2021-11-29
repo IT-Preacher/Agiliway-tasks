@@ -15,18 +15,17 @@ import getArticlesThunk from "./getArticlesThunk.js";
 
 export const getDataArticleThunk = (id) => {
   return (dispatch) => {
-    dispatch(editModalGetDataStartAction())
+    dispatch(editModalGetDataStartAction());
     getArticleRequest(id)
       .then((response) => {
-        dispatch(editModalGetDataSuccessAction())
-        dispatch(editModalGetDataAction(response.data))
+        dispatch(editModalGetDataSuccessAction());
+        dispatch(editModalGetDataAction(response.data));
       });
   };
 };
 
 export const editArticleThunk = (id, article) => {
   return (dispatch) => {
-    console.log("Article edit", id, article)
     dispatch(modalFunctionStartAction());
     editArticleRequest(id, article)
       .then((response) => {
@@ -36,9 +35,8 @@ export const editArticleThunk = (id, article) => {
         dispatch(getArticlesThunk());
       })
       .catch((error) => {
-        message.success("Error article update", 3);
-        console.error(error);
-        dispatch(editModalGetDataErrorAction(error))
+        message.error("Error article update", 3);
+        dispatch(editModalGetDataErrorAction(error));
       });
   };
 };

@@ -9,13 +9,14 @@ import {
   selectArticleItem,
   selectArticleLoading,
   selectArticleError,
-} from "../Domains/reducers/getArticle-selectors"
-//import cardImg from "../../img/phone_2.jpg"
+} from "../Domains/reducers/getArticle-selectors";
+import { articleFetchStartSaga } from "../Domains/actions/getArticleAction";
 
 class ArticleDetail extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
-    this.props.getDataItem(id);
+    //this.props.getDataItem(id);
+    this.props.getDataItemAction(id);
   }
 
   render() {
@@ -39,8 +40,8 @@ class ArticleDetail extends Component {
               <div className="article-card-footer">
                 <span>Publication date: {articleItem.createDate}</span>
                 <button className="button-back">
-                <Link to="/articles">Back</Link>
-              </button>
+                  <Link to="/articles">Back</Link>
+                </button>
               </div>
             </div>
             {/* <img src={cardImg} /> */}
@@ -57,25 +58,23 @@ const mapStateToProps = (state) => ({
   error: selectArticleError(state),
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getDataItem: (id) => {
-      dispatch(getArticleThunk(id));
-    },
-  };
+const mapDispatchToProps = {
+  getDataItem: getArticleThunk,
+  getDataItemAction: articleFetchStartSaga,
 };
 
 ArticleDetail.propTypes = {
   articleItem: propTypes.object,
   loading: propTypes.bool,
   error: propTypes.string,
+  match: propTypes.shape({
+    params: propTypes.shape({
+      id: propTypes.string,
+    }),
+  }),
 
   getDataItem: propTypes.func,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
-
-
-// articleItem: state.article.articleItem,
-// loading: state.article.loading,
-// error: state.article.error,
+  getDataItemAction: propTypes.func,
+};
+export default ArticleDetail;
+// export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);

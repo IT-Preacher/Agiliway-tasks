@@ -1,10 +1,10 @@
 import {
   modalFunctionStartAction,
   modalFunctionSuccessAction,
-} from "../actions/modalAction"
+} from "../actions/modalAction";
 import { message } from "antd";
 import getArticlesThunk from "./getArticlesThunk";
-import { deleteArticleRequest } from '../../../services/domain';
+import { deleteArticleRequest } from "../../../services/domain";
 
 export const deleteArticleThunk = (id) => {
   return (dispatch) => {

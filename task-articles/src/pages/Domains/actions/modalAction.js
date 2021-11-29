@@ -9,6 +9,10 @@ import {
   EDIT_MODAL_GET_DATA_START_ACTION,
   EDIT_MODAL_GET_DATA_SUCCESS_ACTION,
   EDIT_MODAL_GET_DATA_ERROR_ACTION,
+  ADD_MODAL_START_SAGA,
+  EDIT_MODAL_START_SAGA,
+  DELETE_MODAL_START_SAGA,
+  IN_PROGRES_SAGA,
 } from "../action-types/articles.action-types";
 
 export const addModalOpenAction = (payload) => ({
@@ -60,4 +64,25 @@ export const editModalGetDataSuccessAction = (element) => ({
 export const editModalGetDataErrorAction = (element) => ({
   type: EDIT_MODAL_GET_DATA_ERROR_ACTION,
   payload: element,
+});
+
+//Modal Saga Action
+export const deleteModalStartSagaAction = (element) => ({
+  type: DELETE_MODAL_START_SAGA,
+  payload: element,
+});
+
+export const addModalStartSagaAction = (element) => ({
+  type: ADD_MODAL_START_SAGA,
+  payload: element,
+});
+
+export const editModalStartSagaAction = (id, element) => ({
+  type: EDIT_MODAL_START_SAGA,
+  payload: {id, element},
+});
+
+export const inProgresSagaAction = (payload) => ({
+  type: IN_PROGRES_SAGA,
+  payload
 });
