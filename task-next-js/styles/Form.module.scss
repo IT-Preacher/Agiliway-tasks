@@ -1,0 +1,106 @@
+.title_form {
+  text-align: center;
+  padding: 20px;
+
+  span {
+    color: #81a9b7;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+}
+
+.conteiner_field_form {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  .semantic_teg_form {
+    width: 100%;
+
+    .input_date {
+      width: 33%;
+      height: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 1px solid #ccd0d0;
+    }
+
+    .conteiner_first_wizard_page {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 30px;
+
+      .custom_field_conteiner {
+        width: 90%;
+        margin: 5% auto;
+
+        label {
+          color: #abadac;
+          text-transform: uppercase;
+        }
+
+        .custom_field_input {
+          width: 100%;
+          padding: 10px 10px 0;
+          font-size: 1rem;
+          border: none;
+          border-bottom: 2px solid #ccd0d0;
+        }
+      }
+    }
+
+    .conteiner_second_wizard_page {
+      display: flex;
+      width: 90%;
+      margin: 5% auto;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .conteiner_third_wizard_page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 5%;
+    }
+
+    .conteiner_button_first_page {
+      display: flex;
+      margin: 15px 0;
+      padding: 0 30px;
+      justify-content: flex-end;
+
+      .form_button_next {
+        border: none;
+      }
+    }
+
+    .conteiner_button_second_page {
+      display: flex;
+      margin: 15px 0;
+      padding: 0 30px;
+      justify-content: space-between;
+
+      .form_button_next {
+        border: none;
+      }
+    }
+
+    .conteiner_button_third_page {
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+
+      .form_button_submit {
+        border: 1px solid #84BFC8;
+        border-radius: 3px;
+        color: #84BFC8;
+        background-color: white;
+        padding: 2%;
+      }
+    }
+  }
+}
