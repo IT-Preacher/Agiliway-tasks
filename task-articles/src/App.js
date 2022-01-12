@@ -6,6 +6,7 @@ import Articles from "./pages/Articles";
 import Home from "./pages/Home";
 import Statistic from "./pages/Statistic";
 import ArticleDetail from "./pages/Articles/ArticleDetail.js";
+import SignForm from "./components/SignForm/SignForm";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
             </Route>
             <Route path="/statistic" exact>
               <Statistic />
+            </Route>
+            <Route path="/sign" exact>
+              <SignForm />
             </Route>
           </Switch>
         </main>
