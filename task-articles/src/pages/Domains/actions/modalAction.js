@@ -9,6 +9,7 @@ import {
   EDIT_MODAL_GET_DATA_START_ACTION,
   EDIT_MODAL_GET_DATA_SUCCESS_ACTION,
   EDIT_MODAL_GET_DATA_ERROR_ACTION,
+  SIGN_FORM_OPEN,
 } from "../action-types/articles.action-types";
 
 export const addModalOpenAction = (payload) => ({
@@ -60,4 +61,9 @@ export const editModalGetDataSuccessAction = (element) => ({
 export const editModalGetDataErrorAction = (element) => ({
   type: EDIT_MODAL_GET_DATA_ERROR_ACTION,
   payload: element,
+});
+
+export const signFormOpenAction = (payload) => ({
+  type: SIGN_FORM_OPEN,
+  payload,
 });

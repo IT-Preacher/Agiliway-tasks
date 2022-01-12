@@ -1,6 +1,6 @@
 .header-conteiner {
   width: 1200px;
-  background-image: url("./front_page_baner.jpg");
+  //background-image: url("./front_page_baner.jpg");
 }
 
 .logo-img {
@@ -11,7 +11,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: url("./front_page_baner.png");
+  //background-image: url("./front_page_baner.png");
 
   nav {
     a {
@@ -29,5 +29,17 @@ header {
       border: 2px solid black;
       border-radius: 82px;
     }
+  }
+
+  button {
+    font-family: sans-serif;
+    font-weight: 100;
+    color: #3a3a3a;
+    background-color: #f1f3f9;
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: none;
   }
 }

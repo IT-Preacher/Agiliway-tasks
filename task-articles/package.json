@@ -21,6 +21,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.0",
     "reselect": "^4.1.4",
+    "sass": "^1.45.1",
     "scss": "^0.2.4",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.0.1"
