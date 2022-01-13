@@ -10,7 +10,7 @@ border-radius: 13px;
 
 .ant-input {
     box-sizing: border-box;
-    margin: 0;
+    margin-top: 5px;
     padding: 0;
     font-variant: tabular-nums;
     list-style: none;
@@ -29,5 +29,13 @@ border-radius: 13px;
     border: 2px solid black;
     border-radius: 13px;
     transition: all 0.3s;
+}
+
+.sign_form_submit_button {
+    margin-top: 20px;
+    padding: 0 20px;
+    border: 2px solid black;
+    border-radius: 9px;
+    background-color: #f1f3f9
 }
 `;

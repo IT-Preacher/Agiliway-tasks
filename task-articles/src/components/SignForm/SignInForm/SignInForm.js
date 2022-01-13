@@ -5,15 +5,25 @@ import CustomInput from "../Components/CustomInput/CustomInput";
 
 const SignInForm = () => {
   const [fields, setFields] = useState({
-    email: { name: "email", label: "email", type: "email", placeholder: "Email@gmail.com" },
-    password: { name: "password", label: "password", type: "password", placeholder: "Password" },
+    email: {
+      name: "email",
+      label: "email",
+      type: "email",
+      placeholder: "Email@gmail.com",
+    },
+    password: {
+      name: "password",
+      label: "password",
+      type: "password",
+      placeholder: "Password",
+    },
   });
 
   const history = useHistory();
 
-//   useEffect(()=> {
-//     history.push("/sign/in");
-//   },[]);
+  //   useEffect(()=> {
+  //     history.push("/sign/in");
+  //   },[]);
 
   const submitLogin = () => {
     console.log("Submited");
@@ -28,20 +38,23 @@ const SignInForm = () => {
         onSubmit={submitLogin}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} id="sign_in_form">
-            {Object.entries(fields).map(([, fieldState]) => {
-              console.log(fieldState)
-              return (
-                <Field
-                  name={fieldState.name}
-                  label={fieldState.label}
-                  type={fieldState.type}
-                  key={fieldState.name}
-                  placeholder={fieldState.placeholder}
-                  component={CustomInput}
-                />
-              );
-            })}
-            <button>Sign In</button>
+            <h1>Sign In</h1>
+            <div className="sign_form_inputs_conteiner">
+              {Object.entries(fields).map(([, fieldState]) => {
+                console.log(fieldState);
+                return (
+                  <Field
+                    name={fieldState.name}
+                    label={fieldState.label}
+                    type={fieldState.type}
+                    key={fieldState.name}
+                    placeholder={fieldState.placeholder}
+                    component={CustomInput}
+                  />
+                );
+              })}
+            </div>
+            <button className="sign_form_submit_button">Confirm</button>
           </form>
         )}
       />

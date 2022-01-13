@@ -13,9 +13,9 @@ const SignUpForm = () => {
     },
     UserName: {
       name: "user-name",
-      label: "User Name",
+      label: "Username",
       type: "text",
-      placeholder: "User Name",
+      placeholder: "Username",
     },
     password: {
       name: "password",
@@ -31,9 +31,9 @@ const SignUpForm = () => {
 
   const history = useHistory();
 
-  useEffect(()=> {
-    history.push("/sign/in");
-  },[]);
+  //   useEffect(()=> {
+  //     history.push("/sign/in");
+  //   },[]);
 
   return (
     <Form
@@ -43,19 +43,22 @@ const SignUpForm = () => {
       }}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} id="sign_up_form">
-          {Object.entries(fields).map(([, fieldState]) => {
-            return (
-              <Field
-                name={fieldState.name}
-                label={fieldState.label}
-                type={fieldState.type}
-                key={fieldState.name}
-                placeholder={fieldState.placeholder}
-                component={CustomInput}
-              />
-            );
-          })}
-          <button>Sign Up</button>
+          <h1>Registration</h1>
+          <div className="sign_form_inputs_conteiner">
+            {Object.entries(fields).map(([, fieldState]) => {
+              return (
+                <Field
+                  name={fieldState.name}
+                  label={fieldState.label}
+                  type={fieldState.type}
+                  key={fieldState.name}
+                  placeholder={fieldState.placeholder}
+                  component={CustomInput}
+                />
+              );
+            })}
+          </div>
+          <button className="sign_form_submit_button">Confirm</button>
         </form>
       )}
     />
@@ -63,34 +66,3 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
-
-{
-  /* <label>
-            Email{" "}
-            <Field name="email" placeholder="Email" component={CustomInput} />
-          </label>
-          <label>
-            User name{" "}
-            <Field
-              name="user-name"
-              placeholder="User name"
-              component={CustomInput}
-            />
-          </label>
-          <label>
-            Password{" "}
-            <Field
-              name="password"
-              placeholder="Password"
-              component={CustomInput}
-            />
-          </label>
-          <label>
-            Confirm Password{" "}
-            <Field
-              name="confirm-password"
-              placeholder="Confirm password"
-              component={CustomInput}
-            />
-          </label> */
-}
