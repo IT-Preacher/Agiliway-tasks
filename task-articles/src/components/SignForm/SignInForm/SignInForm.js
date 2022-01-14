@@ -7,13 +7,13 @@ const SignInForm = () => {
   const [fields, setFields] = useState({
     email: {
       name: "email",
-      label: "email",
+      label: "Email",
       type: "email",
       placeholder: "Email@gmail.com",
     },
     password: {
       name: "password",
-      label: "password",
+      label: "Password",
       type: "password",
       placeholder: "Password",
     },
@@ -25,11 +25,10 @@ const SignInForm = () => {
   //     history.push("/sign/in");
   //   },[]);
 
-  const submitLogin = () => {
+  const submitLogin = (event) => {
+    event.preventDefault();
     console.log("Submited");
   };
-
-  //const formContext = useContext(FormContext);
 
   return (
     <div>
@@ -41,7 +40,6 @@ const SignInForm = () => {
             <h1>Sign In</h1>
             <div className="sign_form_inputs_conteiner">
               {Object.entries(fields).map(([, fieldState]) => {
-                console.log(fieldState);
                 return (
                   <Field
                     name={fieldState.name}

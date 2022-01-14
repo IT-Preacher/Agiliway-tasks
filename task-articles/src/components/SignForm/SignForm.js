@@ -4,27 +4,39 @@ import SignUpForm from "./SignUpForm/SignUpForm";
 import { ConteinerForm } from "./styled.components.js";
 import "./SignForm.scss";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Route, useLocation } from "react-router-dom";
 
 const FormContext = React.createContext({ singIn: true, signUp: false });
 
 const SignForm = () => {
-  // const isSignFormOpen = useSelector()
-  //const formContext = useContext(FormContext);
   const [formStatus, setFormStatus] = useState(true);
   let location = useLocation();
   console.log(location);
 
   return (
-    <FormContext.Provider>
-      <ConteinerForm>
-        {formStatus ? <SignInForm /> : <SignUpForm />}
-        <span onClick={() => setFormStatus(!formStatus)}>
-          {formStatus ? "Registration" : "Login"}
-          {/* <Link to={`${location.pathname}/reg`}><span>Registration</span></Link> */}
-        </span>
-      </ConteinerForm>
-    </FormContext.Provider>
+    <ConteinerForm>
+      {location.pathname === "/signup" ? <SignUpForm /> : <SignInForm />}
+
+      {/* v2 */}
+      {/* {location.pathname === "/signin" && <Route to={`${location.pathname}/signin`} component={SignInForm}/>} */}
+      {/* {location.pathname === "/signup" && <Route path={`${location.pathname}/signup`} component={SignUpForm}/>}*/}
+
+      {/* v3 */}
+      {/* <Route to={`${location.pathname}/signin`} component={SignInForm}/>
+        <Route to={`${location.pathname}/signup`} component={SignUpForm}/> */}
+
+      <span onClick={() => setFormStatus(!formStatus)}>
+        {location.pathname === "/signup" ? (
+          <Link to={"/signin"}>
+            <span>Login</span>
+          </Link>
+        ) : (
+          <Link to={"/signup"}>
+            <span>Registration</span>
+          </Link>
+        )}
+      </span>
+    </ConteinerForm>
   );
 };
 

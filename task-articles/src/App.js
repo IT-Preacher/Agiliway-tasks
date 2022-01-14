@@ -27,8 +27,11 @@ function App() {
             <Route path="/statistic" exact>
               <Statistic />
             </Route>
-            <Route path="/sign" exact>
-              <SignForm />
+            <Route path="/signin" exact>
+                <SignForm />
+            </Route>
+            <Route path="/signup" exact>
+                <SignForm />
             </Route>
           </Switch>
         </main>

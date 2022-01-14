@@ -2,12 +2,18 @@ import React from "react";
 import { Input } from "antd";
 
 const CustomInput = (props) => {
+  console.log(props);
+
+  const {
+    input: { name, type },
+    label,
+  } = props;
   return (
-    <div>
-      <label htmlFor={props.name}>
-        <span className="span-label">{props.label}</span>
+    <div style={{marginTop: 10}}>
+      <label>
+        <span className="span-label">{label}</span>
+        <Input {...props} type={type} name={name} />
       </label>
-      <Input {...props} type={props.input.type} />
     </div>
   );
 };

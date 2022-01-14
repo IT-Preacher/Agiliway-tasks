@@ -8,6 +8,11 @@ margin: 0 auto;
 border: 2px solid black;
 border-radius: 13px;
 
+label span {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
 .ant-input {
     box-sizing: border-box;
     margin-top: 5px;
@@ -37,5 +42,6 @@ border-radius: 13px;
     border: 2px solid black;
     border-radius: 9px;
     background-color: #f1f3f9
+    font-size: 18px;
 }
 `;
