@@ -3,7 +3,7 @@ import { Form, Field } from "react-final-form";
 import { useHistory } from "react-router-dom";
 import CustomInput from "../Components/CustomInput/CustomInput.js";
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
   const [fields, setFields] = useState({
     email: {
       name: "email",
@@ -12,7 +12,7 @@ const SignUpForm = () => {
       placeholder: "Email@gmail.com",
     },
     UserName: {
-      name: "user-name",
+      name: "username",
       label: "Username",
       type: "text",
       placeholder: "Username",
@@ -21,11 +21,13 @@ const SignUpForm = () => {
       name: "password",
       label: "Password",
       type: "password",
+      placeholder: "Password",
     },
     confirmPassword: {
       name: "confirm-password",
       label: "Confirm Password",
       type: "password",
+      placeholder: "Repeat your password",
     },
   });
 
@@ -35,14 +37,17 @@ const SignUpForm = () => {
   //     history.push("/sign/in");
   //   },[]);
 
+  const handleSubmit = (values) => {
+    console.log("SignUp");
+    console.log("Sign up props from fields ", values);
+  };
+
   return (
     <Form
-      id="sign_up_form"
-      onSubmit={() => {
-        console.log("SignUp");
-      }}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit} id="sign_up_form">
+      id="signUp"
+      onSubmit={(values) => handleSubmit(values)}
+      render={({ handleSubmit, submitting }) => (
+        <form onSubmit={handleSubmit} id="signUp">
           <h1>Registration</h1>
           <div className="sign_form_inputs_conteiner">
             {Object.entries(fields).map(([, fieldState]) => {
@@ -58,7 +63,14 @@ const SignUpForm = () => {
               );
             })}
           </div>
-          <button className="sign_form_submit_button">Confirm</button>
+          <button
+            form="signUp"
+            htmltype="submit"
+            className="sign_form_submit_button"
+            disabled={submitting}
+          >
+            Confirm
+          </button>
         </form>
       )}
     />

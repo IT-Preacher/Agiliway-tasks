@@ -3,11 +3,11 @@ import { Input } from "antd";
 
 const CustomInput = (props) => {
   return (
-    <div>
-      <label htmlFor={props.name}>
+    <div style={{marginTop: 10}}>
+      <label>
         <span className="span-label">{props.label}</span>
+        <Input {...props.input} />
       </label>
-      <Input {...props} type={props.input.type} />
     </div>
   );
 };

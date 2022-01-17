@@ -7,41 +7,33 @@ const SignInForm = () => {
   const [fields, setFields] = useState({
     email: {
       name: "email",
-      label: "email",
+      label: "Email",
       type: "email",
       placeholder: "Email@gmail.com",
     },
     password: {
       name: "password",
-      label: "password",
+      label: "Password",
       type: "password",
       placeholder: "Password",
     },
   });
 
-  const history = useHistory();
-
-  //   useEffect(()=> {
-  //     history.push("/sign/in");
-  //   },[]);
-
-  const submitLogin = () => {
-    console.log("Submited");
+  const handleSubmit = (values) => {
+    console.log("SignIn");
+    console.log("Sign in props from fields ", values);
   };
-
-  //const formContext = useContext(FormContext);
 
   return (
     <div>
       <Form
-        id="sign_in_form"
-        onSubmit={submitLogin}
+        id="signIn"
+        onSubmit={(values) => handleSubmit(values)}
         render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit} id="sign_in_form">
+          <form onSubmit={handleSubmit} id="signIn">
             <h1>Sign In</h1>
             <div className="sign_form_inputs_conteiner">
               {Object.entries(fields).map(([, fieldState]) => {
-                console.log(fieldState);
                 return (
                   <Field
                     name={fieldState.name}
@@ -54,7 +46,13 @@ const SignInForm = () => {
                 );
               })}
             </div>
-            <button className="sign_form_submit_button">Confirm</button>
+            <button
+              form="signIn"
+              htmltype="submit"
+              className="sign_form_submit_button"
+            >
+              Confirm
+            </button>
           </form>
         )}
       />
