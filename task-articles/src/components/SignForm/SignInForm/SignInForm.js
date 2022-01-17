@@ -19,24 +19,18 @@ const SignInForm = () => {
     },
   });
 
-  const history = useHistory();
-
-  //   useEffect(()=> {
-  //     history.push("/sign/in");
-  //   },[]);
-
-  const submitLogin = (event) => {
-    event.preventDefault();
-    console.log("Submited");
+  const handleSubmit = (values) => {
+    console.log("SignIn");
+    console.log("Sign in props from fields ", values);
   };
 
   return (
     <div>
       <Form
-        id="sign_in_form"
-        onSubmit={submitLogin}
+        id="signIn"
+        onSubmit={(values) => handleSubmit(values)}
         render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit} id="sign_in_form">
+          <form onSubmit={handleSubmit} id="signIn">
             <h1>Sign In</h1>
             <div className="sign_form_inputs_conteiner">
               {Object.entries(fields).map(([, fieldState]) => {
@@ -52,7 +46,13 @@ const SignInForm = () => {
                 );
               })}
             </div>
-            <button className="sign_form_submit_button">Confirm</button>
+            <button
+              form="signIn"
+              htmltype="submit"
+              className="sign_form_submit_button"
+            >
+              Confirm
+            </button>
           </form>
         )}
       />

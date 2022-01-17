@@ -3,7 +3,7 @@ import { Form, Field } from "react-final-form";
 import { useHistory } from "react-router-dom";
 import CustomInput from "../Components/CustomInput/CustomInput.js";
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
   const [fields, setFields] = useState({
     email: {
       name: "email",
@@ -37,17 +37,17 @@ const SignUpForm = () => {
   //     history.push("/sign/in");
   //   },[]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (values) => {
     console.log("SignUp");
-    console.log("Sign up props from fields ", event);
+    console.log("Sign up props from fields ", values);
   };
 
   return (
     <Form
-      id="sign"
-      onSubmit={handleSubmit}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
-        <form onSubmit={handleSubmit} id="sign">
+      id="signUp"
+      onSubmit={(values) => handleSubmit(values)}
+      render={({ handleSubmit, submitting }) => (
+        <form onSubmit={handleSubmit} id="signUp">
           <h1>Registration</h1>
           <div className="sign_form_inputs_conteiner">
             {Object.entries(fields).map(([, fieldState]) => {
@@ -64,7 +64,7 @@ const SignUpForm = () => {
             })}
           </div>
           <button
-            form="sign"
+            form="signUp"
             htmltype="submit"
             className="sign_form_submit_button"
             disabled={submitting}

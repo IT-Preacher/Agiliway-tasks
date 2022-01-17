@@ -1,12 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import SignInForm from "./SignInForm/SignInForm";
 import SignUpForm from "./SignUpForm/SignUpForm";
 import { ConteinerForm } from "./styled.components.js";
 import "./SignForm.scss";
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 import { Link, Route, useLocation } from "react-router-dom";
-
-const FormContext = React.createContext({ singIn: true, signUp: false });
 
 const SignForm = () => {
   const [formStatus, setFormStatus] = useState(true);
@@ -15,6 +13,7 @@ const SignForm = () => {
 
   return (
     <ConteinerForm>
+      {/* v1 */}
       {location.pathname === "/signup" ? <SignUpForm /> : <SignInForm />}
 
       {/* v2 */}
@@ -27,13 +26,19 @@ const SignForm = () => {
 
       <span onClick={() => setFormStatus(!formStatus)}>
         {location.pathname === "/signup" ? (
-          <Link to={"/signin"}>
-            <span>Login</span>
-          </Link>
+          <p>
+            Already have an account?{" "}
+            <Link to={"/signin"}>
+              <span>Sign In</span>
+            </Link>
+          </p>
         ) : (
-          <Link to={"/signup"}>
-            <span>Registration</span>
-          </Link>
+          <p>
+            No account?{" "}
+            <Link to={"/signup"}>
+              <span>Registration</span>
+            </Link>
+          </p>
         )}
       </span>
     </ConteinerForm>
@@ -41,3 +46,13 @@ const SignForm = () => {
 };
 
 export default SignForm;
+
+{
+  /* v4 */
+}
+{
+  /* <Switch>
+        <Route exact path="/invoices/dashboard" component={Dashboard} />
+        <Route path="/invoices/:id" component={Invoice} />
+      </Switch> */
+}

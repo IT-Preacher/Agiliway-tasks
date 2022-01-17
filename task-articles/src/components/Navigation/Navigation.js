@@ -27,12 +27,9 @@ function Navigation() {
           <NavLink to={"/statistic"} activeClassName="selected" exact>
             Statistic
           </NavLink>
-          <NavLink to={"/signin"} activeClassName="selected">
+          <NavLink to={"/signin"}>
             Sign In
           </NavLink>
-          {/* <NavLink to={"/signup"} activeClassName="selected" exact>
-            Sign Up
-          </NavLink> */}
         </nav>
       </header>
     </HeaderConteiner>

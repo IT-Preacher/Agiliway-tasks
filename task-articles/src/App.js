@@ -22,17 +22,18 @@ function App() {
             <Route path="/articles" exact>
               <Articles />
             </Route>
-            <Route path="/articles/:id" exact component={ArticleDetail}>
-            </Route>
+            <Route path="/articles/:id" exact component={ArticleDetail}></Route>
             <Route path="/statistic" exact>
               <Statistic />
             </Route>
-            <Route path="/signin" exact>
+            {/* <Route path="/form">
+              <SignForm />
+              <Route path="/form/signup">
                 <SignForm />
-            </Route>
-            <Route path="/signup" exact>
-                <SignForm />
-            </Route>
+              </Route>
+            </Route> */}
+            <Route path="/signin" component={SignForm} exact></Route>
+            <Route path="/signup" component={SignForm} exact></Route>
           </Switch>
         </main>
 
