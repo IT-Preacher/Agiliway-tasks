@@ -1,4 +1,7 @@
 import client from "./client.js";
+import newsAPI, { apiKey } from "./newsAPI.js";
+
+/* Request to local server */
 
 export const getArticlesRequest = () => client.get(`/articles/`);
 //Request for Saga
@@ -31,3 +34,8 @@ export const deleteArticleRequest = (id) => {
 export const deleteArticleRequestSaga = (id) => {
   return client.delete(`/articles/${id}`);
 };
+
+
+/* News API request */
+export const getNewsListRequest = () => newsAPI.get(`/v2/everything?q=bitcoin&apiKey=${apiKey}`).then(response => response.data);
+//getNewsListRequest();
