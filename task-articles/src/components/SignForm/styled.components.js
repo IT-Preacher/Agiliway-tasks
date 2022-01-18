@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ConteinerForm = styled.div`
+export const ContainerForm = styled.div`
 width: 400px;
 min-height: 500px;
 padding: 20px;

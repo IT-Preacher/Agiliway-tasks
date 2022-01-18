@@ -3,21 +3,21 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import logo from "./logo.svg";
 
-const HeaderConteiner = styled.div`
+const HeaderContainer = styled.div`
   maxWidth: 1200px;
   padding: 15px 15px;
 `;
 
 function Navigation() {
   return (
-    <HeaderConteiner>
+    <HeaderContainer>
       <header>
-        <div className="logo-conteiner">
+        <div className="logo-container">
           <NavLink to={"/"}>
             <img src={logo} alt="Logo img" className="logo-img" />
           </NavLink>
         </div>
-        <nav className="navigation-conteiner">
+        <nav className="navigation-container">
           <NavLink to={"/"} activeClassName="selected" exact>
             Home
           </NavLink>
@@ -32,7 +32,7 @@ function Navigation() {
           </NavLink>
         </nav>
       </header>
-    </HeaderConteiner>
+    </HeaderContainer>
   );
 }
 

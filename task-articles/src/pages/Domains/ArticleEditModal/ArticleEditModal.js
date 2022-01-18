@@ -1,21 +1,18 @@
 import React from "react";
-import { Modal, Button } from "antd";
+import { Modal, Button, Spin } from "antd";
 import ModalForm from "../ModalForm";
-import { Spin } from "antd";
 import propTypes from "prop-types";
 
 class ArticleEditModal extends React.Component {
   handleSubmit = (event) => {
     const id = event.uuid;
     const article = {
-      //uuid: event.uuid,
       name: event.name,
       author: event.author,
       description: event.description,
     };
-    //console.log("modal props ", this.props.editModalStartSagaAction, id, article)
+
     this.props.editModalStartSagaAction(id, article);
-    //this.props.editArticleData(id, article);
   };
 
   render() {

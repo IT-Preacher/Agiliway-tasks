@@ -70,7 +70,7 @@ class Articles extends Component {
 
     return (
       <div className="articles-page">
-        <div className="button-create-conteiner">
+        <div className="button-create-container">
           <button
             onClick={() => {
               console.log("modal open");
@@ -81,7 +81,7 @@ class Articles extends Component {
             Create Article
           </button>
         </div>
-        <div className="article-content-conteiner">
+        <div className="article-content-container">
           {loading ? (
             <Spin style={{ fontSize: 36 }} />
           ) : (

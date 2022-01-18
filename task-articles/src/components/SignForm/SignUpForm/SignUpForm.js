@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Form, Field } from "react-final-form";
-import { useHistory } from "react-router-dom";
 import CustomInput from "../Components/CustomInput/CustomInput.js";
 
-const SignUpForm = (props) => {
-  const [fields, setFields] = useState({
+const SignUpForm = () => {
+  const fields = {
     email: {
       name: "email",
       label: "Email",
@@ -29,13 +28,7 @@ const SignUpForm = (props) => {
       type: "password",
       placeholder: "Repeat your password",
     },
-  });
-
-  const history = useHistory();
-
-  //   useEffect(()=> {
-  //     history.push("/sign/in");
-  //   },[]);
+  };
 
   const handleSubmit = (values) => {
     console.log("SignUp");
@@ -49,7 +42,7 @@ const SignUpForm = (props) => {
       render={({ handleSubmit, submitting }) => (
         <form onSubmit={handleSubmit} id="signUp">
           <h1>Registration</h1>
-          <div className="sign_form_inputs_conteiner">
+          <div className="sign-form-inputs-container">
             {Object.entries(fields).map(([, fieldState]) => {
               return (
                 <Field
@@ -66,7 +59,7 @@ const SignUpForm = (props) => {
           <button
             form="signUp"
             htmltype="submit"
-            className="sign_form_submit_button"
+            className="sign-form-submit-button"
             disabled={submitting}
           >
             Confirm

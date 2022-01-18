@@ -1,0 +1,38 @@
+.article_container {
+  width: 280px;
+  background-color: #fff;
+  margin-bottom: 20px;
+
+  header {
+    height: 150px;
+    width: 100%;
+    padding: 15px;
+    width: 100%;
+    background-size: cover;
+    color: #fff;
+
+    h4 {
+      text-transform: uppercase;
+      margin: 0;
+      color: #fff;
+    }
+  }
+
+  .article_body {
+    padding: 15px;
+    background-color: #fff;
+    width: 100%;
+
+    .article_title {
+    }
+
+    .article_content {
+      padding-bottom: 40px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+  }
+
+  footer {
+  }
+}
