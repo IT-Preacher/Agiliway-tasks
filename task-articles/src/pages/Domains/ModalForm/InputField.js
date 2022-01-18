@@ -3,8 +3,10 @@ import { Input } from "antd";
 import propTypes from "prop-types";
 
 export const InputField = (props) => {
+  const { input, placeholder } = props;
+
   return (
-    <Input {...props.input} placeholder={props.placeholder} label="Name" />
+    <Input {...input} placeholder={placeholder} />
   );
 };
 

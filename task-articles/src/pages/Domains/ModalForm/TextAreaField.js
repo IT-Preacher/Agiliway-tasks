@@ -3,8 +3,9 @@ import { Input } from "antd";
 import propTypes from "prop-types";
 
 export const TextAreaField = (props) => {
+  const { input, placeholder } = props;
   const { TextArea } = Input;
-  return <TextArea rows={4} {...props.input} placeholder={props.placeholder} />;
+  return <TextArea rows={4} {...input} placeholder={placeholder} />;
 };
 
 TextAreaField.propTypes = {

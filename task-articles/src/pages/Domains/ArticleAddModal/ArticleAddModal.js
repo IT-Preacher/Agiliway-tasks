@@ -7,7 +7,6 @@ export class ArticleAddModal extends React.Component {
   handleSubmit = (event) => {
     //const { addArticle } = this.props;  
     //addArticle(event);
-    console.log("add modal",event)
     this.props.addModalStartSagaAction(event);
   };
 

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Table } from "antd";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
-//import { moment } from "moment";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 
 const columns = [

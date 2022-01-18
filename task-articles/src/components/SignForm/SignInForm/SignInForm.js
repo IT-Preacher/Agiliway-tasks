@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Form, Field } from "react-final-form";
-import { useHistory } from "react-router-dom";
 import CustomInput from "../Components/CustomInput/CustomInput";
 
 const SignInForm = () => {
-  const [fields, setFields] = useState({
+  const fields = {
     email: {
       name: "email",
       label: "Email",
@@ -17,7 +16,7 @@ const SignInForm = () => {
       type: "password",
       placeholder: "Password",
     },
-  });
+  };
 
   const handleSubmit = (values) => {
     console.log("SignIn");
@@ -32,7 +31,7 @@ const SignInForm = () => {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} id="signIn">
             <h1>Sign In</h1>
-            <div className="sign_form_inputs_conteiner">
+            <div className="sign-form-inputs-container">
               {Object.entries(fields).map(([, fieldState]) => {
                 return (
                   <Field
@@ -49,7 +48,7 @@ const SignInForm = () => {
             <button
               form="signIn"
               htmltype="submit"
-              className="sign_form_submit_button"
+              className="sign-form-submit-button"
             >
               Confirm
             </button>

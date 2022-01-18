@@ -2,15 +2,18 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Spin } from "antd";
 import { connect } from "react-redux";
+
 import getArticleThunk from "../Domains/thunks/getArticleThunk";
-import "./ArticleDetail.scss";
+import { articleFetchStartSaga } from "../Domains/actions/getArticleAction";
 import propTypes from "prop-types";
+
 import {
   selectArticleItem,
   selectArticleLoading,
   selectArticleError,
 } from "../Domains/reducers/getArticle-selectors";
-import { articleFetchStartSaga } from "../Domains/actions/getArticleAction";
+
+import "./ArticleDetail.scss";
 
 class ArticleDetail extends Component {
   componentDidMount() {
@@ -26,8 +29,8 @@ class ArticleDetail extends Component {
       <div className="article-detail-page">
         {loading && <Spin />}
         {!loading && (
-          <div className="article-conteiner">
-            <div className="detail-conteiner">
+          <div className="article-container">
+            <div className="detail-container">
               <div className="article-card-header">
                 <h2 className="white">{articleItem.name}</h2>
               </div>

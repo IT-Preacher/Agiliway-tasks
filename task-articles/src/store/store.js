@@ -14,9 +14,3 @@ export const store = createStore(
 );
 
 sagaMiddleware.run(rootSaga);
-
-
-// export const store = createStore(
-//   rootReducer,
-//   composeWithDevTools(applyMiddleware(thunk))
-// );

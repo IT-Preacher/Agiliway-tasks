@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import phone_1 from "../../img/phone_1.jpg";
 import "./Home.scss";
-import NewsConteiner from "./components/NewsConteiner";
+import NewsContainer from "./components/NewsContainer";
 
 class Home extends Component {
   render() {
@@ -25,7 +25,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <NewsConteiner></NewsConteiner>
+        <NewsContainer></NewsContainer>
       </div>
     );
   }

@@ -1,6 +1,5 @@
 import React from "react";
-import { Modal, Button } from "antd";
-import { Spin } from "antd";
+import { Modal, Button, Spin } from "antd";
 import propTypes from "prop-types";
 
 class ArticleDeleteModal extends React.Component {

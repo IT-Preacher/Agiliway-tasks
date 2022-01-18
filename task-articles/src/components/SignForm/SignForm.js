@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import SignInForm from "./SignInForm/SignInForm";
 import SignUpForm from "./SignUpForm/SignUpForm";
-import { ConteinerForm } from "./styled.components.js";
-import "./SignForm.scss";
-//import { useSelector } from "react-redux";
-import { Link, Route, useLocation } from "react-router-dom";
+import { ContainerForm } from "./styled.components.js";
+import { Link, useLocation } from "react-router-dom";
 
 const SignForm = () => {
   const [formStatus, setFormStatus] = useState(true);
@@ -12,18 +10,8 @@ const SignForm = () => {
   console.log(location);
 
   return (
-    <ConteinerForm>
-      {/* v1 */}
+    <ContainerForm>
       {location.pathname === "/signup" ? <SignUpForm /> : <SignInForm />}
-
-      {/* v2 */}
-      {/* {location.pathname === "/signin" && <Route to={`${location.pathname}/signin`} component={SignInForm}/>} */}
-      {/* {location.pathname === "/signup" && <Route path={`${location.pathname}/signup`} component={SignUpForm}/>}*/}
-
-      {/* v3 */}
-      {/* <Route to={`${location.pathname}/signin`} component={SignInForm}/>
-        <Route to={`${location.pathname}/signup`} component={SignUpForm}/> */}
-
       <span onClick={() => setFormStatus(!formStatus)}>
         {location.pathname === "/signup" ? (
           <p>
@@ -41,18 +29,8 @@ const SignForm = () => {
           </p>
         )}
       </span>
-    </ConteinerForm>
+    </ContainerForm>
   );
 };
 
 export default SignForm;
-
-{
-  /* v4 */
-}
-{
-  /* <Switch>
-        <Route exact path="/invoices/dashboard" component={Dashboard} />
-        <Route path="/invoices/:id" component={Invoice} />
-      </Switch> */
-}

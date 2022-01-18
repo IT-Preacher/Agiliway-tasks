@@ -37,5 +37,4 @@ export const deleteArticleRequestSaga = (id) => {
 
 
 /* News API request */
-export const getNewsListRequest = () => newsAPI.get(`/v2/everything?q=bitcoin&apiKey=${apiKey}`).then(response => response.data);
-//getNewsListRequest();
+export const getNewsListRequest = () => newsAPI.get(`/v2/everything?q=technology&pageSize=40&apiKey=${apiKey}`).then(response => response.data);
