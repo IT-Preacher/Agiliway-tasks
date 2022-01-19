@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./ArticleContainer.scss";
+import { ArticleContainer } from "./styled.components.js";
 import moment from "moment";
 
-const ArticleContainer = (props) => {
-    const { article } = props;
-    const style = {
-        backgroundImage: `url(${article.urlToImage})`,
-    }
+const ArticleCard = (props) => {
+  const { article, onClick } = props;
+  const { title, description, publishedAt, url } = article;
+  const style = {
+    backgroundImage: `url(${article.urlToImage})`,
+  };
+
   return (
-    <div className="article_container">
-      <header style={style}>
-        {/* <h4>NEWS</h4> */}
-      </header>
-      <div className="article_body">
-        <p>{moment(article.publishedAt).format("MMMM Do YYYY")}</p>
-        <h2 className="article_title">{article.title.slice(0, 30)}...</h2>
-        <p className="article_content">{article.description}</p>
+    <ArticleContainer onClick={(event) => props.onClick(event)}>
+      <header style={style}></header>
+      <div className="article-body">
+        <p className="article-date">
+          {moment(publishedAt).format("MMMM Do YYYY")}
+        </p>
+        <h2 className="article-title">{title.slice(0, 30)}...</h2>
+        <p className="article-content">{description}</p>
       </div>
       <footer>
-        <Link to="#">Find out more</Link>
+        <a href={url}>Primary source</a>
       </footer>
-    </div>
+    </ArticleContainer>
   );
 };
 
-export default ArticleContainer;
+export default ArticleCard;

@@ -1,36 +1,60 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Spin, Pagination, Empty } from "antd";
 import getArticlesThunk from "../../../Domains/thunks/getNewsThunk";
-import { Spin } from "antd";
-import ArticleContainer from "./components/ArticleConteiner";
-import "./NewsContainer.scss";
+import ArticleCard from "./components/ArticleConteiner";
+import { StyledNewsConteiner } from "./styled.components";
 
 const NewsContainer = () => {
-  const news = useSelector((state) => state.news);
   const dispatch = useDispatch();
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(12);
+  const [currentPage, setcurrentPage] = useState(1);
+  const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
-
-  console.log("News Conteiner ", newsList);
 
   useEffect(() => {
     dispatch(getArticlesThunk());
   }, []);
 
+  const onChangePagination = (pageNumber) => {
+    setcurrentPage(pageNumber);
+
+    if(pageNumber <= 1) {
+      setMinValue(0);
+      setMaxValue(12);
+    } else {
+      setMinValue(maxValue);
+      setMaxValue(pageNumber * 12);
+    }
+  };
+
   return (
-    <div className="news-container">
+    <StyledNewsConteiner>
       <h1>News Container</h1>
       <div className="news">
         {loading ? (
           <Spin style={{ fontSize: 36 }} />
         ) : (
           <div className="news-articles">
-            {newsList.map((article) => {
-              return <ArticleContainer article={article} key={article.url} />;
+            {newsList.slice(minValue, maxValue).map((article) => {
+              return <ArticleCard article={article} key={article.url} />;
             })}
           </div>
         )}
+
+        {!newsList.length && <Empty />}
+
+        <Pagination
+          defaultCurrent={1}
+          total={newsList.length}
+          current={currentPage}
+          defaultPageSize={12}
+          onChange={onChangePagination}
+          disabled={loading}
+        />
       </div>
-    </div>
+    </StyledNewsConteiner>
   );
 };
 
