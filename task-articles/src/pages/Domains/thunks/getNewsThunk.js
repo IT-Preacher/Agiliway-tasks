@@ -2,10 +2,11 @@ import {
   getNewsListStartAction,
   getNewsListErrorAction,
   getNewsListSuccessAction,
+  getNewsPopularListSuccessAction,
 } from "../actions/getNewsActions";
-import { getNewsListRequest } from "../../../services/domain";
+import { getNewsListRequest, getPopularNewsListRequest } from "../../../services/domain";
 
-const getNewsListThunk = () => {
+export const getNewsListThunk = () => {
   return (dispatch) => {
     dispatch(getNewsListStartAction);
     return getNewsListRequest()
@@ -18,4 +19,17 @@ const getNewsListThunk = () => {
   };
 };
 
-export default getNewsListThunk;
+export const getPopularNewsListThunk = () => {
+  return (dispatch) => {
+    dispatch(getNewsListStartAction);
+    return getPopularNewsListRequest()
+      .then((response) => {
+        dispatch(getNewsPopularListSuccessAction(response.articles));
+      })
+      .catch((error) => {
+        dispatch(getNewsListErrorAction(error));
+      });
+  };
+};
+
+// export default getNewsListThunk;
