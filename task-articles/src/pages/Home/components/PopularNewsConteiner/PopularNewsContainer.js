@@ -5,12 +5,10 @@ import { getPopularNewsListThunk } from "../../../Domains/thunks/getNewsThunk";
 import PopularArticleCard from "./components/PopularArticleCard";
 import { PopularNewsCarousel } from "./styled.component";
 
-const PopularNewsContainer = (props) => {
+const PopularNewsContainer = () => {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const { popularNewsList, loading, error } = news;
-
-  console.log("popular news container ", popularNewsList);
 
   useEffect(() => {
     dispatch(getPopularNewsListThunk());

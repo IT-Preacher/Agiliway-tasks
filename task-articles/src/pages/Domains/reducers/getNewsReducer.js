@@ -32,7 +32,7 @@ export const getNewsAPIReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case NEWS_FETCH_ERROR: {
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload,  loading: false};
     }
     default:
       return state;
