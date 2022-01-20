@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Spin, Pagination, Empty } from "antd";
-import getArticlesThunk from "../../../Domains/thunks/getNewsThunk";
+import { getNewsListThunk } from "../../../Domains/thunks/getNewsThunk";
 import ArticleCard from "./components/ArticleConteiner";
 import { StyledNewsConteiner } from "./styled.components";
 
@@ -13,8 +13,10 @@ const NewsContainer = () => {
   const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
 
+  console.log("News conteiner", news);
+
   useEffect(() => {
-    dispatch(getArticlesThunk());
+    dispatch(getNewsListThunk());
   }, []);
 
   const onChangePagination = (pageNumber) => {

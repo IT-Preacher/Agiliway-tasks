@@ -46,8 +46,7 @@ export const getNewsListRequest = () =>
     .then((response) => response.data);
 
 //Request to get popular news
-export const getNewsListPopularRequest = () =>
+export const getPopularNewsListRequest = () =>
   newsAPI
     .get(`/v2/top-headlines?category=general&apiKey=${apiKey}`)
-    .then((response) => console.log(response));
-    getNewsListPopularRequest();    
+    .then((response) => response.data);  

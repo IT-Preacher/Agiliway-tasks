@@ -4,7 +4,7 @@ import { ArticleContainer } from "./styled.components.js";
 import moment from "moment";
 
 const ArticleCard = (props) => {
-  const { article, onClick } = props;
+  const { article } = props;
   const { title, description, publishedAt, url } = article;
   const style = {
     backgroundImage: `url(${article.urlToImage})`,
