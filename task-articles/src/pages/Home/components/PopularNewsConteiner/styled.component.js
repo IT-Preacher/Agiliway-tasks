@@ -57,7 +57,3 @@ export const PopularNewsCarousel = styled.div`
     }
   }
 `;
-
-// export const ShowMore = styled.span`
-
-// `;

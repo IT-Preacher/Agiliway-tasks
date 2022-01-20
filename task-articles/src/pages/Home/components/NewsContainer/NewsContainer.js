@@ -13,8 +13,6 @@ const NewsContainer = () => {
   const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
 
-  console.log("News conteiner", news);
-
   useEffect(() => {
     dispatch(getNewsListThunk());
   }, []);
@@ -22,7 +20,7 @@ const NewsContainer = () => {
   const onChangePagination = (pageNumber) => {
     setcurrentPage(pageNumber);
 
-    if(pageNumber <= 1) {
+    if (pageNumber <= 1) {
       setMinValue(0);
       setMaxValue(12);
     } else {
@@ -38,23 +36,24 @@ const NewsContainer = () => {
         {loading ? (
           <Spin style={{ fontSize: 36 }} />
         ) : (
-          <div className="news-articles">
-            {newsList.slice(minValue, maxValue).map((article) => {
-              return <ArticleCard article={article} key={article.url} />;
-            })}
-          </div>
+          <React.Fragment>
+            <div className="news-articles">
+              {newsList.slice(minValue, maxValue).map((article) => {
+                return <ArticleCard article={article} key={article.url} />;
+              })}
+            </div>
+            {!newsList.length && <Empty />}
+
+            <Pagination
+              defaultCurrent={1}
+              total={newsList.length}
+              current={currentPage}
+              defaultPageSize={12}
+              onChange={onChangePagination}
+              disabled={loading}
+            />
+          </React.Fragment>
         )}
-
-        {!newsList.length && <Empty />}
-
-        <Pagination
-          defaultCurrent={1}
-          total={newsList.length}
-          current={currentPage}
-          defaultPageSize={12}
-          onChange={onChangePagination}
-          disabled={loading}
-        />
       </div>
     </StyledNewsConteiner>
   );

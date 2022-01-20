@@ -12,10 +12,8 @@ const PopularArticleCard = ({ article }) => {
     backgroundSize: "cover",
   };
 
-  const handleClickMore = (event) => {
+  const handleClickMore = () => {
     setVisible(!visible);
-    //alert(visible);
-    console.log(content);
   };
 
   return (
@@ -28,7 +26,11 @@ const PopularArticleCard = ({ article }) => {
           <main>
             <p>
               {description}{" "}
-              {content !== null && <span onClick={handleClickMore} id={"show-more"}>More <DownCircleOutlined /></span>}
+              {content !== null && (
+                <span onClick={handleClickMore} id={"show-more"}>
+                  More <DownCircleOutlined />
+                </span>
+              )}
             </p>
             {visible && <div className="article-main-text">{content}</div>}
           </main>

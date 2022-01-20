@@ -23,7 +23,7 @@ export const getArticlesReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case ARTICLES_FETCH_ERROR: {
-      return { ...state, error: "error" };
+      return { ...state, error: "error", loading: false };
     }
     default:
       return state;
