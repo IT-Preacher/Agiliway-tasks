@@ -21,7 +21,7 @@ const PopularNewsContainer = () => {
       ) : (
         <React.Fragment>
           <h1>Top News</h1>
-          <Carousel>
+          <Carousel autoplay={ true } effect={"fade"}>
             {popularNewsList.slice(0, 5).map((articleElement) => {
               return (
                 <PopularArticleCard
