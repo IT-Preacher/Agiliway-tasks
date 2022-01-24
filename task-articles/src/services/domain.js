@@ -40,9 +40,9 @@ export const deleteArticleRequestSaga = (id) => {
 /* News API request */
 
 //Request to get news
-export const getNewsListRequest = () =>
+export const getNewsListRequest = (query = "technology") =>
   newsAPI
-    .get(`/v2/everything?q=technology&pageSize=40&apiKey=${apiKey}`)
+    .get(`/v2/everything?q=${query}&pageSize=40&apiKey=${apiKey}`)
     .then((response) => response.data);
 
 //Request to get popular news

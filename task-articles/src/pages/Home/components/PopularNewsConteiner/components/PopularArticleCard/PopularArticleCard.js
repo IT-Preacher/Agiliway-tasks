@@ -3,7 +3,6 @@ import moment from "moment";
 import { DownCircleOutlined } from "@ant-design/icons";
 
 const PopularArticleCard = ({ article }) => {
-  console.log("popular card ", article);
   const [visible, setVisible] = useState(false);
   const { title, description, publishedAt, urlToImage, content, author, url } =
     article;
