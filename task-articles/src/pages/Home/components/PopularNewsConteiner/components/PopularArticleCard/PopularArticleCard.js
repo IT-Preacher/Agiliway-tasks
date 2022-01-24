@@ -54,6 +54,6 @@ PopularArticleCard.propTypes = {
     content: propTypes.string,
     author: propTypes.string,
   }),
-}
+};
 
 export default PopularArticleCard;
