@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import propTypes from "prop-types";
 import moment from "moment";
 import { DownCircleOutlined } from "@ant-design/icons";
 
 const PopularArticleCard = ({ article }) => {
   const [visible, setVisible] = useState(false);
-  const { title, description, publishedAt, urlToImage, content, author, url } =
+  const { title, description, publishedAt, urlToImage, content, author } =
     article;
   const style = {
     backgroundImage: `url(${urlToImage})`,
@@ -42,5 +43,17 @@ const PopularArticleCard = ({ article }) => {
     </div>
   );
 };
+
+PopularArticleCard.propTypes = {
+  article: propTypes.shape({
+    title: propTypes.string,
+    description: propTypes.string,
+    publishedAt: propTypes.string,
+    url: propTypes.string,
+    urlToImage: propTypes.string,
+    content: propTypes.string,
+    author: propTypes.string,
+  }),
+}
 
 export default PopularArticleCard;

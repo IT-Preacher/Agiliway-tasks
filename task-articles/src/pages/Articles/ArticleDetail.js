@@ -79,5 +79,5 @@ ArticleDetail.propTypes = {
   getDataItem: propTypes.func,
   getDataItemAction: propTypes.func,
 };
-export default ArticleDetail;
-// export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
