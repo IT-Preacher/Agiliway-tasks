@@ -34,7 +34,7 @@ const NewsContainer = () => {
 
   const onSearch = (value) => {
     dispatch(getNewsListThunk(value));
-  }
+  };
 
   return (
     <StyledNewsConteiner>

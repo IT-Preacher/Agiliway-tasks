@@ -1,1 +1,1 @@
-export { default } from "./ArticleContainer";
+export { default } from "./ArticleCard.js";

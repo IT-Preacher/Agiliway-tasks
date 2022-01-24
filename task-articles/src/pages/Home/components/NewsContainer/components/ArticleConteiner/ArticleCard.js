@@ -1,16 +1,16 @@
 import React from "react";
-import { ArticleContainer } from "./styled.components.js";
+import propTypes from "prop-types";
 import moment from "moment";
+import { ArticleContainer } from "./styled.components.js";
 
-const ArticleCard = (props) => {
-  const { article } = props;
+const ArticleCard = ({ article }) => {
   const { title, description, publishedAt, url } = article;
   const style = {
     backgroundImage: `url(${article.urlToImage})`,
   };
 
   return (
-    <ArticleContainer onClick={(event) => props.onClick(event)}>
+    <ArticleContainer>
       <header style={style}></header>
       <div className="article-body">
         <p className="article-date">
@@ -24,6 +24,16 @@ const ArticleCard = (props) => {
       </footer>
     </ArticleContainer>
   );
+};
+
+ArticleCard.propTypes = {
+  article: propTypes.shape({
+    title: propTypes.string,
+    description: propTypes.string,
+    publishedAt: propTypes.string,
+    url: propTypes.string,
+    urlToImage: propTypes.string,
+  }),
 };
 
 export default ArticleCard;
