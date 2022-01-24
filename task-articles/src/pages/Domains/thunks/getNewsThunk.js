@@ -6,10 +6,10 @@ import {
 } from "../actions/getNewsActions";
 import { getNewsListRequest, getPopularNewsListRequest } from "../../../services/domain";
 
-export const getNewsListThunk = () => {
+export const getNewsListThunk = (query) => {
   return (dispatch) => {
     dispatch(getNewsListStartAction);
-    return getNewsListRequest()
+    return getNewsListRequest(query)
       .then((response) => {
         dispatch(getNewsListSuccessAction(response.articles));
       })
@@ -31,5 +31,3 @@ export const getPopularNewsListThunk = () => {
       });
   };
 };
-
-// export default getNewsListThunk;
