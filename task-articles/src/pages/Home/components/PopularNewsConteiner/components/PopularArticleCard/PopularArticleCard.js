@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import propTypes from "prop-types";
 import moment from "moment";
 import { DownCircleOutlined } from "@ant-design/icons";
+import { PopularArticleContainer } from "../../styled.component";
 
 const PopularArticleCard = ({ article }) => {
   const [visible, setVisible] = useState(false);
@@ -17,7 +18,7 @@ const PopularArticleCard = ({ article }) => {
   };
 
   return (
-    <div style={style} className="popular-article-card-container">
+    <PopularArticleContainer style={style}>
       <div className="blure-background-layer">
         <section>
           <header>
@@ -40,7 +41,7 @@ const PopularArticleCard = ({ article }) => {
           </footer>
         </section>
       </div>
-    </div>
+    </PopularArticleContainer>
   );
 };
 
