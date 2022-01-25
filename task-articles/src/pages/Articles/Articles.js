@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import "./Articles.scss";
-import { Spin } from "antd";
-import { connect } from "react-redux";
 import propTypes from "prop-types";
+import { connect } from "react-redux";
+import "./Articles.scss";
+
+//Components
+import { Spin } from "antd";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 import ArticleItem from "./ArticleItem.js";
 import ArticleAddModal from "../Domains/ArticleAddModal";
 import ArticleEditModal from "../Domains/ArticleEditModal";
 import ArticleDeleteModal from "../Domains/ArticleDeleteModal";
 
+//Selectors
 import {
   selectArticleData,
   selectArticleLoading,
@@ -22,6 +25,7 @@ import {
   selectModalId,
 } from "../Domains/reducers/modal-select";
 
+//Actions
 import {
   addModalOpenAction,
   editModalOpenAction,
@@ -34,12 +38,15 @@ import {
 
 import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./consts";
 
+//Thunks
 import {
   getDataArticleThunk,
   editArticleThunk,
 } from "../Domains/thunks/editArticleThunk";
 import { deleteArticleThunk } from "../Domains/thunks/deleteArticleThunk";
 import { addArticleThunk } from "../Domains/thunks/addArticleThunk";
+
+//Saga
 import { articlesFetchStartSaga } from "../Domains/actions/getArticlesAction";
 
 class Articles extends Component {
