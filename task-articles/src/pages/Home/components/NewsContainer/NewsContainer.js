@@ -8,11 +8,15 @@ import {
   StyledHeaderConteiner,
 } from "./styled.components";
 
+const DEFAULT_MIN_VALUE = 0;
+const DEFAULT_MAX_VALUE = 12;
+const CURRENT_PAGE = 1;
+
 const NewsContainer = () => {
   const dispatch = useDispatch();
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(12);
-  const [currentPage, setcurrentPage] = useState(1);
+  const [minValue, setMinValue] = useState(DEFAULT_MIN_VALUE);
+  const [maxValue, setMaxValue] = useState(DEFAULT_MAX_VALUE);
+  const [currentPage, setCurrentPage] = useState(CURRENT_PAGE);
   const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
 
@@ -21,14 +25,14 @@ const NewsContainer = () => {
   }, []);
 
   const onChangePagination = (pageNumber) => {
-    setcurrentPage(pageNumber);
+    setCurrentPage(pageNumber);
 
     if (pageNumber <= 1) {
-      setMinValue(0);
-      setMaxValue(12);
+      setMinValue(DEFAULT_MIN_VALUE);
+      setMaxValue(DEFAULT_MAX_VALUE);
     } else {
-      setMinValue(maxValue);
-      setMaxValue(pageNumber * 12);
+      setMinValue((pageNumber -1) * DEFAULT_MAX_VALUE);
+      setMaxValue(pageNumber * DEFAULT_MAX_VALUE);
     }
   };
 
@@ -61,10 +65,10 @@ const NewsContainer = () => {
             {!newsList.length && <Empty />}
 
             <Pagination
-              defaultCurrent={1}
+              defaultCurrent={CURRENT_PAGE}
               total={newsList.length}
               current={currentPage}
-              defaultPageSize={12}
+              defaultPageSize={DEFAULT_MAX_VALUE}
               onChange={onChangePagination}
               disabled={loading}
             />
