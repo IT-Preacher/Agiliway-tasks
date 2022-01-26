@@ -7,10 +7,6 @@ export const ArticleContainer = styled.div`
   background-color: #fff;
   margin-bottom: 20px;
 
-//   &:hover {
-//       width: 100%;
-//   }
-
   header {
     height: 150px;
     width: 100%;

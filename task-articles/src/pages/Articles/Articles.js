@@ -1,20 +1,25 @@
 import React, { Component } from "react";
-import "./Articles.scss";
-import { Spin } from "antd";
-import { connect } from "react-redux";
 import propTypes from "prop-types";
-import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
+import { connect } from "react-redux";
+
+//Components
+import { Spin } from "antd";
 import ArticleItem from "./ArticleItem.js";
 import ArticleAddModal from "../Domains/ArticleAddModal";
 import ArticleEditModal from "../Domains/ArticleEditModal";
 import ArticleDeleteModal from "../Domains/ArticleDeleteModal";
+import {
+  ArticlePageContainer,
+  ButtonCreateContainer,
+  ArticleContentContainer,
+} from "./styled.components";
 
+//Selectors
 import {
   selectArticleData,
   selectArticleLoading,
   selectArticleError,
 } from "../Domains/reducers/getArticles-selectors";
-
 import {
   selectModalType,
   selectModalLoading,
@@ -22,6 +27,7 @@ import {
   selectModalId,
 } from "../Domains/reducers/modal-select";
 
+//Actions
 import {
   addModalOpenAction,
   editModalOpenAction,
@@ -32,14 +38,19 @@ import {
   editModalStartSagaAction,
 } from "../Domains/actions/modalAction";
 
-import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./consts";
+//Constants
+import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./constants";
 
+//Thunks
 import {
   getDataArticleThunk,
   editArticleThunk,
 } from "../Domains/thunks/editArticleThunk";
+import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 import { deleteArticleThunk } from "../Domains/thunks/deleteArticleThunk";
 import { addArticleThunk } from "../Domains/thunks/addArticleThunk";
+
+//Saga
 import { articlesFetchStartSaga } from "../Domains/actions/getArticlesAction";
 
 class Articles extends Component {
@@ -69,8 +80,8 @@ class Articles extends Component {
     } = this.props;
 
     return (
-      <div className="articles-page">
-        <div className="button-create-container">
+      <ArticlePageContainer>
+        <ButtonCreateContainer>
           <button
             onClick={() => {
               console.log("modal open");
@@ -80,12 +91,12 @@ class Articles extends Component {
           >
             Create Article
           </button>
-        </div>
-        <div className="article-content-container">
+        </ButtonCreateContainer>
+        <ArticleContentContainer>
           {loading ? (
             <Spin style={{ fontSize: 36 }} />
           ) : (
-            articlesList.map(article => (
+            articlesList.map((article) => (
               <ArticleItem
                 key={article.uuid}
                 article={article}
@@ -96,7 +107,7 @@ class Articles extends Component {
               />
             ))
           )}
-        </div>
+        </ArticleContentContainer>
         {modalType === ADD_MODAL_OPEN && (
           <ArticleAddModal
             loading={modalLoading}
@@ -126,7 +137,7 @@ class Articles extends Component {
             deleteModalStartSagaAction={deleteModalStartSagaAction}
           />
         )}
-      </div>
+      </ArticlePageContainer>
     );
   }
 }

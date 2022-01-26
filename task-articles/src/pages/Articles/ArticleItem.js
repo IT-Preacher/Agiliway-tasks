@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import propTypes from "prop-types";
-import DropdownMenu from "./components/DropdownMenu";
 import moment from "moment";
 
-const ArticleItem = (props) => {
-  const {
-    article: { uuid, name, author, description, createDate },
-  } = props;
+//Components
+import { ArticleCard } from "./styled.components";
+import DropdownMenu from "./components/DropdownMenu";
+
+const ArticleItem = ({ article }) => {
+  const { uuid, name, author, description, createDate } = article;
 
   return (
-    <div className="article-card">
+    <ArticleCard>
       <DropdownMenu {...props} uuid={uuid} />
 
       <div className="aticle-card-info">
@@ -28,7 +29,7 @@ const ArticleItem = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </ArticleCard>
   );
 };
 
