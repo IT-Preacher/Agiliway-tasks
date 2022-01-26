@@ -5,7 +5,6 @@ import "./Articles.scss";
 
 //Components
 import { Spin } from "antd";
-import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 import ArticleItem from "./ArticleItem.js";
 import ArticleAddModal from "../Domains/ArticleAddModal";
 import ArticleEditModal from "../Domains/ArticleEditModal";
@@ -17,7 +16,6 @@ import {
   selectArticleLoading,
   selectArticleError,
 } from "../Domains/reducers/getArticles-selectors";
-
 import {
   selectModalType,
   selectModalLoading,
@@ -36,6 +34,7 @@ import {
   editModalStartSagaAction,
 } from "../Domains/actions/modalAction";
 
+//Consts
 import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./consts";
 
 //Thunks
@@ -43,6 +42,7 @@ import {
   getDataArticleThunk,
   editArticleThunk,
 } from "../Domains/thunks/editArticleThunk";
+import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 import { deleteArticleThunk } from "../Domains/thunks/deleteArticleThunk";
 import { addArticleThunk } from "../Domains/thunks/addArticleThunk";
 

@@ -1,5 +1,4 @@
 import React, { Component, Suspense } from "react";
-import "./Home.scss";
 import NewsContainer from "./components/NewsContainer";
 import PopularNewsContainer from "./components/PopularNewsConteiner";
 

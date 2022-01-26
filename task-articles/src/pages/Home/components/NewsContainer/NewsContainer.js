@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+//Components 
 import { Spin, Pagination, Empty, Input } from "antd";
 import { getNewsListThunk } from "../../../Domains/thunks/getNewsThunk";
-import ArticleCard from "./components/ArticleConteiner";
 import {
   StyledNewsConteiner,
   StyledHeaderConteiner,
 } from "./styled.components";
 
-const DEFAULT_MIN_VALUE = 0;
-const DEFAULT_MAX_VALUE = 12;
-const CURRENT_PAGE = 1;
+//Thunks
+import ArticleCard from "./components/ArticleConteiner";
+
+//Constants
+import {
+  DEFAULT_MAX_VALUE,
+  DEFAULT_MIN_VALUE,
+  CURRENT_PAGE,
+} from "./components/ArticleConteiner/constants";
 
 const NewsContainer = () => {
   const dispatch = useDispatch();
@@ -31,7 +38,7 @@ const NewsContainer = () => {
       setMinValue(DEFAULT_MIN_VALUE);
       setMaxValue(DEFAULT_MAX_VALUE);
     } else {
-      setMinValue((pageNumber -1) * DEFAULT_MAX_VALUE);
+      setMinValue((pageNumber - 1) * DEFAULT_MAX_VALUE);
       setMaxValue(pageNumber * DEFAULT_MAX_VALUE);
     }
   };
@@ -79,4 +86,4 @@ const NewsContainer = () => {
   );
 };
 
-export default NewsContainer;
+export default React.memo(NewsContainer);

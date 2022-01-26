@@ -10,8 +10,6 @@ const ArticleCard = ({ article }) => {
     backgroundImage: `url(${article.urlToImage})`,
   };
 
-  // console.log(dateOfPublish);
-
   return (
     <ArticleContainer>
       <header style={style}></header>
@@ -40,4 +38,4 @@ ArticleCard.propTypes = {
   }),
 };
 
-export default React.memo(ArticleCard);
+export default ArticleCard;
