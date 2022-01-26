@@ -27,7 +27,7 @@ const PopularArticleCard = ({ article }) => {
           <main>
             <p>
               {description}{" "}
-              {content !== null && (
+              {content && (
                 <span onClick={handleClickMore} id={"show-more"}>
                   More <DownCircleOutlined />
                 </span>

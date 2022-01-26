@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Spin } from "antd";
+import propTypes from "prop-types";
 import { connect } from "react-redux";
 
-import getArticleThunk from "../Domains/thunks/getArticleThunk";
-import { articleFetchStartSaga } from "../Domains/actions/getArticleAction";
-import propTypes from "prop-types";
+//Components
+import { Link } from "react-router-dom";
+import { Spin } from "antd";
 
+//Thunks
+import getArticleThunk from "../Domains/thunks/getArticleThunk";
+
+//Sagas
+import { articleFetchStartSaga } from "../Domains/actions/getArticleAction";
+
+//Selectors
 import {
   selectArticleItem,
   selectArticleLoading,

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
-import "./Articles.scss";
 
 //Components
 import { Spin } from "antd";
@@ -9,6 +8,11 @@ import ArticleItem from "./ArticleItem.js";
 import ArticleAddModal from "../Domains/ArticleAddModal";
 import ArticleEditModal from "../Domains/ArticleEditModal";
 import ArticleDeleteModal from "../Domains/ArticleDeleteModal";
+import {
+  ArticlePageContainer,
+  ButtonCreateContainer,
+  ArticleContentContainer,
+} from "./styled.components";
 
 //Selectors
 import {
@@ -34,8 +38,8 @@ import {
   editModalStartSagaAction,
 } from "../Domains/actions/modalAction";
 
-//Consts
-import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./consts";
+//Constants
+import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./constants";
 
 //Thunks
 import {
@@ -76,8 +80,8 @@ class Articles extends Component {
     } = this.props;
 
     return (
-      <div className="articles-page">
-        <div className="button-create-container">
+      <ArticlePageContainer>
+        <ButtonCreateContainer>
           <button
             onClick={() => {
               console.log("modal open");
@@ -87,12 +91,12 @@ class Articles extends Component {
           >
             Create Article
           </button>
-        </div>
-        <div className="article-content-container">
+        </ButtonCreateContainer>
+        <ArticleContentContainer>
           {loading ? (
             <Spin style={{ fontSize: 36 }} />
           ) : (
-            articlesList.map(article => (
+            articlesList.map((article) => (
               <ArticleItem
                 key={article.uuid}
                 article={article}
@@ -103,7 +107,7 @@ class Articles extends Component {
               />
             ))
           )}
-        </div>
+        </ArticleContentContainer>
         {modalType === ADD_MODAL_OPEN && (
           <ArticleAddModal
             loading={modalLoading}
@@ -133,7 +137,7 @@ class Articles extends Component {
             deleteModalStartSagaAction={deleteModalStartSagaAction}
           />
         )}
-      </div>
+      </ArticlePageContainer>
     );
   }
 }
