@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-//Components 
-import { Spin, Pagination, Empty, Input } from "antd";
-import { getNewsListThunk } from "../../../Domains/thunks/getNewsThunk";
+//Components
+import { Spin, Pagination, Empty, Input, Select } from "antd";
+import {
+  getNewsListThunk,
+  newsSortFreshThunk,
+  newsSortOldThunk,
+} from "../../../Domains/thunks/getNewsThunk";
 import {
   StyledNewsConteiner,
   StyledHeaderConteiner,
@@ -27,6 +31,8 @@ const NewsContainer = () => {
   const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
 
+  const { Option } = Select;
+
   useEffect(() => {
     dispatch(getNewsListThunk());
   }, []);
@@ -47,6 +53,16 @@ const NewsContainer = () => {
     dispatch(getNewsListThunk(value));
   };
 
+  const handleChange = (value) => {
+    if (value === "publishedAtUp") {
+      dispatch(newsSortFreshThunk(newsList));
+    }
+
+    if (value === "publishedAtDown") {
+      dispatch(newsSortOldThunk(newsList));
+    }
+  };
+
   return (
     <StyledNewsConteiner>
       <h1>News Container</h1>
@@ -58,6 +74,12 @@ const NewsContainer = () => {
           loading={loading}
           onSearch={onSearch}
         />
+        <div className="settings-container">
+          <Select style={{ width: 120 }} onChange={handleChange} defaultActiveFirstOption={false}>
+            <Option value="publishedAtUp">Date Up</Option>
+            <Option value="publishedAtDown">Date Down</Option>
+          </Select>
+        </div>
       </StyledHeaderConteiner>
       <div className="news">
         {loading ? (
