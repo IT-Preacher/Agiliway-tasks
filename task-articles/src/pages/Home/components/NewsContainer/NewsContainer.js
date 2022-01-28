@@ -22,6 +22,7 @@ import {
   DEFAULT_MIN_VALUE,
   CURRENT_PAGE,
 } from "./components/ArticleConteiner/constants";
+import HeaderNewsContainer from "./components/HeaderNewsContainer/HeaderNewsContainer";
 
 const NewsContainer = () => {
   const dispatch = useDispatch();
@@ -66,21 +67,11 @@ const NewsContainer = () => {
   return (
     <StyledNewsConteiner>
       <h1>News Container</h1>
-      <StyledHeaderConteiner>
-        <Input.Search
-          placeholder="input search text"
-          allowClear
-          enterButton="Search"
-          loading={loading}
-          onSearch={onSearch}
-        />
-        <div className="settings-container">
-          <Select style={{ width: 120 }} onChange={handleChange} defaultActiveFirstOption={false}>
-            <Option value="publishedAtUp">Date Up</Option>
-            <Option value="publishedAtDown">Date Down</Option>
-          </Select>
-        </div>
-      </StyledHeaderConteiner>
+      <HeaderNewsContainer
+        onSearch={onSearch}
+        handleChange={handleChange}
+        loading={loading}
+      />
       <div className="news">
         {loading ? (
           <Spin style={{ fontSize: 36 }} />
