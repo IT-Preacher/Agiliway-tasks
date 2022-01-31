@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-//Components 
-import { Spin, Pagination, Empty, Input } from "antd";
-import { getNewsListThunk } from "../../../Domains/thunks/getNewsThunk";
-import {
-  StyledNewsConteiner,
-  StyledHeaderConteiner,
-} from "./styled.components";
+//Components
+import { Spin, Pagination, Empty, Select } from "antd";
+import SettingsComponent from "./components/SettingsComponent/SettingsComponent";
+import SearchNewsComponent from "./components/SearchNewsComponent/SearchNewsComponent";
+import { StyledNewsConteiner } from "./styled.components";
 
 //Thunks
 import ArticleCard from "./components/ArticleConteiner";
+import {
+  getNewsListThunk,
+  newsSortFreshThunk,
+  newsSortOldThunk,
+} from "../../../Domains/thunks/getNewsThunk";
 
 //Constants
 import {
@@ -44,31 +47,39 @@ const NewsContainer = () => {
   };
 
   const onSearch = (value) => {
+    console.log("Search ", value);
     dispatch(getNewsListThunk(value));
+  };
+
+  const handleChange = (value) => {
+    if (value === "publishedAtUp") {
+      dispatch(newsSortFreshThunk(newsList));
+    }
+
+    if (value === "publishedAtDown") {
+      dispatch(newsSortOldThunk(newsList));
+    }
   };
 
   return (
     <StyledNewsConteiner>
       <h1>News Container</h1>
-      <StyledHeaderConteiner>
-        <Input.Search
-          placeholder="input search text"
-          allowClear
-          enterButton="Search"
-          loading={loading}
-          onSearch={onSearch}
-        />
-      </StyledHeaderConteiner>
+      <SearchNewsComponent
+        onSearch={onSearch}
+        loading={loading}
+      />
       <div className="news">
         {loading ? (
           <Spin style={{ fontSize: 36 }} />
         ) : (
           <React.Fragment>
+            <SettingsComponent handleChange={handleChange} />
             <div className="news-articles">
               {newsList.slice(minValue, maxValue).map((article) => {
                 return <ArticleCard article={article} key={article.url} />;
               })}
             </div>
+
             {!newsList.length && <Empty />}
 
             <Pagination

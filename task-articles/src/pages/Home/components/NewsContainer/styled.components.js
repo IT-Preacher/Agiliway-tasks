@@ -11,9 +11,14 @@ export const StyledNewsConteiner = styled.div`
 `;
 
 export const StyledHeaderConteiner = styled.header`
+  flex-direction: column;
   margin: 15px 0;
 
   .ant-input-group-wrapper .ant-input-search {
     width: 30%;
   }
+`;
+
+export const SettingsContainer = styled.div`
+  margin: 20px 0px;
 `;
