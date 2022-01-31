@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 //Components
 import { Spin, Pagination, Empty, Select } from "antd";
 import SettingsComponent from "./components/SettingsComponent/SettingsComponent";
-import HeaderNewsContainer from "./components/HeaderNewsContainer/HeaderNewsContainer";
+import SearchNewsComponent from "./components/SearchNewsComponent/SearchNewsComponent";
 import { StyledNewsConteiner } from "./styled.components";
 
 //Thunks
@@ -29,8 +29,6 @@ const NewsContainer = () => {
   const [currentPage, setCurrentPage] = useState(CURRENT_PAGE);
   const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
-
-  const { Option } = Select;
 
   useEffect(() => {
     dispatch(getNewsListThunk());
@@ -66,9 +64,8 @@ const NewsContainer = () => {
   return (
     <StyledNewsConteiner>
       <h1>News Container</h1>
-      <HeaderNewsContainer
+      <SearchNewsComponent
         onSearch={onSearch}
-        handleChange={handleChange}
         loading={loading}
       />
       <div className="news">

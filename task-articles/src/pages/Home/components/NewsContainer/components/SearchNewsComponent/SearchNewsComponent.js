@@ -4,7 +4,7 @@ import { Select, Button } from "antd";
 import { Form, Field } from "react-final-form";
 import CustomInput from "./components/CustomInput/CustomInput";
 
-const HeaderNewsContainer = ({ onSearch, loading }) => {
+const SearchNewsComponent = ({ onSearch, loading }) => {
   const [isOptions, setIsOptions] = useState(false);
   const { Option } = Select;
   return (
@@ -116,4 +116,4 @@ const HeaderNewsContainer = ({ onSearch, loading }) => {
     </StyledHeaderConteiner>
   );
 };
-export default HeaderNewsContainer;
+export default SearchNewsComponent;
