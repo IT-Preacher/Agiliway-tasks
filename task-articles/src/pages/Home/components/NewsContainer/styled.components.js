@@ -18,3 +18,7 @@ export const StyledHeaderConteiner = styled.header`
     width: 30%;
   }
 `;
+
+export const SettingsContainer = styled.div`
+  margin: 20px 0px;
+`;

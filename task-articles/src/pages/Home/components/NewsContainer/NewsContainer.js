@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 //Components
-import { Spin, Pagination, Empty, Input, Select } from "antd";
+import { Spin, Pagination, Empty, Select } from "antd";
+import SettingsComponent from "./components/SettingsComponent/SettingsComponent";
+import HeaderNewsContainer from "./components/HeaderNewsContainer/HeaderNewsContainer";
+import { StyledNewsConteiner } from "./styled.components";
+
+//Thunks
+import ArticleCard from "./components/ArticleConteiner";
 import {
   getNewsListThunk,
   newsSortFreshThunk,
   newsSortOldThunk,
 } from "../../../Domains/thunks/getNewsThunk";
-import {
-  StyledNewsConteiner,
-  StyledHeaderConteiner,
-} from "./styled.components";
-
-//Thunks
-import ArticleCard from "./components/ArticleConteiner";
 
 //Constants
 import {
@@ -22,7 +21,6 @@ import {
   DEFAULT_MIN_VALUE,
   CURRENT_PAGE,
 } from "./components/ArticleConteiner/constants";
-import HeaderNewsContainer from "./components/HeaderNewsContainer/HeaderNewsContainer";
 
 const NewsContainer = () => {
   const dispatch = useDispatch();
@@ -51,6 +49,7 @@ const NewsContainer = () => {
   };
 
   const onSearch = (value) => {
+    console.log("Search ", value);
     dispatch(getNewsListThunk(value));
   };
 
@@ -77,11 +76,13 @@ const NewsContainer = () => {
           <Spin style={{ fontSize: 36 }} />
         ) : (
           <React.Fragment>
+            <SettingsComponent handleChange={handleChange} />
             <div className="news-articles">
               {newsList.slice(minValue, maxValue).map((article) => {
                 return <ArticleCard article={article} key={article.url} />;
               })}
             </div>
+
             {!newsList.length && <Empty />}
 
             <Pagination

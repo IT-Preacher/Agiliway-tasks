@@ -49,4 +49,4 @@ export const getNewsListRequest = (query) =>
 export const getPopularNewsListRequest = () =>
   newsAPI
     .get(`/v2/top-headlines?country=ua&category=general&apiKey=${apiKey}`)
-    .then((response) => response.data);  
+    .then((response) => response.data);

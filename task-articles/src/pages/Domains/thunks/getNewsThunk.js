@@ -14,6 +14,7 @@ import {
 export const getNewsListThunk = (query) => {
   return (dispatch) => {
     dispatch(getNewsListStartAction);
+    console.log("Thunk ", query);
     return getNewsListRequest(query)
       .then((response) => {
         dispatch(getNewsListSuccessAction(response.articles));
