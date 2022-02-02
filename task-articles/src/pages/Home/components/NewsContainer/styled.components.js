@@ -20,5 +20,37 @@ export const StyledHeaderConteiner = styled.header`
 `;
 
 export const SettingsContainer = styled.div`
+  display: flex;
+  justify-content: end;
   margin: 20px 0px;
 `;
+
+export const RequestSettingsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 20px 0px;
+  opacity: ${props => props.visibility ? 1 : 0}
+  visibility: ${props => props.visibility ? "visible" : "hidden"}
+  transition: .55s opacity, .55s visibility;
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+
+export const CustomSelect = styled.select`
+  position: relative;
+  width: 200px;
+  height: 32px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+`;
+
+/*Custom select */
+// appearance: initial; /* Remove default arrow */
+//   background-image: url(${props => props.arrow}); /* Add custom arrow */

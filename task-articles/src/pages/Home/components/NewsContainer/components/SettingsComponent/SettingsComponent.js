@@ -10,6 +10,7 @@ const SettingsComponent = ({ handleChange }) => {
         onChange={handleChange}
         defaultActiveFirstOption={false}
       >
+        <Option value={null}>{null}</Option>
         <Option value="publishedAtUp">Date Up</Option>
         <Option value="publishedAtDown">Date Down</Option>
       </Select>

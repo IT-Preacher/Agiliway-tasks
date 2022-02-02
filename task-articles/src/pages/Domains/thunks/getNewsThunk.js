@@ -9,13 +9,26 @@ import {
 import {
   getNewsListRequest,
   getPopularNewsListRequest,
+  getSearchNewsListRequest,
 } from "../../../services/domain";
 
-export const getNewsListThunk = (query) => {
+export const getNewsListThunk = () => {
   return (dispatch) => {
     dispatch(getNewsListStartAction);
-    console.log("Thunk ", query);
-    return getNewsListRequest(query)
+    return getNewsListRequest()
+      .then((response) => {
+        dispatch(getNewsListSuccessAction(response.articles));
+      })
+      .catch((error) => {
+        dispatch(getNewsListErrorAction(error));
+      });
+  };
+};
+
+export const getSearchNewsListThunk = (queryParams) => {
+  return (dispatch) => {
+    dispatch(getNewsListStartAction);
+    return getSearchNewsListRequest(queryParams)
       .then((response) => {
         dispatch(getNewsListSuccessAction(response.articles));
       })

@@ -11,6 +11,7 @@ import { StyledNewsConteiner } from "./styled.components";
 import ArticleCard from "./components/ArticleConteiner";
 import {
   getNewsListThunk,
+  getSearchNewsListThunk,
   newsSortFreshThunk,
   newsSortOldThunk,
 } from "../../../Domains/thunks/getNewsThunk";
@@ -48,7 +49,7 @@ const NewsContainer = () => {
 
   const onSearch = (value) => {
     console.log("Search ", value);
-    dispatch(getNewsListThunk(value));
+    dispatch(getSearchNewsListThunk(value));
   };
 
   const handleChange = (value) => {

@@ -1,12 +1,31 @@
 import React, { useState } from "react";
-import { StyledHeaderConteiner } from "../../styled.components";
-import { Select, Button } from "antd";
+import {
+  FlexContainer,
+  RequestSettingsContainer,
+  StyledHeaderConteiner,
+} from "../../styled.components";
+import { Button } from "antd";
 import { Form, Field } from "react-final-form";
+import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import CustomInput from "./components/CustomInput/CustomInput";
+import CustomSelect from "./components/CustomSelect/CustomSelect";
 
 const SearchNewsComponent = ({ onSearch, loading }) => {
   const [isOptions, setIsOptions] = useState(false);
-  const { Option } = Select;
+  const configObject = {
+    language: {
+      en: "English",
+      ar: "Arabic",
+      de: "German",
+      ru: "Russian",
+    },
+    sorting: {
+      relevancy: "Relevancy",
+      popularity: "Popularity",
+      publishedAt: "Publication Date",
+    },
+  };
+
   return (
     <StyledHeaderConteiner>
       <div style={{ width: "100%" }}>
@@ -16,25 +35,6 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit} id="search">
               <div className="search-container" style={{ display: "flex" }}>
-                {/* Cant get value from input on handleSubmit */}
-                {/* <Field>
-                  {(props) => {
-                    console.log(props);
-                    return (
-                      <Input.Search
-                        {...props.input.value}
-                        name="q"
-                        placeholder="input search text"
-                        allowClear
-                        enterButton="Search"
-                        loading={loading}
-                        onSearch={handleSubmit}
-                      />
-                    );
-                  }}
-                </Field> */}
-
-                {/* Work correct on handleSubmit */}
                 <Field name="q" component={CustomInput} />
                 <Button
                   key="search"
@@ -49,15 +49,12 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
               <div>
                 <div>
                   <span onClick={() => setIsOptions(!isOptions)}>
-                    Search options ⚙
+                    Search options{" "}
+                    {isOptions ? <UpOutlined /> : <DownOutlined />}
                   </span>
                 </div>
                 {isOptions && (
-                  <div
-                    className="request-settings-container"
-                    style={{ width: 300 }}
-                  >
-                    <div className="datepicker-container">
+                  <RequestSettingsContainer visibility={isOptions}>
                       <div>
                         <labe>
                           Date from{" "}
@@ -78,35 +75,28 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
                           />
                         </label>
                       </div>
-                    </div>
-                    <div className="select-container">
                       <div>
                         <label>
                           {" "}
                           Sorting:{" "}
-                          <Field name="sorting" component={"select"}>
-                            <option value={null} />
-                            <option value="relevancy">relevancy</option>
-                            <option value="popularity">popularity</option>
-                            <option value="publishedAt">published At</option>
-                          </Field>
+                          <Field
+                            name="sorting"
+                            configuration={configObject.sorting}
+                            component={CustomSelect}
+                          />
                         </label>
                       </div>
                       <div>
                         <label>
-                          {" "}
                           Language:{" "}
-                          <Field name="language" component={"select"}>
-                            <option value={null} />
-                            <option value="en">English</option>
-                            <option value="ar">Arabic</option>
-                            <option value="de">German</option>
-                            <option value="ru">Russian</option>
-                          </Field>
+                          <Field
+                            name="language"
+                            configuration={configObject.language}
+                            component={CustomSelect}
+                          />
                         </label>
                       </div>
-                    </div>
-                  </div>
+                  </RequestSettingsContainer>
                 )}
               </div>
             </form>
