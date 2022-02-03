@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  FlexContainer,
   RequestSettingsContainer,
   StyledHeaderConteiner,
 } from "../../styled.components";
