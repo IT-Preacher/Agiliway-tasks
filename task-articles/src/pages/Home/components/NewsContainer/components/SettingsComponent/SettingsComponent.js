@@ -1,8 +1,10 @@
-import { Select } from "antd";
 import React from "react";
 import { SettingsContainer } from "../../styled.components";
+import { Select } from "antd";
 
 const SettingsComponent = ({ handleChange }) => {
+  const { Option } = Select;
+  
   return (
     <SettingsContainer>
       <Select

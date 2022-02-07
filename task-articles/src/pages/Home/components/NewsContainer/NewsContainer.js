@@ -23,6 +23,8 @@ import {
   CURRENT_PAGE,
 } from "./components/ArticleConteiner/constants";
 
+import { sortedListDateUp, sortedListDateDown } from "../../../Domains/reducers/getNews-selectors";
+
 const NewsContainer = () => {
   const dispatch = useDispatch();
   const [minValue, setMinValue] = useState(DEFAULT_MIN_VALUE);
@@ -30,6 +32,10 @@ const NewsContainer = () => {
   const [currentPage, setCurrentPage] = useState(CURRENT_PAGE);
   const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
+
+  // console.log("Before sort", newsList);
+  // console.log("Sort", sortedListDateUp(news));
+  // console.log("Sort", sortedListDateDown(news));
 
   useEffect(() => {
     dispatch(getNewsListThunk());
@@ -48,27 +54,27 @@ const NewsContainer = () => {
   };
 
   const onSearch = (value) => {
-    console.log("Search ", value);
     dispatch(getSearchNewsListThunk(value));
   };
 
   const handleChange = (value) => {
     if (value === "publishedAtUp") {
-      dispatch(newsSortFreshThunk(newsList));
+      // dispatch(newsSortFreshThunk(newsList));
+      // sortedListDateUp(news);
+      return sortedListDateUp(newsList);
+      // console.log("PublishUp");
     }
 
     if (value === "publishedAtDown") {
-      dispatch(newsSortOldThunk(newsList));
+      // dispatch(newsSortOldThunk(newsList));
+      return sortedListDateDown(news);
     }
   };
 
   return (
     <StyledNewsConteiner>
       <h1>News Container</h1>
-      <SearchNewsComponent
-        onSearch={onSearch}
-        loading={loading}
-      />
+      <SearchNewsComponent onSearch={onSearch} loading={loading} />
       <div className="news">
         {loading ? (
           <Spin style={{ fontSize: 36 }} />

@@ -55,14 +55,14 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
                 {isOptions && (
                   <RequestSettingsContainer visibility={isOptions}>
                       <div>
-                        <labe>
+                        <label>
                           Date from{" "}
                           <Field
                             name="dateFrom"
                             type="date"
                             component={"input"}
                           />
-                        </labe>
+                        </label>
                       </div>
                       <div>
                         <label>

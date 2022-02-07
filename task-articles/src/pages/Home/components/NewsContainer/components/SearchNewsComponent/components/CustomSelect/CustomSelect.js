@@ -6,8 +6,8 @@ const CustomSelect = ({ input, configuration }) => {
   return (
     <Select { ...input } arrow={DownOutlined}>
         <option value={null}>{null}</option>
-        {Object.entries(configuration).map(([value, text]) => (
-        <option value={value}>{text}</option>
+        {Object.entries(configuration).map(([value, text], index) => (
+        <option value={value} key={index + value}>{text}</option>
       ))}
     </Select>
   );

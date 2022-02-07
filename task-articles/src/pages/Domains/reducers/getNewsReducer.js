@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import {
   NEWS_FETCH_START,
   NEWS_FETCH_SUCCESS,
@@ -54,3 +55,18 @@ export const getNewsAPIReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+// export const getNewsList = (state) => state.news.get('newsList');
+
+// export const sortedListDateDown = createSelector(
+//   [getNewsList],
+//   (newsList) =>
+//     newsList.sort((a, b) => {
+//       if (a.publishedAt > b.publishedAt) {
+//         return 1;
+//       } else if (a.publishedAt < b.publishedAt) {
+//         return -1;
+//       }
+//       return 0;
+//     })
+// );
