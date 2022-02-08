@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import propTypes from "prop-types";
 import {
   RequestSettingsContainer,
   StyledHeaderConteiner,
@@ -105,4 +106,10 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
     </StyledHeaderConteiner>
   );
 };
+
+SearchNewsComponent.propTypes = {
+  onSearch: propTypes.func,
+  loading: propTypes.bool,
+};
+
 export default SearchNewsComponent;

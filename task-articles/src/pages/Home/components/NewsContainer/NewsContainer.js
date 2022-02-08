@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 //Components
-import { Spin, Pagination, Empty, Select } from "antd";
+import { Spin, Pagination, Empty } from "antd";
 import SettingsComponent from "./components/SettingsComponent/SettingsComponent";
 import SearchNewsComponent from "./components/SearchNewsComponent/SearchNewsComponent";
 import { StyledNewsConteiner } from "./styled.components";
@@ -34,19 +34,26 @@ const NewsContainer = () => {
   const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
 
-  const sortedListDateUp = createSelector( [(state) => state.newsList ], (newsList) => {
-    console.log("Create selector ",newsList)
-    return newsList.sort((a, b) => {
-      if (a.publishedAt > b.publishedAt) {
-        return -1;
-      } else if (a.publishedAt < b.publishedAt) {
-        return 1;
-      }
-      return 0;
-    });
-  });
+  //Selector for sorting news
+  const sortedListDateUp = createSelector(
+    [(state) => state.newsList],
+    (newsList) => {
+      console.log("Create selector ", newsList);
+      return newsList.sort((a, b) => {
+        if (a.publishedAt > b.publishedAt) {
+          return -1;
+        } else if (a.publishedAt < b.publishedAt) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+  );
 
+  //Primary array news from Redux store
   console.log("Before sort", newsList);
+
+  // Call selector at component render stage (work)
   // console.log("Sort", sortedListDateUp(news));
 
   useEffect(() => {
@@ -69,17 +76,15 @@ const NewsContainer = () => {
     dispatch(getSearchNewsListThunk(value));
   };
 
-  const handleChange = (value) => {
+  const handleChangeSorting = (value) => {
     if (value === "publishedAtUp") {
-      // dispatch(newsSortFreshThunk(newsList));
-      // sortedListDateUp(news);
-      console.log("Event ",sortedListDateUp(news));
+      //Use selector if the user has selected the latest news (dosen't work)
+      sortedListDateUp(news);
       return;
     }
 
     if (value === "publishedAtDown") {
-      // dispatch(newsSortOldThunk(newsList));
-      return sortedListDateDown(news);
+      dispatch(newsSortOldThunk(newsList));
     }
   };
 
@@ -92,7 +97,7 @@ const NewsContainer = () => {
           <Spin style={{ fontSize: 36 }} />
         ) : (
           <React.Fragment>
-            <SettingsComponent handleChange={handleChange} />
+            <SettingsComponent handleChange={handleChangeSorting} />
             <div className="news-articles">
               {newsList.slice(minValue, maxValue).map((article) => {
                 return <ArticleCard article={article} key={article.url} />;
