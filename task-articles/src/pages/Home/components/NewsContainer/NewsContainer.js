@@ -22,8 +22,9 @@ import {
   DEFAULT_MIN_VALUE,
   CURRENT_PAGE,
 } from "./components/ArticleConteiner/constants";
+import { createSelector } from "reselect";
 
-import { sortedListDateUp, sortedListDateDown } from "../../../Domains/reducers/getNews-selectors";
+// import { sortedListDateUp, sortedListDateDown } from "../../../Domains/reducers/getNews-selectors";
 
 const NewsContainer = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,20 @@ const NewsContainer = () => {
   const news = useSelector((state) => state.news);
   const { newsList, loading, error } = news;
 
-  // console.log("Before sort", newsList);
+  const sortedListDateUp = createSelector( [(state) => state.newsList ], (newsList) => {
+    console.log("Create selector ",newsList)
+    return newsList.sort((a, b) => {
+      if (a.publishedAt > b.publishedAt) {
+        return -1;
+      } else if (a.publishedAt < b.publishedAt) {
+        return 1;
+      }
+      return 0;
+    });
+  });
+
+  console.log("Before sort", newsList);
   // console.log("Sort", sortedListDateUp(news));
-  // console.log("Sort", sortedListDateDown(news));
 
   useEffect(() => {
     dispatch(getNewsListThunk());
@@ -61,8 +73,8 @@ const NewsContainer = () => {
     if (value === "publishedAtUp") {
       // dispatch(newsSortFreshThunk(newsList));
       // sortedListDateUp(news);
-      return sortedListDateUp(newsList);
-      // console.log("PublishUp");
+      console.log("Event ",sortedListDateUp(news));
+      return;
     }
 
     if (value === "publishedAtDown") {
