@@ -17,24 +17,28 @@ const SignUpForm = () => {
       label: "Email",
       type: "email",
       placeholder: "Email@gmail.com",
+      message: "Required",
     },
     UserName: {
       name: "username",
       label: "Username",
       type: "text",
       placeholder: "Username",
+      message: "Required: Must include A-Z or a-z simbols",
     },
     password: {
       name: "password",
       label: "Password",
       type: "password",
       placeholder: "Password",
+      message: "Required: Must include minimal 8 with big and small simbols",
     },
     confirmPassword: {
       name: "confirm-password",
       label: "Confirm Password",
       type: "password",
       placeholder: "Repeat your password",
+      message: "Required: Must be match with fild password",
     },
   };
 
@@ -55,6 +59,10 @@ const SignUpForm = () => {
             const passwordRegExp =
               /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
             const errors = {};
+
+            if (!values.email) {
+              errors.email = "Required";
+            }
 
             if (!usernameRegExp.test(values.username)) {
               errors.username = "Required";
@@ -81,13 +89,18 @@ const SignUpForm = () => {
                       label={fieldState.label}
                       type={fieldState.type}
                       key={fieldState.name}
+                      message={fieldState.message}
                       placeholder={fieldState.placeholder}
                       component={CustomInput}
                     />
                   );
                 })}
               </div>
-              <Button form="signUp" htmltype="submit" disabled={submitting}>
+              <Button
+                form="signUp"
+                htmltype="submit"
+                disabled={submitting}
+              >
                 Confirm
               </Button>
             </form>
