@@ -1,6 +1,8 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import { Link } from "react-router-dom";
 import CustomInput from "../Components/CustomInput/CustomInput.js";
+import { ContainerForm } from "../styled.components.js";
 
 const SignUpForm = () => {
   const fields = {
@@ -36,37 +38,45 @@ const SignUpForm = () => {
   };
 
   return (
-    <Form
-      id="signUp"
-      onSubmit={(values) => handleSubmit(values)}
-      render={({ handleSubmit, submitting }) => (
-        <form onSubmit={handleSubmit} id="signUp">
-          <h1>Registration</h1>
-          <div className="sign-form-inputs-container">
-            {Object.entries(fields).map(([, fieldState]) => {
-              return (
-                <Field
-                  name={fieldState.name}
-                  label={fieldState.label}
-                  type={fieldState.type}
-                  key={fieldState.name}
-                  placeholder={fieldState.placeholder}
-                  component={CustomInput}
-                />
-              );
-            })}
-          </div>
-          <button
-            form="signUp"
-            htmltype="submit"
-            className="sign-form-submit-button"
-            disabled={submitting}
-          >
-            Confirm
-          </button>
-        </form>
-      )}
-    />
+    <ContainerForm>
+      <Form
+        id="signUp"
+        onSubmit={(values) => handleSubmit(values)}
+        render={({ handleSubmit, submitting }) => (
+          <form onSubmit={handleSubmit} id="signUp">
+            <h1>Registration</h1>
+            <div className="sign-form-inputs-container">
+              {Object.entries(fields).map(([, fieldState]) => {
+                return (
+                  <Field
+                    name={fieldState.name}
+                    label={fieldState.label}
+                    type={fieldState.type}
+                    key={fieldState.name}
+                    placeholder={fieldState.placeholder}
+                    component={CustomInput}
+                  />
+                );
+              })}
+            </div>
+            <button
+              form="signUp"
+              htmltype="submit"
+              className="sign-form-submit-button"
+              disabled={submitting}
+            >
+              Confirm
+            </button>
+          </form>
+        )}
+      />
+      <p>
+        Already have an accountt?{" "}
+        <Link to={"/signin"}>
+          <span>Sign In</span>
+        </Link>
+      </p>
+    </ContainerForm>
   );
 };
 

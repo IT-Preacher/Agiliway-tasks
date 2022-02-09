@@ -13,6 +13,16 @@ const SignForm = () => {
     <ContainerForm>
       {location.pathname === "/signup" ? <SignUpForm /> : <SignInForm />}
       <span onClick={() => setFormStatus(!formStatus)}>
+      </span>
+    </ContainerForm>
+  );
+};
+
+export default SignForm;
+
+{/* <ContainerForm>
+      {location.pathname === "/signup" ? <SignUpForm /> : <SignInForm />}
+      <span onClick={() => setFormStatus(!formStatus)}>
         {location.pathname === "/signup" ? (
           <p>
             Already have an accountt?{" "}
@@ -29,8 +39,4 @@ const SignForm = () => {
           </p>
         )}
       </span>
-    </ContainerForm>
-  );
-};
-
-export default SignForm;
+    </ContainerForm> */}

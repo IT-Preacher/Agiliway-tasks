@@ -1,6 +1,8 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import { Link } from "react-router-dom";
 import CustomInput from "../Components/CustomInput/CustomInput";
+import { ContainerForm } from "../styled.components";
 
 const SignInForm = () => {
   const fields = {
@@ -24,7 +26,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div>
+    <ContainerForm>
       <Form
         id="signIn"
         onSubmit={(values) => handleSubmit(values)}
@@ -55,7 +57,13 @@ const SignInForm = () => {
           </form>
         )}
       />
-    </div>
+      <p>
+        No account?{" "}
+        <Link to={"/signup"}>
+          <span>Registration</span>
+        </Link>
+      </p>
+    </ContainerForm>
   );
 };
 
