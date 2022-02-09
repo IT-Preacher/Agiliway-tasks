@@ -15,7 +15,7 @@ const SignForm = () => {
       <span onClick={() => setFormStatus(!formStatus)}>
         {location.pathname === "/signup" ? (
           <p>
-            Already have an account?{" "}
+            Already have an accountt?{" "}
             <Link to={"/signin"}>
               <span>Sign In</span>
             </Link>
