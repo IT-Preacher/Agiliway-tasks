@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import propTypes from "prop-types";
 import {
-  FlexContainer,
   RequestSettingsContainer,
   StyledHeaderConteiner,
 } from "../../styled.components";
@@ -56,14 +56,14 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
                 {isOptions && (
                   <RequestSettingsContainer visibility={isOptions}>
                       <div>
-                        <labe>
+                        <label>
                           Date from{" "}
                           <Field
                             name="dateFrom"
                             type="date"
                             component={"input"}
                           />
-                        </labe>
+                        </label>
                       </div>
                       <div>
                         <label>
@@ -106,4 +106,10 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
     </StyledHeaderConteiner>
   );
 };
+
+SearchNewsComponent.propTypes = {
+  onSearch: propTypes.func,
+  loading: propTypes.bool,
+};
+
 export default SearchNewsComponent;

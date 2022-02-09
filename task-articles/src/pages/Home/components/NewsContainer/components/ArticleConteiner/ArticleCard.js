@@ -1,4 +1,4 @@
-import React, { useMemo }from "react";
+import React from "react";
 import propTypes from "prop-types";
 import moment from "moment";
 import { ArticleContainer } from "./styled.components.js";

@@ -48,13 +48,13 @@ export const getNewsListRequest = () =>
 //Search news with params
 export const getSearchNewsListRequest = (queryParams) => {
   //console.log("Search request ", queryParams);
-  const params = {...queryParams, "apiKey": apiKey}
-  console.log("Params search", params)
+  const params = { ...queryParams, apiKey: apiKey };
+  console.log("Params search", params);
 
   return newsAPI
     .get(`/v2/everything`, { params })
     .then((response) => response.data);
-}
+};
 
 //Request to get popular news
 export const getPopularNewsListRequest = () =>

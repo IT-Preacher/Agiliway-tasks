@@ -8,7 +8,9 @@ import Articles from "./pages/Articles";
 import Home from "./pages/Home";
 import Statistic from "./pages/Statistic";
 import ArticleDetail from "./pages/Articles/ArticleDetail.js";
-import SignForm from "./components/SignForm/SignForm";
+import SignUpForm from "./components/SignForms/SignUpForm/SignUpForm";
+import SignInForm from "./components/SignForms/SignInForm/SignInForm";
+import Page404 from "./pages/Page404";
 
 function App() {
   return (
@@ -22,8 +24,9 @@ function App() {
             <Route path="/articles" component={Articles} exact></Route>
             <Route path="/articles/:id" component={ArticleDetail} exact></Route>
             <Route path="/statistic" component={Statistic} exact></Route>
-            <Route path="/signin" component={SignForm} exact></Route>
-            <Route path="/signup" component={SignForm} exact></Route>
+            <Route path="/signin" component={SignInForm} exact></Route>
+            <Route path="/signup" component={SignUpForm} exact></Route>
+            <Route path="*" component={Page404} exact></Route>
           </Switch>
         </main>
 
