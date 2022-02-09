@@ -43,7 +43,6 @@ const SignUpForm = () => {
   };
 
   const handleSubmit = (values) => {
-    console.log("SignUp");
     console.log("Sign up props from fields ", values);
   };
 
