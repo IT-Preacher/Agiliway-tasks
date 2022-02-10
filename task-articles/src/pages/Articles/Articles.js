@@ -55,7 +55,7 @@ import { articlesFetchStartSaga } from "../Domains/actions/getArticlesAction";
 
 class Articles extends Component {
   componentDidMount() {
-    //this.props.getData();
+    //this.props.getData(); //Thunk
     this.props.getDataSagaStartAction();
   }
 
