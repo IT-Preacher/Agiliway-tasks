@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
 
 //Components
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Spin } from "antd";
 
 //Thunks
@@ -21,45 +21,43 @@ import {
 
 import "./ArticleDetail.scss";
 
-class ArticleDetail extends Component {
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    //this.props.getDataItem(id);
-    this.props.getDataItemAction(id);
-  }
+const ArticleDetail = (props) => {
+  const { articleItem, loading } = props;
 
-  render() {
-    const { articleItem, loading } = this.props;
+  useEffect(() => {
+    const { id } = useParams();
+    //this.props.getDataItem(id); //Thunk
+    props.getDataItemAction(id);
+  }, []);
 
-    return (
-      <div className="article-detail-page">
-        {loading && <Spin />}
-        {!loading && (
-          <div className="article-container">
-            <div className="detail-container">
-              <div className="article-card-header">
-                <h2 className="white">{articleItem.name}</h2>
-              </div>
-              <div className="article-card-main">
-                <p>{articleItem.description}</p>
-                <div className="article-card-footer">
-                  <span>{articleItem.author}</span>
-                </div>
-              </div>
+  return (
+    <div className="article-detail-page">
+      {loading && <Spin />}
+      {!loading && (
+        <div className="article-container">
+          <div className="detail-container">
+            <div className="article-card-header">
+              <h2 className="white">{articleItem.name}</h2>
+            </div>
+            <div className="article-card-main">
+              <p>{articleItem.description}</p>
               <div className="article-card-footer">
-                <span>Publication date: {articleItem.createDate}</span>
-                <button className="button-back">
-                  <Link to="/articles">Back</Link>
-                </button>
+                <span>{articleItem.author}</span>
               </div>
             </div>
-            {/* <img src={cardImg} /> */}
+            <div className="article-card-footer">
+              <span>Publication date: {articleItem.createDate}</span>
+              <button className="button-back">
+                <Link to="/articles">Back</Link>
+              </button>
+            </div>
           </div>
-        )}
-      </div>
-    );
-  }
-}
+          {/* <img src={cardImg} /> */}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   articleItem: selectArticleItem(state),

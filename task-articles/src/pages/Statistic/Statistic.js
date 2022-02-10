@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Table } from "antd";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
@@ -52,30 +52,27 @@ const columns = [
   },
 ];
 
-class Statistic extends Component {
-  componentDidMount() {
-    this.props.getData();
-  }
+const Statistic = ({ articlesList, loading, getData }) => {
+  useEffect(() => {
+    getData();
+  }, []);
 
-  onChange = (pagination, filters, sorter, extra) => {
+  const onChange = (pagination, filters, sorter, extra) => {
     console.log("params", pagination, filters, sorter, "extra ", extra);
   };
 
-  render() {
-    const { articlesList, loading } = this.props;
-    return (
-      <div className="statistic-page">
-        <Table
-          rowKey={(articlesList) => articlesList.uuid}
-          columns={columns}
-          dataSource={articlesList}
-          onChange={this.onChange}
-          loading={loading}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="statistic-page">
+      <Table
+        rowKey={(articlesList) => articlesList.uuid}
+        columns={columns}
+        dataSource={articlesList}
+        onChange={onChange}
+        loading={loading}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   articlesList: state.articles.articlesList,

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
 
 //Components
-import { Spin } from "antd";
+import { Button, Empty, Spin } from "antd";
 import ArticleItem from "./ArticleItem.js";
 import ArticleAddModal from "../Domains/ArticleAddModal";
 import ArticleEditModal from "../Domains/ArticleEditModal";
@@ -39,7 +39,11 @@ import {
 } from "../Domains/actions/modalAction";
 
 //Constants
-import { ADD_MODAL_OPEN, EDIT_MODAL_OPEN, DELETE_MODAL_OPEN } from "./constants";
+import {
+  ADD_MODAL_OPEN,
+  EDIT_MODAL_OPEN,
+  DELETE_MODAL_OPEN,
+} from "./constants";
 
 //Thunks
 import {
@@ -53,50 +57,50 @@ import { addArticleThunk } from "../Domains/thunks/addArticleThunk";
 //Saga
 import { articlesFetchStartSaga } from "../Domains/actions/getArticlesAction";
 
-class Articles extends Component {
-  componentDidMount() {
-    //this.props.getData();
-    this.props.getDataSagaStartAction();
-  }
+const Articles = (props) => {
+  const {
+    articlesList,
+    loading,
+    deleteModalOpen,
+    editModalOpen,
+    addModalOpen,
+    modalClose,
+    modalData,
+    modalLoading,
+    modalType,
+    deleteArticle,
+    getArticleData,
+    editArticleData,
+    addArticle,
+    deleteModalStartSagaAction,
+    editModalStartSagaAction,
+    addModalStartSagaAction,
+    getDataSagaStartAction,
+  } = props;
 
-  render() {
-    const {
-      articlesList,
-      loading,
-      deleteModalOpen,
-      editModalOpen,
-      addModalOpen,
-      modalClose,
-      modalData,
-      modalLoading,
-      modalType,
-      deleteArticle,
-      getArticleData,
-      editArticleData,
-      addArticle,
-      deleteModalStartSagaAction,
-      editModalStartSagaAction,
-      addModalStartSagaAction,
-    } = this.props;
+  useEffect(() => {
+    getDataSagaStartAction();
+  }, []);
 
-    return (
-      <ArticlePageContainer>
-        <ButtonCreateContainer>
-          <button
-            onClick={() => {
-              console.log("modal open");
-              addModalOpen();
-            }}
-            type="primary"
-          >
-            Create Article
-          </button>
-        </ButtonCreateContainer>
-        <ArticleContentContainer>
-          {loading ? (
-            <Spin style={{ fontSize: 36 }} />
-          ) : (
-            articlesList.map((article) => (
+  return (
+    <ArticlePageContainer>
+      <ButtonCreateContainer>
+        <button
+          onClick={() => {
+            console.log("modal open");
+            addModalOpen();
+          }}
+          type="primary"
+        >
+          Create Article
+        </button>
+      </ButtonCreateContainer>
+      <ArticleContentContainer>
+        {loading ? (
+          <Spin style={{ fontSize: 36 }} />
+        ) : (
+          <React.Fragment>
+            {articlesList.map((article) => (
               <ArticleItem
                 key={article.uuid}
                 article={article}
@@ -105,42 +109,53 @@ class Articles extends Component {
                 handleCloseModal={modalClose}
                 getArticleData={getArticleData}
               />
-            ))
-          )}
-        </ArticleContentContainer>
-        {modalType === ADD_MODAL_OPEN && (
-          <ArticleAddModal
-            loading={modalLoading}
-            visible={true}
-            handleCloseModal={modalClose}
-            addArticle={addArticle}
-            addModalStartSagaAction={addModalStartSagaAction}
-          />
+            ))}
+            {!articlesList.length && (
+              <div>
+                <Empty
+                  image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                  imageStyle={{
+                    height: 60,
+                  }}
+                  description={<span>No Data</span>}
+                />
+              </div>
+            )}
+          </React.Fragment>
         )}
-        {modalType === EDIT_MODAL_OPEN && (
-          <ArticleEditModal
-            loading={modalLoading}
-            visible={true}
-            values={modalData}
-            handleCloseModal={modalClose}
-            editArticleData={editArticleData}
-            editModalStartSagaAction={editModalStartSagaAction}
-          />
-        )}
-        {modalType === DELETE_MODAL_OPEN && (
-          <ArticleDeleteModal
-            loading={modalLoading}
-            values={modalData}
-            visible={true}
-            deleteArticle={deleteArticle}
-            handleCloseModal={modalClose}
-            deleteModalStartSagaAction={deleteModalStartSagaAction}
-          />
-        )}
-      </ArticlePageContainer>
-    );
-  }
-}
+      </ArticleContentContainer>
+      {modalType === ADD_MODAL_OPEN && (
+        <ArticleAddModal
+          loading={modalLoading}
+          visible={true}
+          handleCloseModal={modalClose}
+          addArticle={addArticle}
+          addModalStartSagaAction={addModalStartSagaAction}
+        />
+      )}
+      {modalType === EDIT_MODAL_OPEN && (
+        <ArticleEditModal
+          loading={modalLoading}
+          visible={true}
+          values={modalData}
+          handleCloseModal={modalClose}
+          editArticleData={editArticleData}
+          editModalStartSagaAction={editModalStartSagaAction}
+        />
+      )}
+      {modalType === DELETE_MODAL_OPEN && (
+        <ArticleDeleteModal
+          loading={modalLoading}
+          values={modalData}
+          visible={true}
+          deleteArticle={deleteArticle}
+          handleCloseModal={modalClose}
+          deleteModalStartSagaAction={deleteModalStartSagaAction}
+        />
+      )}
+    </ArticlePageContainer>
+  );
+};
 
 const mapStateToProps = (state) => ({
   articlesList: selectArticleData(state),
