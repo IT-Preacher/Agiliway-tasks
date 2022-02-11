@@ -31,8 +31,8 @@ export const RequestSettingsContainer = styled.div`
   align-items: flex-end;
   justify-content: space-around;
   padding: 20px 0px;
-  opacity: ${props => props.visibility ? 1 : 0}
-  visibility: ${props => props.visibility ? "visible" : "hidden"}
+  opacity: ${(props) => (props.visibility ? 1 : 0)}
+  visibility: ${(props) => (props.visibility ? "visible" : "hidden")}
   transition: .55s opacity, .55s visibility;
 `;
 
@@ -51,6 +51,13 @@ export const CustomSelect = styled.select`
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 `;
 
-/*Custom select */
-// appearance: initial; /* Remove default arrow */
-//   background-image: url(${props => props.arrow}); /* Add custom arrow */
+export const LoadMore = styled.span`
+  display: block;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

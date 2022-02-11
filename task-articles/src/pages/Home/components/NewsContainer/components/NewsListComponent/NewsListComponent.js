@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 import ArticleCard from "../ArticleConteiner/ArticleCard";
 
 const NewsListComponent = ({ newsList, minValue, maxValue }) => {
@@ -9,6 +10,12 @@ const NewsListComponent = ({ newsList, minValue, maxValue }) => {
       })}
     </React.Fragment>
   );
+};
+
+NewsListComponent.propTypes = {
+  newsList: propTypes.array,
+  minValue: propTypes.number,
+  maxValue: propTypes.number,
 };
 
 export default NewsListComponent;

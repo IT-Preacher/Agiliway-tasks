@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 //Components
-import { Spin, Pagination, Empty } from "antd";
+import { Spin, Pagination, Empty, message } from "antd";
 import SettingsComponent from "./components/SettingsComponent/SettingsComponent";
 import SearchNewsComponent from "./components/SearchNewsComponent/SearchNewsComponent";
 import NewsListComponent from "./components/NewsListComponent";
-import { StyledNewsConteiner } from "./styled.components";
+import { StyledNewsConteiner, LoadMore } from "./styled.components";
 
 //Thunks
 import {
@@ -21,7 +21,7 @@ import {
   DEFAULT_MAX_VALUE,
   DEFAULT_MIN_VALUE,
   CURRENT_PAGE,
-} from "./components/ArticleConteiner/constants";
+} from "./constants";
 
 //Reselect
 import { createSelector } from "reselect";
@@ -65,7 +65,7 @@ const NewsContainer = () => {
     }
   };
 
-  const onSearch = (value) => {
+  const onSearchNews = (value) => {
     dispatch(getSearchNewsListThunk(value));
   };
 
@@ -82,12 +82,13 @@ const NewsContainer = () => {
 
   const handleLoadMore = () => {
     setMaxValue(maxValue + DEFAULT_MAX_VALUE);
-  }
+    setCurrentPage(currentPage + CURRENT_PAGE);
+  };
 
   return (
     <StyledNewsConteiner>
       <h1>News Container</h1>
-      <SearchNewsComponent onSearch={onSearch} loading={loading} />
+      <SearchNewsComponent onSearch={onSearchNews} loading={loading} />
       <div className="news">
         {loading ? (
           <Spin style={{ fontSize: 36 }} />
@@ -95,9 +96,6 @@ const NewsContainer = () => {
           <React.Fragment>
             <SettingsComponent handleChange={handleChangeSorting} />
             <div className="news-articles">
-              {/* {newsList.slice(minValue, maxValue).map((article) => {
-                return <ArticleCard article={article} key={article.url} />;
-              })} */}
               <NewsListComponent
                 newsList={newsList}
                 minValue={minValue}
@@ -105,19 +103,24 @@ const NewsContainer = () => {
               />
             </div>
 
-            {!newsList.length && <Empty />}
-              <span onClick={handleLoadMore}>Load more</span>
-            <Pagination
-              defaultCurrent={CURRENT_PAGE}
-              total={newsList.length}
-              current={currentPage}
-              defaultPageSize={DEFAULT_MAX_VALUE}
-              onChange={onChangePagination}
-              disabled={loading}
-            />
+            {Boolean(!newsList.length) && <Empty />}
+
+            {Boolean(newsList.length) && (
+              <React.Fragment>
+                <LoadMore onClick={handleLoadMore}>Load more</LoadMore>
+                <Pagination
+                  defaultCurrent={CURRENT_PAGE}
+                  total={newsList.length}
+                  current={currentPage}
+                  defaultPageSize={DEFAULT_MAX_VALUE}
+                  onChange={onChangePagination}
+                />
+              </React.Fragment>
+            )}
           </React.Fragment>
         )}
       </div>
+      {Boolean(error) && message.error(error)}
     </StyledNewsConteiner>
   );
 };

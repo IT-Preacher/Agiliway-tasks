@@ -38,7 +38,6 @@ export const deleteArticleRequestSaga = (id) => {
 };
 
 /* News API request */
-
 //Request to get news
 export const getNewsListRequest = () =>
   newsAPI
@@ -47,9 +46,7 @@ export const getNewsListRequest = () =>
 
 //Search news with params
 export const getSearchNewsListRequest = (queryParams) => {
-  //console.log("Search request ", queryParams);
   const params = { ...queryParams, apiKey: apiKey };
-  console.log("Params search", params);
 
   return newsAPI
     .get(`/v2/everything`, { params })
