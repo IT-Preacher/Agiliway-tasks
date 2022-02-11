@@ -23,9 +23,9 @@ import "./ArticleDetail.scss";
 
 const ArticleDetail = (props) => {
   const { articleItem, loading } = props;
+  const { id } = useParams();
 
   useEffect(() => {
-    const { id } = useParams();
     //this.props.getDataItem(id); //Thunk
     props.getDataItemAction(id);
   }, []);

@@ -6,7 +6,7 @@ import moment from "moment";
 import { ArticleCard } from "./styled.components";
 import DropdownMenu from "./components/DropdownMenu";
 
-const ArticleItem = ({ article }) => {
+const ArticleItem = ({ article, props }) => {
   const { uuid, name, author, description, createDate } = article;
 
   return (
