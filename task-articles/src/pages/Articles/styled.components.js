@@ -55,7 +55,11 @@ export const ArticleCardImg = styled.img`
   float: left;
 `;
 
-export const ArticleCardMain = styled.main``;
+export const ArticleCardMain = styled.main`
+  span {
+    margin-left: auto;
+  }
+`;
 
 export const DescriptionParagraph = styled.p`
   text-align: justify;
@@ -64,10 +68,6 @@ export const DescriptionParagraph = styled.p`
     font-size: 3rem;
     float: left;
     margin-right: 10px;
-  }
-
-  span {
-    margin-left: auto;
   }
 `;
 

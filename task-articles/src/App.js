@@ -1,7 +1,13 @@
-import "./App.scss";
-
 import { Switch, Route } from "react-router-dom";
 
+//Styled components
+import {
+  AppContainer,
+  Wrapper,
+  MainSemanticContainer,
+} from "./styled.components";
+
+//Components
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Articles from "./pages/Articles";
@@ -14,11 +20,11 @@ import Page404 from "./pages/Page404";
 
 function App() {
   return (
-    <div className="App">
-      <div className="container">
+    <AppContainer>
+      <Wrapper>
         <Navigation />
 
-        <main className="main-semantic">
+        <MainSemanticContainer>
           <Switch>
             <Route path="/" component={Home} exact></Route>
             <Route path="/articles" component={Articles} exact></Route>
@@ -28,11 +34,11 @@ function App() {
             <Route path="/signup" component={SignUpForm} exact></Route>
             <Route path="*" component={Page404} exact></Route>
           </Switch>
-        </main>
+        </MainSemanticContainer>
 
         <Footer />
-      </div>
-    </div>
+      </Wrapper>
+    </AppContainer>
   );
 }
 
