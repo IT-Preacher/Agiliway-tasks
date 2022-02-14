@@ -8,8 +8,8 @@ import Articles from "./pages/Articles";
 import Home from "./pages/Home";
 import Statistic from "./pages/Statistic";
 import ArticleDetail from "./pages/Articles/ArticleDetail.js";
-import SignUpForm from "./components/SignForms/SignUpForm/SignUpForm";
-import SignInForm from "./components/SignForms/SignInForm/SignInForm";
+import SignUpForm from "./components/SignForms/SignUpForm";
+import SignInForm from "./components/SignForms/SignInForm";
 import Page404 from "./pages/Page404";
 
 function App() {

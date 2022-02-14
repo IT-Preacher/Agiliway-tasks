@@ -56,7 +56,9 @@ export const CustomButton = styled.button`
   font-size: 16px;
 `;
 
-export const BannerContainer = styled.div``;
+export const BannerContainer = styled.div`
+  width: 360px;
+`;
 
 export const Img = styled.img`
   height: 540px;
@@ -64,4 +66,8 @@ export const Img = styled.img`
 
 export const CustomParagraph = styled.p`
   margin: 0;
+`;
+
+export const CustomInputContainer = styled.div`
+  margin-top: 10px;
 `;

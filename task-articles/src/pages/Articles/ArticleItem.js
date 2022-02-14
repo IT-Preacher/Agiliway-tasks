@@ -41,6 +41,7 @@ ArticleItem.propTypes = {
     description: propTypes.string,
     createDate: propTypes.string,
   }),
+  props: propTypes.object,
 };
 
 export default ArticleItem;
