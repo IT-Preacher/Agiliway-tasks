@@ -32,3 +32,46 @@ export const ArticleCard = styled.div`
     justify-content: flex-end;
   }
 `;
+
+//ArticleDetail styled
+export const ArticleDetailContainer = styled.div`
+  min-height: 500px;
+`;
+
+export const ArticleBigCard = styled.div`
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+  padding: 70px 58px 40px;
+  background-color: #fff;
+`;
+
+export const ArticleCardImg = styled.img`
+  width: 50%;
+  height: 350px;
+  margin-right: 30px;
+  float: left;
+`;
+
+export const ArticleCardMain = styled.main``;
+
+export const DescriptionParagraph = styled.p`
+  text-align: justify;
+
+  &::first-letter {
+    font-size: 3rem;
+    float: left;
+    margin-right: 10px;
+  }
+
+  span {
+    margin-left: auto;
+  }
+`;
+
+export const ArticleCardFooter = styled.footer`
+  display: flex;
+  justify-content: space-between;
+`;

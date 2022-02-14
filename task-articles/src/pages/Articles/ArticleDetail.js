@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import moment from "moment";
 
 //Components
-import { Link, useParams } from "react-router-dom";
 import { Spin } from "antd";
+import {
+  ArticleBigCard,
+  ArticleCardImg,
+  ArticleCardMain,
+  DescriptionParagraph,
+  ArticleCardFooter,
+  ArticleDetailContainer,
+} from "./styled.components";
 
 //Thunks
 import getArticleThunk from "../Domains/thunks/getArticleThunk";
@@ -19,43 +28,41 @@ import {
   selectArticleError,
 } from "../Domains/reducers/getArticle-selectors";
 
-import "./ArticleDetail.scss";
-
-const ArticleDetail = (props) => {
-  const { articleItem, loading } = props;
+const ArticleDetail = ({ articleItem, loading, getDataItemAction }) => {
+  const { name, description, author, createDate } = articleItem;
   const { id } = useParams();
 
   useEffect(() => {
     //this.props.getDataItem(id); //Thunk
-    props.getDataItemAction(id);
+    getDataItemAction(id);
   }, []);
 
   return (
-    <div className="article-detail-page">
+    <ArticleDetailContainer>
       {loading && <Spin />}
       {!loading && (
-        <div className="article-container">
-          <div className="detail-container">
-            <div className="article-card-header">
-              <h2 className="white">{articleItem.name}</h2>
-            </div>
-            <div className="article-card-main">
-              <p>{articleItem.description}</p>
-              <div className="article-card-footer">
-                <span>{articleItem.author}</span>
-              </div>
-            </div>
-            <div className="article-card-footer">
-              <span>Publication date: {articleItem.createDate}</span>
-              <button className="button-back">
-                <Link to="/articles">Back</Link>
-              </button>
-            </div>
-          </div>
-          {/* <img src={cardImg} /> */}
-        </div>
+        <ArticleBigCard>
+          <ArticleCardMain>
+            <ArticleCardImg
+              src="https://drive.google.com/uc?export=view&id=19pRzEYH6Fu-yGD8zntykKs80OkZeAxDF"
+              alt="Photo for article"
+            />
+            <h2>{name}</h2>
+            <DescriptionParagraph>{description}</DescriptionParagraph>
+            <span>Author: {author}</span>
+          </ArticleCardMain>
+          <ArticleCardFooter>
+            <span>
+              Publication date:{" "}
+              {moment(createDate).format("MMMM Do YYYY, h:mm a")}
+            </span>
+            <button className="button-back">
+              <Link to="/articles">Back</Link>
+            </button>
+          </ArticleCardFooter>
+        </ArticleBigCard>
       )}
-    </div>
+    </ArticleDetailContainer>
   );
 };
 
@@ -85,3 +92,6 @@ ArticleDetail.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
+
+// img - https://drive.google.com/file/d/19pRzEYH6Fu-yGD8zntykKs80OkZeAxDF/view?usp=sharing
+// https://drive.google.com/uc?export=view&id=19pRzEYH6Fu-yGD8zntykKs80OkZeAxDF
