@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
+import propTypes from "prop-types";
+import moment from "moment";
 import { Table } from "antd";
 import { connect } from "react-redux";
-import propTypes from "prop-types";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
-import moment from "moment";
 
 const columns = [
   {
@@ -11,47 +11,38 @@ const columns = [
     dataIndex: "author",
     filters: [
       {
-        text: "Joe",
-        value: "Joe",
+        text: "Admin",
+        value: "admin",
       },
       {
-        text: "Jim",
-        value: "Jim",
-      },
-      {
-        text: "Submenu",
-        value: "Submenu",
-        children: [
-          {
-            text: "Green",
-            value: "Green",
-          },
-          {
-            text: "Black",
-            value: "Black",
-          },
-        ],
+        text: "User",
+        value: "user",
       },
     ],
-    // specify the condition of filtering result
-    // here is that finding the name started with `value`
-    //onFilter: (value, record) => record.name.indexOf(value) === 0,
-    //sorter: (a, b) => a.name.length - b.name.length,
-    //sortDirections: ["descend"],
+    sorter: (a, b) => a.author.length - b.author.length,
+    // sortDirections: ["descend"],
   },
   {
     title: "Title",
     dataIndex: "name",
     defaultSortOrder: "descend",
-    sorter: (a, b) => a.name - b.name,
+    sorter: (a, b) => a.name.length - b.name.length,
   },
   {
     title: "Publish date",
     dataIndex: "createDate",
-    render: function(text) { return moment(text).format("MMMM Do YYYY, h:mm a")},
-    defaultSortOrder: 'descend',
-    sorter: (a, b) => a.createDate.length < b.createDate.length,
-    //onFilter: (value, record) => record.address.indexOf(value) === 0,
+    render: function (text) {
+      return moment(text).format("MMMM Do YYYY, h:mm a");
+    },
+    defaultSortOrder: "descend",
+    sorter: (a, b) => {
+      if (a.createDate > b.createDate) {
+        return -1;
+      } else if (a.createDate < b.createDate) {
+        return 1;
+      }
+      return 0;
+    },
   },
 ];
 
