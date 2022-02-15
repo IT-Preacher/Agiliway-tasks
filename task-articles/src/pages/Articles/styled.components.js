@@ -51,7 +51,7 @@ export const ArticleBigCard = styled.div`
 export const ArticleCardImg = styled.img`
   width: 50%;
   height: 350px;
-  margin-right: 30px;
+  margin: 0 30px 20px 0;
   float: left;
 `;
 

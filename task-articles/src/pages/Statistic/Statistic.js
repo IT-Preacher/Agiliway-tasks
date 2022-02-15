@@ -3,6 +3,7 @@ import { Table } from "antd";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
+import moment from "moment";
 
 const columns = [
   {
@@ -42,12 +43,14 @@ const columns = [
     title: "Title",
     dataIndex: "name",
     defaultSortOrder: "descend",
-    //sorter: (a, b) => a.age - b.age,
+    sorter: (a, b) => a.name - b.name,
   },
   {
     title: "Publish date",
     dataIndex: "createDate",
-    // render: function(text) { return moment(text).formDate("MMMM Do YYYY")}
+    render: function(text) { return moment(text).format("MMMM Do YYYY, h:mm a")},
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.createDate.length < b.createDate.length,
     //onFilter: (value, record) => record.address.indexOf(value) === 0,
   },
 ];
