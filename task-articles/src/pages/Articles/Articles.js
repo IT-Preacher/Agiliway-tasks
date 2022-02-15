@@ -82,6 +82,8 @@ const Articles = (props) => {
     getDataSagaStartAction();
   }, []);
 
+  console.log("not a function in Articles", typeof editModalStartSagaAction );
+
   return (
     <ArticlePageContainer>
       <ButtonCreateContainer>

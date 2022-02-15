@@ -1,8 +1,18 @@
 import React, { useEffect } from "react";
+import propTypes from "prop-types";
+import moment from "moment";
 import { Table } from "antd";
 import { connect } from "react-redux";
-import propTypes from "prop-types";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
+
+const sortFunction = (a, b) => {
+  if (a > b) {
+    return -1;
+  } else if (a < b) {
+    return 1;
+  }
+  return 0;
+};
 
 const columns = [
   {
@@ -10,45 +20,28 @@ const columns = [
     dataIndex: "author",
     filters: [
       {
-        text: "Joe",
-        value: "Joe",
+        text: "Admin",
+        value: "admin",
       },
       {
-        text: "Jim",
-        value: "Jim",
-      },
-      {
-        text: "Submenu",
-        value: "Submenu",
-        children: [
-          {
-            text: "Green",
-            value: "Green",
-          },
-          {
-            text: "Black",
-            value: "Black",
-          },
-        ],
+        text: "User",
+        value: "user",
       },
     ],
-    // specify the condition of filtering result
-    // here is that finding the name started with `value`
-    //onFilter: (value, record) => record.name.indexOf(value) === 0,
-    //sorter: (a, b) => a.name.length - b.name.length,
-    //sortDirections: ["descend"],
+    sorter: (a, b) => sortFunction(a.author, b.author),
   },
   {
     title: "Title",
     dataIndex: "name",
-    defaultSortOrder: "descend",
-    //sorter: (a, b) => a.age - b.age,
+    sorter: (a, b) => sortFunction(a.name, b.name),
   },
   {
     title: "Publish date",
     dataIndex: "createDate",
-    // render: function(text) { return moment(text).formDate("MMMM Do YYYY")}
-    //onFilter: (value, record) => record.address.indexOf(value) === 0,
+    render: function (text) {
+      return moment(text).format("MMMM Do YYYY, h:mm a");
+    },
+    sorter: (a, b) => sortFunction(a.createDate, b.createDate),
   },
 ];
 
@@ -90,3 +83,12 @@ Statistic.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Statistic);
+
+// {
+//   if (a.name > b.name) {
+//     return -1;
+//   } else if (a.name < b.name) {
+//     return 1;
+//   }
+//   return 0;
+// }
