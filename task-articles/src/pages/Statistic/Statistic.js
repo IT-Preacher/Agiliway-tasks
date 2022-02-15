@@ -5,6 +5,15 @@ import { Table } from "antd";
 import { connect } from "react-redux";
 import getArticlesThunk from "../../pages/Domains/thunks/getArticlesThunk";
 
+const sortFunction = (a, b) => {
+  if (a > b) {
+    return -1;
+  } else if (a < b) {
+    return 1;
+  }
+  return 0;
+};
+
 const columns = [
   {
     title: "Author name",
@@ -19,14 +28,12 @@ const columns = [
         value: "user",
       },
     ],
-    sorter: (a, b) => a.author.length - b.author.length,
-    // sortDirections: ["descend"],
+    sorter: (a, b) => sortFunction(a.author, b.author),
   },
   {
     title: "Title",
     dataIndex: "name",
-    defaultSortOrder: "descend",
-    sorter: (a, b) => a.name.length - b.name.length,
+    sorter: (a, b) => sortFunction(a.name, b.name),
   },
   {
     title: "Publish date",
@@ -34,15 +41,7 @@ const columns = [
     render: function (text) {
       return moment(text).format("MMMM Do YYYY, h:mm a");
     },
-    defaultSortOrder: "descend",
-    sorter: (a, b) => {
-      if (a.createDate > b.createDate) {
-        return -1;
-      } else if (a.createDate < b.createDate) {
-        return 1;
-      }
-      return 0;
-    },
+    sorter: (a, b) => sortFunction(a.createDate, b.createDate),
   },
 ];
 
@@ -84,3 +83,12 @@ Statistic.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Statistic);
+
+// {
+//   if (a.name > b.name) {
+//     return -1;
+//   } else if (a.name < b.name) {
+//     return 1;
+//   }
+//   return 0;
+// }
