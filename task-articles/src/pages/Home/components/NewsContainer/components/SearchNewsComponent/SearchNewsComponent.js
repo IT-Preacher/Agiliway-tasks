@@ -32,8 +32,14 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
         <Form
           id="search"
           onSubmit={(values) => onSearch(values)}
-          render={({ handleSubmit }) => (
-            <form onSubmit={handleSubmit} id="search">
+          render={({ handleSubmit, form }) => (
+            <form
+              onSubmit={async (event) => {
+                await handleSubmit(event);
+                form.reset();
+              }}
+              id="search"
+            >
               <div className="search-container" style={{ display: "flex" }}>
                 <Field name="q" component={CustomInput} />
                 <Button
@@ -55,47 +61,39 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
                 </div>
                 {isOptions && (
                   <RequestSettingsContainer visibility={isOptions}>
-                      <div>
-                        <label>
-                          Date from{" "}
-                          <Field
-                            name="from"
-                            type="date"
-                            component={"input"}
-                          />
-                        </label>
-                      </div>
-                      <div>
-                        <label>
-                          Date to{" "}
-                          <Field
-                            name="to"
-                            type="date"
-                            component={"input"}
-                          />
-                        </label>
-                      </div>
-                      <div>
-                        <label>
-                          {" "}
-                          Sorting:{" "}
-                          <Field
-                            name="sorting"
-                            configuration={configObject.sorting}
-                            component={CustomSelect}
-                          />
-                        </label>
-                      </div>
-                      <div>
-                        <label>
-                          Language:{" "}
-                          <Field
-                            name="language"
-                            configuration={configObject.language}
-                            component={CustomSelect}
-                          />
-                        </label>
-                      </div>
+                    <div>
+                      <label>
+                        Date from{" "}
+                        <Field name="from" type="date" component={"input"} />
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        Date to{" "}
+                        <Field name="to" type="date" component={"input"} />
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        {" "}
+                        Sorting:{" "}
+                        <Field
+                          name="sorting"
+                          configuration={configObject.sorting}
+                          component={CustomSelect}
+                        />
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        Language:{" "}
+                        <Field
+                          name="language"
+                          configuration={configObject.language}
+                          component={CustomSelect}
+                        />
+                      </label>
+                    </div>
                   </RequestSettingsContainer>
                 )}
               </div>
