@@ -59,7 +59,7 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
                         <label>
                           Date from{" "}
                           <Field
-                            name="dateFrom"
+                            name="from"
                             type="date"
                             component={"input"}
                           />
@@ -69,7 +69,7 @@ const SearchNewsComponent = ({ onSearch, loading }) => {
                         <label>
                           Date to{" "}
                           <Field
-                            name="dateTo"
+                            name="to"
                             type="date"
                             component={"input"}
                           />
