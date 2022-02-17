@@ -1,5 +1,5 @@
 import client from "./client.js";
-import newsAPI, { apiKey } from "./newsAPI.js";
+import newsAPI from "./newsAPI.js";
 
 /* Request to local server */
 
@@ -41,12 +41,12 @@ export const deleteArticleRequestSaga = (id) => {
 //Request to get news
 export const getNewsListRequest = () =>
   newsAPI
-    .get(`/v2/everything?q=${null}&pageSize=40&apiKey=${apiKey}`)
+    .get(`/v2/everything?q=${null}&pageSize=40&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
     .then((response) => response.data);
 
 //Search news with params
 export const getSearchNewsListRequest = (queryParams) => {
-  const params = { ...queryParams, apiKey: apiKey };
+  const params = { ...queryParams, apiKey: process.env.REACT_APP_NEWS_API_KEY };
 
   return newsAPI
     .get(`/v2/everything`, { params })
@@ -56,5 +56,5 @@ export const getSearchNewsListRequest = (queryParams) => {
 //Request to get popular news
 export const getPopularNewsListRequest = () =>
   newsAPI
-    .get(`/v2/top-headlines?country=ua&category=general&apiKey=${apiKey}`)
+    .get(`/v2/top-headlines?country=ua&category=general&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
     .then((response) => response.data);
