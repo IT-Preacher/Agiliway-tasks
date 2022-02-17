@@ -48,6 +48,8 @@ export const getNewsListRequest = () =>
 export const getSearchNewsListRequest = (queryParams) => {
   const params = { ...queryParams, apiKey: process.env.REACT_APP_NEWS_API_KEY };
 
+  console.log("Query ", params);
+
   return newsAPI
     .get(`/v2/everything`, { params })
     .then((response) => response.data);
