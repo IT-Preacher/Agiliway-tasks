@@ -67,6 +67,7 @@ const NewsContainer = () => {
 
   const onSearchNews = (value) => {
     dispatch(getSearchNewsListThunk(value));
+    // dispatch(getNewsListThunk(value));
   };
 
   const handleChangeSorting = (value) => {
