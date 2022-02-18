@@ -59,3 +59,6 @@ export const getPopularNewsListRequest = () =>
       `/v2/top-headlines?country=ua&category=general&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
     )
     .then((response) => response.data);
+
+
+//Geolocation request
