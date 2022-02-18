@@ -39,41 +39,18 @@ export const deleteArticleRequestSaga = (id) => {
 
 /* News API request */
 //Request to get news
-export const getNewsListRequest = () => {
-  return newsAPI
-    .get(
-      `/v2/everything?q=${null}&pageSize=40&apiKey=${
-        process.env.REACT_APP_NEWS_API_KEY
-      }`
-    )
-    .then((response) => response.data);
-};
-
-//Search news with params
-export const getSearchNewsListRequest = (queryParams) => {
+export const getNewsListRequest = (
+  queryParams = {
+    q: "null",
+    pageSize: 40,
+    apiKey: process.env.REACT_APP_NEWS_API_KEY,
+  }
+) => {
   const params = { ...queryParams, apiKey: process.env.REACT_APP_NEWS_API_KEY };
-
-  console.log("Query ", params);
-
   return newsAPI
     .get(`/v2/everything`, { params })
     .then((response) => response.data);
 };
-
-//One request for default news and for news with params
-//Problem with params from the search form
-// export const getNewsListRequest = (
-//   queryParams = {
-//     q: "null",
-//     pageSize: 40,
-//     apiKey: process.env.REACT_APP_NEWS_API_KEY,
-//   }
-// ) => {
-//   const params = { ...queryParams, apiKey: process.env.REACT_APP_NEWS_API_KEY };
-//   return newsAPI
-//     .get(`/v2/everything`, { params })
-//     .then((response) => response.data);
-// };
 
 //Request to get popular news
 export const getPopularNewsListRequest = () =>
