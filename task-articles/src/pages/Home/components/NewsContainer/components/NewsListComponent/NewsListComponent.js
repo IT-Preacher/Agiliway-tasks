@@ -13,9 +13,9 @@ const NewsListComponent = ({ newsList, minValue, maxValue }) => {
 };
 
 NewsListComponent.propTypes = {
-  newsList: propTypes.array,
-  minValue: propTypes.number,
-  maxValue: propTypes.number,
+  newsList: propTypes.array.isRequired,
+  minValue: propTypes.number.isRequired,
+  maxValue: propTypes.number.isRequired,
 };
 
-export default NewsListComponent;
+export default React.memo(NewsListComponent);
