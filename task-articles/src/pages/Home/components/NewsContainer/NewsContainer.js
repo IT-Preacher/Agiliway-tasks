@@ -9,10 +9,7 @@ import NewsListComponent from "./components/NewsListComponent";
 import { StyledNewsConteiner, LoadMore } from "./styled.components";
 
 //Thunks
-import {
-  getNewsListThunk,
-  getSearchNewsListThunk,
-} from "../../../Domains/thunks/getNewsThunk";
+import { getNewsListThunk } from "../../../Domains/thunks/getNewsThunk";
 
 //Constants
 import {
@@ -35,7 +32,7 @@ const NewsContainer = () => {
   }, []);
 
   const onSearchNews = (value) => {
-    dispatch(getSearchNewsListThunk(value));
+    dispatch(getNewsListThunk(value));
   };
 
   const handleChangeSorting = (value) => {
@@ -50,7 +47,7 @@ const NewsContainer = () => {
           return 0;
         })
       );
-      return
+      return;
     }
 
     if (value === "publishedAtDown") {
@@ -99,7 +96,7 @@ const NewsContainer = () => {
             <SettingsComponent handleChange={handleChangeSorting} />
             <div className="news-articles">
               <NewsListComponent
-                newsList={list||newsList}
+                newsList={list || newsList}
                 minValue={minValue}
                 maxValue={maxValue}
               />
