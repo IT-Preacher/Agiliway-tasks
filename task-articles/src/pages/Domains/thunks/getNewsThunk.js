@@ -22,10 +22,10 @@ export const getNewsListThunk = (queryParams) => {
   };
 };
 
-export const getPopularNewsListThunk = () => {
+export const getPopularNewsListThunk = (userLocation) => {
   return (dispatch) => {
     dispatch(getNewsListStartAction);
-    return getPopularNewsListRequest()
+    return getPopularNewsListRequest(userLocation)
       .then((response) => {
         dispatch(getNewsPopularListSuccessAction(response.articles));
       })

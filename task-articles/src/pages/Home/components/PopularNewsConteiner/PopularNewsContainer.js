@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Carousel, Spin } from "antd";
+
 import { getPopularNewsListThunk } from "../../../Domains/thunks/getNewsThunk";
+import { getGeolocationRequest } from "../../../../services/domain";
+
 import PopularArticleCard from "./components/PopularArticleCard";
 import { PopularNewsCarousel } from "./styled.component";
+import { Carousel, Spin } from "antd";
 
 const PopularNewsContainer = () => {
   const dispatch = useDispatch();
@@ -11,7 +14,9 @@ const PopularNewsContainer = () => {
   const { popularNewsList, loading, error } = news;
 
   useEffect(() => {
-    dispatch(getPopularNewsListThunk());
+    getGeolocationRequest().then((response) => {
+      dispatch(getPopularNewsListThunk(response.data.country_code));
+    });
   }, []);
 
   return (
