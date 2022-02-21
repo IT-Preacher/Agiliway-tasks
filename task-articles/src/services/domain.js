@@ -1,5 +1,6 @@
 import client from "./client.js";
 import newsAPI from "./newsAPI.js";
+import geolocationAPI from "./geolocationAPI.js";
 
 /* Request to local server */
 
@@ -47,15 +48,29 @@ export const getNewsListRequest = (
   }
 ) => {
   const params = { ...queryParams, apiKey: process.env.REACT_APP_NEWS_API_KEY };
+  
   return newsAPI
     .get(`/v2/everything`, { params })
     .then((response) => response.data);
 };
 
 //Request to get popular news
-export const getPopularNewsListRequest = () =>
-  newsAPI
-    .get(
-      `/v2/top-headlines?country=ua&category=general&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
-    )
+export const getPopularNewsListRequest = (queryParams) => {
+  const params = {
+    country: queryParams,
+    category: "general",
+    apiKey: process.env.REACT_APP_NEWS_API_KEY,
+  };
+
+  return newsAPI
+    .get(`/v2/top-headlines`, { params })
     .then((response) => response.data);
+};
+
+//ipstack API
+//Geolocation request
+export const getGeolocationRequest = () => {
+  return geolocationAPI.get(
+    `check?access_key=${process.env.REACT_APP_GEOLOCATION_API_KEY}`
+  );
+};
