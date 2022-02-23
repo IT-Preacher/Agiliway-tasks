@@ -43,7 +43,12 @@ const SignUpForm = () => {
   };
 
   const handleSubmit = (values) => {
+    const {username} = values;
+    const userData = JSON.stringify(values);
+
+    console.log("Sign up props from fields ", userData);
     console.log("Sign up props from fields ", values);
+    localStorage.setItem(username, userData);
   };
 
   return (

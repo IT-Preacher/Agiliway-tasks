@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const PageSignContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 export const PrimaryFormContainer = styled.div`
   display: flex;
   justify-content: center;
