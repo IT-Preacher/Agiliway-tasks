@@ -48,7 +48,7 @@ const SignUpForm = () => {
 
   return (
     <PrimaryFormContainer>
-      <Banner />
+        <Banner />
       <FormContainer>
         <Form
           id="signUp"
@@ -95,11 +95,7 @@ const SignUpForm = () => {
                   );
                 })}
               </div>
-              <Button
-                form="signUp"
-                htmltype="submit"
-                disabled={submitting}
-              >
+              <Button form="signUp" htmltype="submit" disabled={submitting}>
                 Confirm
               </Button>
             </form>
