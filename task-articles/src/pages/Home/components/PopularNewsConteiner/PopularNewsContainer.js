@@ -14,9 +14,9 @@ const PopularNewsContainer = () => {
   const { popularNewsList, loading, error } = news;
 
   useEffect(() => {
-    getGeolocationRequest().then((response) => {
-      dispatch(getPopularNewsListThunk(response.data.country_code));
-    });
+    // getGeolocationRequest().then((response) => {
+    //   dispatch(getPopularNewsListThunk(response.data.country_code));
+    // });
   }, []);
 
   return (
