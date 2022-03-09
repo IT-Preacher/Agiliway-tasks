@@ -31,12 +31,19 @@ const SignInForm = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("load", () => setIsLoading(false));
+    // setIsLoading(true);
+
+    // window.addEventListener("load", () => {
+    //   console.log("Load");
+    //   setIsLoading(false);
+    // });
+
+    setTimeout(() => setIsLoading(false), 3000);
 
     return () => {
-      window.removeEventListener("load", () => setIsLoading(true));
+      clearInterval()
     };
-  }, []);
+  }, [isLoading]);
 
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -49,7 +56,7 @@ const SignInForm = () => {
     <PageSignContainer>
       <Spin indicator={antIcon} spinning={isLoading}>
         <PrimaryFormContainer>
-          <Banner />
+          <Banner onLoad={() => setIsLoading(false)} />
           <FormContainer>
             <Form
               id="signIn"

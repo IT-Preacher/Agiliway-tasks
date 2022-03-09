@@ -47,12 +47,15 @@ const SignUpForm = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("load", () => setIsLoading(false));
+    window.addEventListener("load", () => {
+      console.log("Load");
+      setIsLoading(false);
+    });
 
     return () => {
       window.removeEventListener("load", () => setIsLoading(true));
     };
-  }, [window]);
+  }, []);
 
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
