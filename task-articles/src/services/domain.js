@@ -53,7 +53,7 @@ export const getNewsListRequest = (
     .get(`/v2/everything`, { params })
     .then((response) => response.data);
 };
-
+console.log("Thunk ENV:" + process.env.REACT_APP_NEWS_API_KEY);
 //Request to get popular news
 export const getPopularNewsListRequest = (queryParams) => {
   const params = {

@@ -1,37 +1,66 @@
-import "./Navigation.scss";
-import styled from "styled-components";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import {
+  HeaderContainer,
+  Logo,
+  Header,
+  Nav,
+  MobileIcon,
+} from "./styled.components";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import logo from "./logo.svg";
 
-const HeaderContainer = styled.div`
-  maxWidth: 1200px;
-  padding: 15px 15px;
-`;
-
 function Navigation() {
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
   return (
     <HeaderContainer>
-      <header>
-        <div className="logo-container">
+      <Header>
+        <div>
           <NavLink to={"/"}>
-            <img src={logo} alt="Logo img" className="logo-img" />
+            <Logo src={logo} alt="Logo img" />
           </NavLink>
         </div>
-        <nav className="navigation-container">
-          <NavLink to={"/"} activeClassName="selected" exact>
+
+        <MobileIcon
+          onClick={() => {
+            console.log("OPEN: ", isMobileOpen);
+            setIsMobileOpen(!isMobileOpen);
+          }}
+        >
+          {!isMobileOpen && <MenuOutlined style={{ fontSize: 50 }} />}
+          {isMobileOpen && <CloseOutlined style={{ fontSize: 50 }} />}
+        </MobileIcon>
+
+        <Nav open={isMobileOpen}>
+          <NavLink
+            to={"/"}
+            activeClassName="selected"
+            onClick={() => setIsMobileOpen(false)}
+            exact
+          >
             Home
           </NavLink>
-          <NavLink to={"/articles"} activeClassName="selected">
+          <NavLink
+            to={"/articles"}
+            activeClassName="selected"
+            onClick={() => setIsMobileOpen(false)}
+          >
             Articles
           </NavLink>
-          <NavLink to={"/statistic"} activeClassName="selected" exact>
+          <NavLink
+            to={"/statistic"}
+            activeClassName="selected"
+            onClick={() => setIsMobileOpen(false)}
+            exact
+          >
             Statistic
           </NavLink>
-          <NavLink to={"/signin"}>
+          <NavLink to={"/signin"} onClick={() => setIsMobileOpen(false)}>
             Sign In
           </NavLink>
-        </nav>
-      </header>
+        </Nav>
+      </Header>
     </HeaderContainer>
   );
 }
