@@ -6,6 +6,10 @@ export const StyledNewsConteiner = styled.div`
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+
+      @media screen and (max-width: 960px) {
+        justify-content: center;
+      }
     }
   }
 `;
@@ -31,8 +35,8 @@ export const RequestSettingsContainer = styled.div`
   align-items: flex-end;
   justify-content: space-around;
   padding: 20px 0px;
-  opacity: ${(props) => (props.visibility ? 1 : 0)}
-  visibility: ${(props) => (props.visibility ? "visible" : "hidden")}
+  opacity: ${(props) => (props.visibility ? 1 : 0)};
+  visibility: ${(props) => (props.visibility ? "visible" : "hidden")};
   transition: .55s opacity, .55s visibility;
 `;
 
